@@ -4,7 +4,12 @@ export const StyledHeader = styled.header`
   height: 100vh;
   background-image: url('images/header-bg.png');
   background-repeat: no-repeat;
+  background-size: cover;
   background-color: #fff;
+
+  @media (max-width: 1200px) {
+    background-position: 50%;
+  }
 `;
 
 export const StyledTopLine = styled.div`
