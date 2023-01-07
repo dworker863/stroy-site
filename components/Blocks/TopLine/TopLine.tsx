@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
+import Hamburger from '../../Elements/Hamburger/Hamburger';
 import Logo from '../../Elements/Logo/Logo';
 import {
   StyledMenu,
@@ -32,6 +33,7 @@ const TopLine: FC = () => {
           </StyledNavItem>
         </StyledMenu>
       </StyledNav>
+      <Hamburger />
     </StyledTopLine>
   );
 };
