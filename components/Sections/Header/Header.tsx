@@ -1,7 +1,39 @@
 import React, { FC } from 'react';
+import Container from '../../Blocks/Container/Container';
+import TopLine from '../../Blocks/TopLine/TopLine';
+import Logo from '../../Elements/Logo/Logo';
+import {
+  StyledHeader,
+  StyledHeaderDesc,
+  StyledHeaderInfo,
+  StyledHeaderTitle,
+  StyledTopLine,
+} from './StyledHeader';
 
 const Header: FC = () => {
-  return <div>Header</div>;
+  return (
+    <StyledHeader>
+      <Container>
+        <TopLine />
+        <StyledHeaderInfo>
+          <StyledHeaderTitle>Lorem ipsum dolor sit amet.</StyledHeaderTitle>
+          <StyledHeaderDesc>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis
+            odit, earum suscipit dolor doloribus necessitatibus aliquid illum.
+            Vitae eius aut ullam repudiandae, possimus blanditiis perferendis
+            corporis aspernatur saepe quis voluptatum. Iusto consequatur illo
+            laudantium labore nam veritatis doloremque repellat quisquam sint
+            maiores est hic et quas vero facilis illum nobis quasi distinctio,
+            eum neque accusamus minima voluptatem! Architecto, quibusdam in!
+            Temporibus laudantium numquam hic corporis pariatur molestias alias,
+            possimus repellat, iusto officiis voluptates cupiditate! Quia, iure
+            earum, aliquam, alias ad fugit mollitia quod atque porro doloremque
+            molestiae assumenda maiores. Amet.
+          </StyledHeaderDesc>
+        </StyledHeaderInfo>
+      </Container>
+    </StyledHeader>
+  );
 };
 
 export default Header;
