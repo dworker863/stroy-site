@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { FC } from 'react';
 import Logo from '../../Elements/Logo/Logo';
 import {
@@ -10,13 +11,25 @@ import {
 const TopLine: FC = () => {
   return (
     <StyledTopLine>
-      <Logo />
+      <StyledNavItem>
+        <Link href="/">
+          <Logo />
+        </Link>
+      </StyledNavItem>
       <StyledNav>
         <StyledMenu>
-          <StyledNavItem>О нас</StyledNavItem>
-          <StyledNavItem>Работы</StyledNavItem>
-          <StyledNavItem>Калькулятор</StyledNavItem>
-          <StyledNavItem>Контакты</StyledNavItem>
+          <StyledNavItem>
+            <Link href="about">О нас</Link>
+          </StyledNavItem>
+          <StyledNavItem>
+            <Link href="projects">Работы</Link>
+          </StyledNavItem>
+          <StyledNavItem>
+            <Link href="calculator">Калькулятор</Link>
+          </StyledNavItem>
+          <StyledNavItem>
+            <Link href="contacts">Контакты</Link>
+          </StyledNavItem>
         </StyledMenu>
       </StyledNav>
     </StyledTopLine>

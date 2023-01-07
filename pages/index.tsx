@@ -1,6 +1,5 @@
-import Head from 'next/head';
-import Image from 'next/image';
+import { StyledHome } from './StyledHome';
 
 export default function Home() {
-  return <div>Main</div>;
+  return <StyledHome>Main</StyledHome>;
 }
