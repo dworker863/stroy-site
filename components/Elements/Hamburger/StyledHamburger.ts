@@ -22,7 +22,7 @@ export const StyledHamburger = styled.div<IStyledHamburger>`
   top: 10px;
   width: 30px;
   height: 4px;
-  background-color: #b20a4ec7;
+  background-color: ${({ theme }) => theme.colors.primary};
   transition: 0.3s all;
 
   &:before,
@@ -31,7 +31,7 @@ export const StyledHamburger = styled.div<IStyledHamburger>`
     position: absolute;
     width: 30px;
     height: 4px;
-    background-color: #b20a4ec7;
+    background-color: ${({ theme }) => theme.colors.primary};
   }
 
   &:before {

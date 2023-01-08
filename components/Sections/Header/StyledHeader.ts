@@ -13,10 +13,6 @@ export const StyledHeader = styled.header`
   }
 `;
 
-export const StyledTopLine = styled.div`
-  width: 100%;
-`;
-
 export const StyledHeaderInfo = styled.div`
   width: 40%;
   align-self: flex-start;

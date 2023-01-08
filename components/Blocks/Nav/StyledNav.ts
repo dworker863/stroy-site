@@ -17,6 +17,6 @@ export const StyledNavItem = styled.li`
   color: #fff;
 
   &:hover {
-    color: #b20a4ec7;
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
