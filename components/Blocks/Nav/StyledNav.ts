@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
-export const StyledNav = styled.nav``;
+export const StyledNav = styled.nav`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
 
 export const StyledMenu = styled.ul`
   display: flex;

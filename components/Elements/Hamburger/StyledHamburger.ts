@@ -2,10 +2,17 @@ import styled, { css } from 'styled-components';
 import { IStyledHamburger, IStyledHamburgerWrapper } from './IHamburger';
 
 export const StyledHamburgerWrapper = styled.div<IStyledHamburgerWrapper>`
+  z-index: 1000;
+  display: none;
   cursor: pointer;
-  position: relative;
+  position: absolute;
+  right: 40px;
   width: 30px;
   height: 40px;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 export const StyledHamburger = styled.div<IStyledHamburger>`

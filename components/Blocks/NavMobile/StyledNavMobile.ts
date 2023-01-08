@@ -2,6 +2,7 @@ import { IStyledNavMobile } from './INavMobile';
 import styled, { css } from 'styled-components';
 
 export const StyledNavMobile = styled.nav<IStyledNavMobile>`
+  display: none;
   position: absolute;
   top: 0;
   right: -320px;
@@ -16,6 +17,10 @@ export const StyledNavMobile = styled.nav<IStyledNavMobile>`
     css`
       right: 0;
     `};
+
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 export const StyledMobileMenu = styled.ul``;

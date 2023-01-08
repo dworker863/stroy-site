@@ -21,12 +21,10 @@ const Header: FC = () => {
 
   return (
     <StyledHeader>
+      <Hamburger isActive={active} onClick={setItemActiveHandler} />
       <NavMobile isActive={active} navClickHandler={setItemActiveHandler} />
       <Container>
-        <TopLine
-          isActive={active}
-          hamburgerClickHandler={setItemActiveHandler}
-        />
+        <TopLine />
         <StyledHeaderInfo>
           <StyledHeaderTitle>Lorem ipsum dolor sit amet.</StyledHeaderTitle>
           <StyledHeaderDesc>
