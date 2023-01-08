@@ -6,6 +6,7 @@ export const StyledHamburgerWrapper = styled.div<IStyledHamburgerWrapper>`
   display: none;
   cursor: pointer;
   position: absolute;
+  top: 10px;
   right: 40px;
   width: 30px;
   height: 40px;

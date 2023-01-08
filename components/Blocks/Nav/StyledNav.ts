@@ -13,7 +13,7 @@ export const StyledMenu = styled.ul`
 export const StyledNavItem = styled.li`
   margin-left: 40px;
   text-transform: uppercase;
-  line-height: 40px;
+  line-height: 48px;
   color: #fff;
 
   &:hover {
