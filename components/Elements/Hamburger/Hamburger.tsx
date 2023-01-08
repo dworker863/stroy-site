@@ -1,16 +1,11 @@
 import React, { FC, useState } from 'react';
+import { IHamburger } from './IHamburger';
 import { StyledHamburger, StyledHamburgerWrapper } from './StyledHamburger';
 
-const Hamburger: FC = () => {
-  const [active, setActive] = useState(false);
-
-  const setHamburgerHandler = () => {
-    setActive(!active);
-  };
-
+const Hamburger: FC<IHamburger> = ({ isActive, onClick }) => {
   return (
-    <StyledHamburgerWrapper onClick={setHamburgerHandler}>
-      <StyledHamburger isActive={active} />
+    <StyledHamburgerWrapper onClick={onClick}>
+      <StyledHamburger isActive={isActive} />
     </StyledHamburgerWrapper>
   );
 };

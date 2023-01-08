@@ -1,6 +1,8 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import Container from '../../Blocks/Container/Container';
+import NavMobile from '../../Blocks/NavMobile/NavMobile';
 import TopLine from '../../Blocks/TopLine/TopLine';
+import Hamburger from '../../Elements/Hamburger/Hamburger';
 import Logo from '../../Elements/Logo/Logo';
 import {
   StyledHeader,
@@ -11,10 +13,20 @@ import {
 } from './StyledHeader';
 
 const Header: FC = () => {
+  const [active, setActive] = useState(false);
+
+  const setItemActiveHandler = () => {
+    setActive(!active);
+  };
+
   return (
     <StyledHeader>
+      <NavMobile isActive={active} navClickHandler={setItemActiveHandler} />
       <Container>
-        <TopLine />
+        <TopLine
+          isActive={active}
+          hamburgerClickHandler={setItemActiveHandler}
+        />
         <StyledHeaderInfo>
           <StyledHeaderTitle>Lorem ipsum dolor sit amet.</StyledHeaderTitle>
           <StyledHeaderDesc>

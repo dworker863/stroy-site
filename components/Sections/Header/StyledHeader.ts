@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
+  position: relative;
   height: 100vh;
   background-image: url('images/header-bg.png');
   background-repeat: no-repeat;
