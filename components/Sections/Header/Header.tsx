@@ -9,7 +9,6 @@ import {
   StyledHeaderDesc,
   StyledHeaderInfo,
   StyledHeaderTitle,
-  StyledTopLine,
 } from './StyledHeader';
 
 const Header: FC = () => {
