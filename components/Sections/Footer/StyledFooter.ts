@@ -14,11 +14,26 @@ export const StyledFooter = styled.footer`
 export const StyledFooterBlock = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+  }
 `;
 
 export const StyledFooterContacts = styled.div`
   margin-bottom: 100px;
+
+  @media (max-width: 992px) {
+    margin-bottom: 40px;
+  }
+
+  @media (max-width: 576px) {
+    margin-bottom: 20px;
+  }
 `;
+
 export const StyledAddress = styled.div`
   margin-bottom: 16px;
 `;
@@ -35,4 +50,8 @@ export const StyledFooterSocials = styled.div`
 
 export const StyledCopyrights = styled.div`
   width: 100%;
+
+  @media (max-width: 576px) {
+    text-align: center;
+  }
 `;
