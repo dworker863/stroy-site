@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
+import Socials from '../../Elements/Socials/Socials';
 import { INavMobile } from './INavMobile';
 import {
   StyledMobileMenu,
@@ -23,6 +24,7 @@ const NavMobile: FC<INavMobile> = ({ isActive, navClickHandler }) => {
         <StyledNavMobileItem>
           <Link href="/contacts">Контакты</Link>
         </StyledNavMobileItem>
+        <Socials />
       </StyledMobileMenu>
     </StyledNavMobile>
   );

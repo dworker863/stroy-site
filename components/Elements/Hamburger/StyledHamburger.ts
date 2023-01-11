@@ -11,7 +11,7 @@ export const StyledHamburgerWrapper = styled.div<IStyledHamburgerWrapper>`
   width: 30px;
   height: 40px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     display: block;
   }
 `;

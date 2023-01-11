@@ -1,13 +1,7 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
-import {
-  StyledMenu,
-  StyledNav,
-  StyledNavItem,
-  StyledSocial,
-  StyledSocials,
-} from './StyledNav';
+import Socials from '../../Elements/Socials/Socials';
+import { StyledMenu, StyledNav, StyledNavItem } from './StyledNav';
 
 const Nav: FC = () => {
   return (
@@ -25,26 +19,7 @@ const Nav: FC = () => {
         <StyledNavItem>
           <Link href="/contacts">Контакты</Link>
         </StyledNavItem>
-        <StyledSocials>
-          <a href="#">
-            <StyledSocial className="whatsapp" />
-          </a>
-          <a href="#">
-            <StyledSocial className="telegram" />
-          </a>
-          <a href="#">
-            <StyledSocial className="vk" />
-          </a>
-          <a href="#">
-            <StyledSocial className="instagram" />
-          </a>
-          <a href="#">
-            <StyledSocial className="facebook" />
-          </a>
-          <a href="#">
-            <StyledSocial className="twitter" />
-          </a>
-        </StyledSocials>
+        <Socials />
       </StyledMenu>
     </StyledNav>
   );

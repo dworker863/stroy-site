@@ -8,8 +8,7 @@ export const StyledNavMobile = styled.nav<IStyledNavMobile>`
   right: -320px;
   width: 320px;
   height: 100vh;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding-top: 200px;
   background-color: #fff;
   transition: 0.3s all;
   ${({ isActive }) =>
@@ -18,12 +17,20 @@ export const StyledNavMobile = styled.nav<IStyledNavMobile>`
       right: 0;
     `};
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
     display: block;
   }
 `;
 
-export const StyledMobileMenu = styled.ul``;
+export const StyledMobileMenu = styled.ul`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > div {
+    margin-left: 0;
+  }
+`;
 
 export const StyledNavMobileItem = styled.li`
   margin-bottom: 20px;
