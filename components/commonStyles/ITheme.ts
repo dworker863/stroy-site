@@ -3,5 +3,6 @@ export interface ITheme {
     fontColor: string;
     primary: string;
     secondary: string;
+    socialColor: string;
   };
 }

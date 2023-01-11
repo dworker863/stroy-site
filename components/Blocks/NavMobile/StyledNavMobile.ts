@@ -28,6 +28,7 @@ export const StyledMobileMenu = styled.ul`
   align-items: center;
 
   & > div {
+    margin-top: 80px;
     margin-left: 0;
   }
 `;
