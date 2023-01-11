@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
 import Socials from '../../Elements/Socials/Socials';
+import { INav } from './INav';
 import { StyledMenu, StyledNav, StyledNavItem } from './StyledNav';
 
-const Nav: FC = () => {
+const Nav: FC<INav> = ({ column }) => {
   return (
-    <StyledNav>
+    <StyledNav column={column}>
       <StyledMenu>
         <StyledNavItem>
           <Link href="/about">О нас</Link>

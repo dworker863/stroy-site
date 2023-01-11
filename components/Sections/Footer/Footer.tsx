@@ -15,10 +15,17 @@ import { faVk } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { Montserrat } from '@next/font/google';
+import Nav from '../../Blocks/Nav/Nav';
+
+const montserrat = Montserrat({
+  weight: '400',
+  subsets: ['latin', 'cyrillic'],
+});
 
 const Footer: FC = () => {
   return (
-    <StyledFooter>
+    <StyledFooter className={montserrat.className}>
       <Container>
         <StyledFooterBlock>
           <StyledFooterContacts>
@@ -26,6 +33,7 @@ const Footer: FC = () => {
             <StyledAddress>Телефон: +7 777 777 77 77</StyledAddress>
             <StyledAddress>Почта: dworker863@gmail.com</StyledAddress>
           </StyledFooterContacts>
+          <Nav column />
           <StyledFooterSocials>
             <a
               href="https://wa.me/77776196190"

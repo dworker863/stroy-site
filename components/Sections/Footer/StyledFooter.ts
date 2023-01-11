@@ -17,10 +17,10 @@ export const StyledFooterBlock = styled.div`
 `;
 
 export const StyledFooterContacts = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 100px;
 `;
 export const StyledAddress = styled.div`
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 `;
 
 export const StyledFooterSocials = styled.div`
@@ -29,8 +29,7 @@ export const StyledFooterSocials = styled.div`
   svg {
     margin-right: 8px;
     border-radius: 4px;
-    color: #000;
-    background-color: ${({ theme }) => theme.colors.socialColor};
+    color: ${({ theme }) => theme.colors.socialColor};
   }
 `;
 
