@@ -1,18 +1,13 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import React, { FC } from 'react';
 import {
-  StyledFontAwesome,
   StyledMenu,
   StyledNav,
   StyledNavItem,
+  StyledSocial,
   StyledSocials,
 } from './StyledNav';
-import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
-import { faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faVk } from '@fortawesome/free-brands-svg-icons';
-import { faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faCircle } from '@fortawesome/free-solid-svg-icons';
 
 const Nav: FC = () => {
   return (
@@ -32,27 +27,22 @@ const Nav: FC = () => {
         </StyledNavItem>
         <StyledSocials>
           <a href="#">
-            <StyledFontAwesome
-              icon={faWhatsapp}
-              size="xl"
-              className="whatsapp"
-            />
+            <StyledSocial className="whatsapp" />
           </a>
           <a href="#">
-            <StyledFontAwesome icon={faVk} size="xl" className="vk" />
+            <StyledSocial className="telegram" />
           </a>
           <a href="#">
-            <StyledFontAwesome
-              icon={faFacebook}
-              size="xl"
-              className="facebook"
-            />
+            <StyledSocial className="vk" />
           </a>
           <a href="#">
-            <StyledFontAwesome icon={faTwitter} size="xl" className="twitter" />
+            <StyledSocial className="instagram" />
           </a>
           <a href="#">
-            <StyledFontAwesome icon={faInstagram} size="xl" className="insta" />
+            <StyledSocial className="facebook" />
+          </a>
+          <a href="#">
+            <StyledSocial className="twitter" />
           </a>
         </StyledSocials>
       </StyledMenu>

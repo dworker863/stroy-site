@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 export const StyledNav = styled.nav`
@@ -23,6 +22,8 @@ export const StyledNavItem = styled.li`
 `;
 
 export const StyledSocials = styled.div`
+  display: flex;
+  align-items: center;
   line-height: 48px;
   margin-left: 40px;
 
@@ -31,33 +32,33 @@ export const StyledSocials = styled.div`
   }
 `;
 
-export const StyledFontAwesome = styled(FontAwesomeIcon)`
+export const StyledSocial = styled.div`
+  background-image: url('./images/social-icons.png');
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+
   &.whatsapp {
-    color: #fff;
-    /* background-color: #64b161; */
-    border-radius: 50%;
+    background-position: -104px 0;
+  }
+
+  &.telegram {
+    background-position: -68px 0;
+  }
+
+  &.instagram {
+    background-position: -34px 0;
   }
 
   &.vk {
-    color: #097deb;
-    /* background-color: #fff; */
+    background-position: 0 0;
   }
 
   &.facebook {
-    color: #097deb;
-    /* background-color: #fff; */
-    border-radius: 50%;
+    background-position: -138px 0;
   }
 
   &.twitter {
-    color: #fff;
-    /* background-color: #097deb; */
-    border-radius: 50%;
-  }
-
-  &.insta {
-    color: #fff;
-    /* background-color: #097deb; */
-    border-radius: 50%;
+    background-position: -68px 62px;
   }
 `;
