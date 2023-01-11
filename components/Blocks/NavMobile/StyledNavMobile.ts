@@ -3,13 +3,13 @@ import styled, { css } from 'styled-components';
 
 export const StyledNavMobile = styled.nav<IStyledNavMobile>`
   display: none;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: -320px;
   width: 320px;
   height: 100vh;
   padding-top: 200px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.colors.brown};
   transition: 0.3s all;
   ${({ isActive }) =>
     isActive &&
@@ -36,4 +36,9 @@ export const StyledMobileMenu = styled.ul`
 export const StyledNavMobileItem = styled.li`
   margin-bottom: 20px;
   text-align: center;
+  color: #fff;
+
+  &:hover {
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;

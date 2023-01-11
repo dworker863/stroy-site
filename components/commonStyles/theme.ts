@@ -6,5 +6,6 @@ export const defaultTheme: DefaultTheme = {
     primary: '#b20a4ec7',
     secondary: '#458FFD',
     socialColor: '#f6ecc8',
+    brown: '#392828eb',
   },
 };

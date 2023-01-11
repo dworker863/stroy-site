@@ -4,5 +4,6 @@ export interface ITheme {
     primary: string;
     secondary: string;
     socialColor: string;
+    brown: string;
   };
 }
