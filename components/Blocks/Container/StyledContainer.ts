@@ -1,10 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { IContainer } from './IContainer';
 
-export const StyledContainer = styled.div`
+export const StyledContainer = styled.div<IContainer>`
   display: flex;
   justify-content: space-between;
   width: 1320px;
   margin: 0 auto;
+
+  ${({ column }) =>
+    column &&
+    css`
+      flex-direction: column;
+    `}
 
   @media (max-width: 1400px) {
     width: 1140px;
