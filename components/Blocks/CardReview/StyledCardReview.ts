@@ -1,3 +1,4 @@
+import StarRatings from 'react-star-ratings';
 import styled from 'styled-components';
 
 export const StyledCardReview = styled.div`
@@ -13,10 +14,8 @@ export const StyledCardReview = styled.div`
 export const StyledCardAuthor = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
-
-export const StyledCardStars = styled.div``;
 
 export const StyledAuthorName = styled.h3`
   text-transform: capitalize;
@@ -27,7 +26,10 @@ export const StyledAuthorPhoto = styled.div`
   margin-right: 20px;
 `;
 
+export const StyledStars = styled(StarRatings)``;
+
 export const StyledCardMessage = styled.p`
+  margin-top: 20px;
   margin-bottom: 40px;
 `;
 
