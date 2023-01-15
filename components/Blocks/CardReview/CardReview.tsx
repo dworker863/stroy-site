@@ -4,9 +4,11 @@ import {
   StyledAuthorName,
   StyledAuthorPhoto,
   StyledCardAuthor,
+  StyledCardAuthorWrapper,
   StyledCardDate,
   StyledCardMessage,
   StyledCardReview,
+  StyledCardText,
   StyledStars,
 } from './StyledCardReview';
 
@@ -15,31 +17,36 @@ const CardReview: FC = () => {
 
   return (
     <StyledCardReview>
-      <StyledCardAuthor>
+      <StyledCardAuthorWrapper>
         <StyledAuthorPhoto>
           <Image
             src="/images/author-photo.png"
             alt="Author"
-            width={40}
-            height={40}
+            width={50}
+            height={50}
           />
         </StyledAuthorPhoto>
-        <StyledAuthorName>Lorem ipsum</StyledAuthorName>
-      </StyledCardAuthor>
-      <StyledStars
-        rating={rating}
-        starRatedColor="gold"
-        starHoverColor="gold"
-        numberOfStars={5}
-        starDimension="30px"
-      />
-      <StyledCardMessage>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero nam
-        repellat, labore accusamus numquam cupiditate, fuga laborum consequuntur
-        facilis ex nostrum beatae nihil dolore officia obcaecati exercitationem
-        a?
-      </StyledCardMessage>
-      <StyledCardDate>12.01.2022</StyledCardDate>
+        <StyledCardAuthor>
+          <StyledAuthorName>Lorem ipsum</StyledAuthorName>
+          <StyledStars
+            rating={rating}
+            starRatedColor="gold"
+            starHoverColor="gold"
+            numberOfStars={5}
+            starDimension="24px"
+            starSpacing="2px"
+          />
+        </StyledCardAuthor>
+      </StyledCardAuthorWrapper>
+      <StyledCardText>
+        <StyledCardMessage>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero nam
+          repellat, labore accusamus numquam cupiditate, fuga laborum
+          consequuntur facilis ex nostrum beatae nihil dolore officia obcaecati
+          exercitationem a?
+        </StyledCardMessage>
+        <StyledCardDate>12.01.2022</StyledCardDate>
+      </StyledCardText>
     </StyledCardReview>
   );
 };

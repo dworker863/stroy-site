@@ -4,21 +4,29 @@ import styled from 'styled-components';
 export const StyledCardReview = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 30px;
   border-radius: 10px;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.fontColor};
+`;
+
+export const StyledCardAuthorWrapper = styled.div`
+  display: flex;
+  padding: 18px 20px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
   background-color: ${({ theme }) => theme.colors.secondary};
 `;
 
 export const StyledCardAuthor = styled.div`
   display: flex;
-  align-items: center;
-  margin-bottom: 10px;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 export const StyledAuthorName = styled.h3`
   text-transform: capitalize;
   font-size: 18px;
+  font-weight: 400;
+  color: #fff;
 `;
 
 export const StyledAuthorPhoto = styled.div`
@@ -27,8 +35,15 @@ export const StyledAuthorPhoto = styled.div`
 
 export const StyledStars = styled(StarRatings)``;
 
+export const StyledCardText = styled.div`
+  padding: 30px;
+  border-top: none;
+  border: 1px solid ${({ theme }) => theme.colors.grey};
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+`;
+
 export const StyledCardMessage = styled.p`
-  margin-top: 20px;
   margin-bottom: 40px;
 `;
 

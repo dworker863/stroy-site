@@ -5,5 +5,6 @@ export interface ITheme {
     secondary: string;
     socialColor: string;
     brown: string;
+    grey: string;
   };
 }
