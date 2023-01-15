@@ -1,11 +1,17 @@
+import { Navigation, Pagination, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import CardReview from '../components/Blocks/CardReview/CardReview';
 import Container from '../components/Blocks/Container/Container';
 import {
   StyledHome,
   StyledHomeDesc,
   StyledHomeTitle,
-  StyledReviews,
+  StyledSliderPag,
 } from './StyledHome';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 export default function Home() {
   return (
@@ -43,12 +49,35 @@ export default function Home() {
           ullam commodi rerum? Dicta fuga pariatur accusantium optio modi
           similique.
         </StyledHomeDesc>
-        <StyledReviews>
-          <CardReview />
-          <CardReview />
-          <CardReview />
-        </StyledReviews>
       </Container>
+      <Container>
+        <Swiper
+          modules={[Navigation, Pagination, A11y]}
+          slidesPerView={3}
+          spaceBetween={20}
+          pagination={{
+            el: '.custom-swiper-pagination',
+            clickable: true,
+            renderBullet: (index, className) => {
+              return '<span class="' + className + '"></span>';
+            },
+          }}
+        >
+          <SwiperSlide>
+            <CardReview />
+          </SwiperSlide>
+          <SwiperSlide>
+            <CardReview />
+          </SwiperSlide>
+          <SwiperSlide>
+            <CardReview />
+          </SwiperSlide>
+          <SwiperSlide>
+            <CardReview />
+          </SwiperSlide>
+        </Swiper>
+      </Container>
+      <StyledSliderPag className="custom-swiper-pagination" />
     </StyledHome>
   );
 }

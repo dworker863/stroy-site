@@ -4,7 +4,6 @@ import styled from 'styled-components';
 export const StyledCardReview = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30%;
   padding: 30px;
   border-radius: 10px;
   color: #fff;
