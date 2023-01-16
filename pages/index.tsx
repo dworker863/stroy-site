@@ -1,23 +1,12 @@
-import { Navigation, Pagination, A11y } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import CardReview from '../components/Blocks/CardReview/CardReview';
 import Container from '../components/Blocks/Container/Container';
-import {
-  StyledHome,
-  StyledHomeDesc,
-  StyledHomeTitle,
-  StyledSliderPag,
-} from './StyledHome';
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import Reviews from '../components/Blocks/Reviews/Reviews';
+import { StyledHome, StyledHomeDesc, StyledHomeTitle } from './StyledHome';
 
 export default function Home() {
   return (
     <StyledHome>
       <Container column>
-        <StyledHomeTitle>Lorem ipsum</StyledHomeTitle>
+        <StyledHomeTitle>О нас</StyledHomeTitle>
         <StyledHomeDesc>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
           dolorum eligendi reprehenderit et sit porro, maiores fuga cupiditate
@@ -49,43 +38,9 @@ export default function Home() {
           ullam commodi rerum? Dicta fuga pariatur accusantium optio modi
           similique.
         </StyledHomeDesc>
+        <StyledHomeTitle>Отзывы</StyledHomeTitle>
       </Container>
-      <Container>
-        <Swiper
-          modules={[Navigation, Pagination, A11y]}
-          slidesPerView={1}
-          spaceBetween={20}
-          pagination={{
-            el: '.custom-swiper-pagination',
-            clickable: true,
-            renderBullet: (index, className) => {
-              return '<span class="' + className + '"></span>';
-            },
-          }}
-          breakpoints={{
-            576: {
-              slidesPerView: 2,
-            },
-            992: {
-              slidesPerView: 3,
-            },
-          }}
-        >
-          <SwiperSlide>
-            <CardReview />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardReview />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardReview />
-          </SwiperSlide>
-          <SwiperSlide>
-            <CardReview />
-          </SwiperSlide>
-        </Swiper>
-      </Container>
-      <StyledSliderPag className="custom-swiper-pagination" />
+      <Reviews />
     </StyledHome>
   );
 }

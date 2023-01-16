@@ -4,7 +4,9 @@ import styled from 'styled-components';
 export const StyledCardReview = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 5px;
   border-radius: 10px;
+  box-shadow: 1px 1px 5px ${({ theme }) => theme.colors.grey};
   color: ${({ theme }) => theme.colors.fontColor};
 `;
 
@@ -38,7 +40,6 @@ export const StyledStars = styled(StarRatings)``;
 export const StyledCardText = styled.div`
   padding: 30px;
   border-top: none;
-  border: 1px solid ${({ theme }) => theme.colors.grey};
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
 `;
