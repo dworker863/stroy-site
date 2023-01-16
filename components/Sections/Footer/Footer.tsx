@@ -1,11 +1,9 @@
 import React, { FC } from 'react';
 import Container from '../../Blocks/Container/Container';
 import {
-  StyledAddress,
   StyledCopyrights,
   StyledFooter,
   StyledFooterBlock,
-  StyledFooterContacts,
   StyledFooterSocials,
 } from './StyledFooter';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,6 +15,8 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Montserrat } from '@next/font/google';
 import Nav from '../../Blocks/Nav/Nav';
+import Contacts from '../../Blocks/ContactsBlock/ContactsBlock';
+import ContactsBlock from '../../Blocks/ContactsBlock/ContactsBlock';
 
 const montserrat = Montserrat({
   weight: '400',
@@ -28,11 +28,7 @@ const Footer: FC = () => {
     <StyledFooter className={montserrat.className}>
       <Container>
         <StyledFooterBlock>
-          <StyledFooterContacts>
-            <StyledAddress>Адрес: г. Алматы, ул. Достык, 78</StyledAddress>
-            <StyledAddress>Телефон: +7 777 777 77 77</StyledAddress>
-            <StyledAddress>Почта: dworker863@gmail.com</StyledAddress>
-          </StyledFooterContacts>
+          <ContactsBlock />
           <Nav column />
           <StyledFooterSocials>
             <a

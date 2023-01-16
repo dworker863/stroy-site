@@ -1,12 +1,13 @@
 import Container from '../components/Blocks/Container/Container';
 import Reviews from '../components/Blocks/Reviews/Reviews';
-import { StyledHome, StyledHomeDesc, StyledHomeTitle } from './StyledHome';
+import { StyledTitle } from '../components/commonStyles/StyledTitle';
+import { StyledHome, StyledHomeDesc } from './StyledHome';
 
 export default function Home() {
   return (
     <StyledHome>
       <Container column>
-        <StyledHomeTitle>О нас</StyledHomeTitle>
+        <StyledTitle>О нас</StyledTitle>
         <StyledHomeDesc>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
           dolorum eligendi reprehenderit et sit porro, maiores fuga cupiditate
@@ -38,7 +39,7 @@ export default function Home() {
           ullam commodi rerum? Dicta fuga pariatur accusantium optio modi
           similique.
         </StyledHomeDesc>
-        <StyledHomeTitle>Отзывы</StyledHomeTitle>
+        <StyledTitle>Отзывы</StyledTitle>
       </Container>
       <Reviews />
     </StyledHome>
