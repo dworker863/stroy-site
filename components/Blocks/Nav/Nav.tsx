@@ -9,9 +9,6 @@ const Nav: FC<INav> = ({ column }) => {
     <StyledNav column={column}>
       <StyledMenu>
         <StyledNavItem>
-          <Link href="/about">О нас</Link>
-        </StyledNavItem>
-        <StyledNavItem>
           <Link href="/projects">Работы</Link>
         </StyledNavItem>
         <StyledNavItem>

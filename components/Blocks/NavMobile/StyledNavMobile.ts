@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 export const StyledNavMobile = styled.nav<IStyledNavMobile>`
   display: none;
   position: fixed;
+  z-index: 10;
   top: 0;
   right: -320px;
   width: 320px;

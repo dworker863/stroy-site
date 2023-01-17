@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StyledHeader = styled.header`
   position: relative;
   display: flex;
-  /* align-items: center; */
   height: 100vh;
   background-image: url('images/header-bg.png');
   background-repeat: no-repeat;

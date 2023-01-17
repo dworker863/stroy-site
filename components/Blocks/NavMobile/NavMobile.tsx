@@ -13,9 +13,6 @@ const NavMobile: FC<INavMobile> = ({ isActive, navClickHandler }) => {
     <StyledNavMobile isActive={isActive} onClick={navClickHandler}>
       <StyledMobileMenu>
         <StyledNavMobileItem>
-          <Link href="/about">О нас</Link>
-        </StyledNavMobileItem>
-        <StyledNavMobileItem>
           <Link href="/projects">Работы</Link>
         </StyledNavMobileItem>
         <StyledNavMobileItem>

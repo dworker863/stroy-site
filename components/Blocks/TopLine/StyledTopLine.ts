@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledTopLine = styled.div`
   position: fixed;
-  z-index: 10;
+  z-index: 100;
   display: flex;
   justify-content: space-between;
   width: 100%;

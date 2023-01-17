@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 import { IStyledHamburger, IStyledHamburgerWrapper } from './IHamburger';
 
 export const StyledHamburgerWrapper = styled.div<IStyledHamburgerWrapper>`
-  z-index: 1000;
   display: none;
   cursor: pointer;
   position: absolute;
