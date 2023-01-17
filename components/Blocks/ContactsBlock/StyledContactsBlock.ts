@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledContacts = styled.div`
-  margin-bottom: 100px;
+  margin-bottom: 60px;
 
   @media (max-width: 992px) {
     margin-bottom: 40px;
