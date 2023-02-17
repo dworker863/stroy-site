@@ -13,13 +13,19 @@ const NavMobile: FC<INavMobile> = ({ isActive, navClickHandler }) => {
     <StyledNavMobile isActive={isActive} onClick={navClickHandler}>
       <StyledMobileMenu>
         <StyledNavMobileItem>
-          <Link href="/projects">Работы</Link>
+          <Link href="/projects" scroll={false}>
+            Работы
+          </Link>
         </StyledNavMobileItem>
         <StyledNavMobileItem>
-          <Link href="/calculator">Калькулятор</Link>
+          <Link href="/calculator" scroll={false}>
+            Калькулятор
+          </Link>
         </StyledNavMobileItem>
         <StyledNavMobileItem>
-          <Link href="/contacts">Контакты</Link>
+          <Link href="/contacts" scroll={false}>
+            Контакты
+          </Link>
         </StyledNavMobileItem>
         <Socials />
       </StyledMobileMenu>
