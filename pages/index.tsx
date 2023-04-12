@@ -1,9 +1,17 @@
+import { GetServerSideProps } from 'next';
 import Container from '../components/Blocks/Container/Container';
 import Reviews from '../components/Blocks/Reviews/Reviews';
 import { StyledTitle } from '../components/commonStyles/StyledTitle';
 import { StyledHome, StyledHomeDesc } from './StyledHome';
+import cookie from 'cookie';
+import { IService } from '../commonInterfaces/IService';
 
-export default function Home() {
+type THomeProps = {
+  auth: boolean;
+  services: IService[];
+};
+
+export default function Home({ auth, services }: THomeProps) {
   return (
     <StyledHome>
       <Container column>
@@ -41,7 +49,25 @@ export default function Home() {
         </StyledHomeDesc>
         <StyledTitle>Отзывы</StyledTitle>
       </Container>
-      <Reviews />
+      {!auth && <Reviews />}
     </StyledHome>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const cookies = cookie.parse(ctx.req.headers.cookie || '');
+  const token = cookies.token;
+  const auth = !!cookies.token;
+
+  const res = await fetch('http://192.168.1.2:8000/services');
+
+  const services = await res.json();
+  console.log(services);
+
+  return {
+    props: {
+      auth,
+      services,
+    },
+  };
+};
