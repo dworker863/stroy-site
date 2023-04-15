@@ -1,5 +1,5 @@
 import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
-import { IFormAuthValues } from './IFormAuth';
+import { IFormAuth, IFormAuthValues } from './IFormAuth';
 import React, { FC } from 'react';
 import * as Yup from 'yup';
 import { StyledField } from '../../../commonStyles/StyledField';
@@ -10,12 +10,14 @@ import { login } from '../../../api/api';
 import { useRouter } from 'next/router';
 import cookie from 'cookie';
 import { StyledFormAuthModal } from './StyledFormAuth';
+import ButtonClose from '../../Elements/ButtonClose/ButtonClose';
 
-const FormAuth: FC = () => {
+const FormAuth: FC<IFormAuth> = ({ active, onClick }) => {
   const router = useRouter();
 
   return (
-    <StyledFormAuthModal>
+    <StyledFormAuthModal active={active}>
+      <ButtonClose onClick={onClick} />
       <Formik
         initialValues={{
           username: '',
@@ -33,7 +35,8 @@ const FormAuth: FC = () => {
           console.log(user);
 
           setSubmitting(false);
-          router.push('/');
+          onClick();
+          router.push('/', undefined, { scroll: false });
         }}
       >
         <Form>

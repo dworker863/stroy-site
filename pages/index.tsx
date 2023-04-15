@@ -9,6 +9,7 @@ import Link from 'next/link';
 import FormAuth from '../components/Blocks/FormAuth/FormAuth';
 import Button from '../components/Elements/Button/Button';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 type THomeProps = {
   auth: boolean;
@@ -17,15 +18,26 @@ type THomeProps = {
 
 export default function Home({ auth, services }: THomeProps) {
   const router = useRouter();
+  const [modalActive, setModalActive] = useState(false);
 
-  const logout = () => {
+  const closeButtonHandler = () => {
+    setModalActive(false);
+  };
+
+  const loginHandler = () => {
     document.cookie = cookie.serialize('token', '');
-    router.push('/');
+    setModalActive(true);
+  };
+
+  const logoutHandler = () => {
+    document.cookie = cookie.serialize('token', '');
+    setModalActive(false);
+    router.push('/', undefined, { scroll: false });
   };
 
   return (
     <StyledHome>
-      <FormAuth />
+      <FormAuth active={modalActive} onClick={closeButtonHandler} />
       <Container column>
         <StyledTitle>О нас</StyledTitle>
         <StyledHomeDesc>
@@ -63,7 +75,7 @@ export default function Home({ auth, services }: THomeProps) {
         <Button
           type="button"
           text={!auth ? 'Войти' : 'Выйти'}
-          onClick={logout}
+          onClick={auth ? logoutHandler : loginHandler}
         />
       </Container>
       <Reviews />
