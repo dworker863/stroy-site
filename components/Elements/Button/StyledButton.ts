@@ -1,5 +1,5 @@
 import { IStyledButton } from './IButton';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const StyledButton = styled.button<IStyledButton>`
   display: ${({ inline }) => (inline ? 'inline-block' : 'block')};
@@ -10,4 +10,12 @@ export const StyledButton = styled.button<IStyledButton>`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.secondary};
   color: #fff;
+
+  ${({ center }) =>
+    center &&
+    css`
+      margin-left: auto;
+      margin-right: auto;
+      /* margin: 0 auto; */
+    `}
 `;

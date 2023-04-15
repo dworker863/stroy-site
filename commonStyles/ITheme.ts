@@ -4,5 +4,6 @@ export interface ITheme {
     secondary: string;
     error: string;
     gold: string;
+    grey: string;
   };
 }

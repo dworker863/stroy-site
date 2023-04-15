@@ -5,6 +5,10 @@ import { StyledTitle } from '../components/commonStyles/StyledTitle';
 import { StyledHome, StyledHomeDesc } from './StyledHome';
 import cookie from 'cookie';
 import { IService } from '../commonInterfaces/IService';
+import Link from 'next/link';
+import FormAuth from '../components/Blocks/FormAuth/FormAuth';
+import Button from '../components/Elements/Button/Button';
+import { useRouter } from 'next/router';
 
 type THomeProps = {
   auth: boolean;
@@ -12,8 +16,16 @@ type THomeProps = {
 };
 
 export default function Home({ auth, services }: THomeProps) {
+  const router = useRouter();
+
+  const logout = () => {
+    document.cookie = cookie.serialize('token', '');
+    router.push('/');
+  };
+
   return (
     <StyledHome>
+      <FormAuth />
       <Container column>
         <StyledTitle>О нас</StyledTitle>
         <StyledHomeDesc>
@@ -48,15 +60,19 @@ export default function Home({ auth, services }: THomeProps) {
           similique.
         </StyledHomeDesc>
         <StyledTitle>Отзывы</StyledTitle>
+        <Button
+          type="button"
+          text={!auth ? 'Войти' : 'Выйти'}
+          onClick={logout}
+        />
       </Container>
-      {!auth && <Reviews />}
+      <Reviews />
     </StyledHome>
   );
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = cookie.parse(ctx.req.headers.cookie || '');
-  const token = cookies.token;
   const auth = !!cookies.token;
 
   const res = await fetch('http://192.168.1.2:8000/services');
