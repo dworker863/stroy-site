@@ -1,6 +1,7 @@
 export interface IFormAuth {
   active: boolean;
-  onClick: () => void;
+  closeButtonHandler: () => void;
+  loginHandler: () => void;
 }
 
 export interface IStyledFormAuthModal {

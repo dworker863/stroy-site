@@ -18,4 +18,21 @@ export const StyledButton = styled.button<IStyledButton>`
       margin-right: auto;
       /* margin: 0 auto; */
     `}
+
+  ${({ auth }) =>
+    auth === false &&
+    css`
+      margin: 0;
+      padding: 10px;
+      background-color: transparent;
+    `}
+
+    ${({ auth }) =>
+    auth !== undefined &&
+    css`
+      height: 30px;
+      align-self: center;
+      margin: 0;
+      margin-right: 20px;
+    `}
 `;

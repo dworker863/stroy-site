@@ -15,8 +15,6 @@ type THomeProps = {
 };
 
 export default function Home({ auth, services }: THomeProps) {
-  const { loginHandler, logoutHandler } = useContext(AppContext);
-
   return (
     <StyledHome>
       <Container column>
@@ -53,11 +51,6 @@ export default function Home({ auth, services }: THomeProps) {
           similique.
         </StyledHomeDesc>
         <StyledTitle>Отзывы</StyledTitle>
-        <Button
-          type="button"
-          text={!auth ? 'Войти' : 'Выйти'}
-          onClick={auth ? logoutHandler : loginHandler}
-        />
       </Container>
       <Reviews />
     </StyledHome>

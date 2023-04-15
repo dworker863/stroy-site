@@ -12,12 +12,16 @@ import cookie from 'cookie';
 import { StyledFormAuthModal } from './StyledFormAuth';
 import ButtonClose from '../../Elements/ButtonClose/ButtonClose';
 
-const FormAuth: FC<IFormAuth> = ({ active, onClick }) => {
+const FormAuth: FC<IFormAuth> = ({
+  active,
+  closeButtonHandler,
+  loginHandler,
+}) => {
   const router = useRouter();
 
   return (
     <StyledFormAuthModal active={active}>
-      <ButtonClose onClick={onClick} />
+      <ButtonClose onClick={closeButtonHandler} />
       <Formik
         initialValues={{
           username: '',
@@ -35,7 +39,8 @@ const FormAuth: FC<IFormAuth> = ({ active, onClick }) => {
           console.log(user);
 
           setSubmitting(false);
-          onClick();
+          loginHandler();
+          closeButtonHandler();
           router.push('/', undefined, { scroll: false });
         }}
       >

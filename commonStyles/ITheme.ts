@@ -5,5 +5,6 @@ export interface ITheme {
     error: string;
     gold: string;
     grey: string;
+    fontColor: string;
   };
 }

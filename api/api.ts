@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { IUser } from '../commonInterfaces/IUser';
-import cookie from 'cookie';
 
 const baseURL = 'http://192.168.1.2:8000/';
 
@@ -13,7 +12,7 @@ export const login = ({ username, password }: IUser) => {
   return instance
     .post('auth/login', { username, password })
     .then((res) => {
-      document.cookie = cookie.serialize('token', res.data.access_token);
+      localStorage.setItem('token', res.data.access_token);
       return res.data;
     })
     .catch((e) => {

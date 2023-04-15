@@ -7,5 +7,6 @@ export const defaultTheme: DefaultTheme = {
     error: '#DC3545',
     gold: '#C8B8DB',
     grey: '#E8E6E6',
+    fontColor: '#262121eb',
   },
 };

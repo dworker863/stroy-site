@@ -1,9 +1,7 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import Container from '../../Blocks/Container/Container';
 import NavMobile from '../../Blocks/NavMobile/NavMobile';
 import TopLine from '../../Blocks/TopLine/TopLine';
-import Hamburger from '../../Elements/Hamburger/Hamburger';
-import Logo from '../../Elements/Logo/Logo';
 import {
   StyledHeader,
   StyledHeaderDesc,

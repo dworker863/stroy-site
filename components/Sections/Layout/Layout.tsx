@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { Dispatch, ReactNode, useEffect, useState } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Roboto } from '@next/font/google';
@@ -10,6 +10,8 @@ import { StyledOverlay } from './StyledLayot';
 
 const roboto = Roboto({ weight: '400', subsets: ['latin'] });
 export const AppContext = React.createContext<IAppContext>({
+  auth: false,
+  setAuth: () => {},
   loginHandler: () => {},
   logoutHandler: () => {},
 });
@@ -17,25 +19,41 @@ export const AppContext = React.createContext<IAppContext>({
 const Layout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const [modalActive, setModalActive] = useState(false);
+  const [auth, setAuth] = useState(false);
+  console.log(auth + '0');
+
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      const token = localStorage.getItem('token') || '';
+      setAuth(!!token);
+    }
+  }, [auth]);
 
   const closeButtonHandler = () => {
     setModalActive(false);
   };
 
   const loginHandler = () => {
-    document.cookie = cookie.serialize('token', '');
+    const token = localStorage.getItem('token') || '';
+    document.cookie = cookie.serialize('token', token);
+    setAuth(true);
     setModalActive(true);
   };
 
   const logoutHandler = () => {
     document.cookie = cookie.serialize('token', '');
-    setModalActive(false);
+    localStorage.setItem('token', '');
+    setAuth(false);
     router.push('/', undefined, { scroll: false });
   };
   return (
-    <AppContext.Provider value={{ loginHandler, logoutHandler }}>
+    <AppContext.Provider value={{ auth, setAuth, loginHandler, logoutHandler }}>
       <div className={roboto.className}>
-        <FormAuth active={modalActive} onClick={closeButtonHandler} />
+        <FormAuth
+          active={modalActive}
+          closeButtonHandler={closeButtonHandler}
+          loginHandler={loginHandler}
+        />
         <StyledOverlay active={modalActive}>
           <Header />
           <main>{children}</main>
