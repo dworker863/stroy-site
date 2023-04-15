@@ -14,7 +14,6 @@ export const StyledFormAuthModal = styled.div<IStyledFormAuthModal>`
   padding-top: 40px;
   padding-bottom: 20px;
   border-radius: 5px;
-  box-shadow: 1px 1px 5px ${({ theme }) => theme.colors.grey};
   transform: translate(-50%, -50%);
   background-color: #fff;
 `;

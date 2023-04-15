@@ -8,6 +8,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
+import React, { useState } from 'react';
 
 config.autoAddCss = false;
 

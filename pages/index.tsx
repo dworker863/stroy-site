@@ -5,11 +5,9 @@ import { StyledTitle } from '../components/commonStyles/StyledTitle';
 import { StyledHome, StyledHomeDesc } from './StyledHome';
 import cookie from 'cookie';
 import { IService } from '../commonInterfaces/IService';
-import Link from 'next/link';
-import FormAuth from '../components/Blocks/FormAuth/FormAuth';
 import Button from '../components/Elements/Button/Button';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useContext } from 'react';
+import { AppContext } from '../components/Sections/Layout/Layout';
 
 type THomeProps = {
   auth: boolean;
@@ -17,27 +15,10 @@ type THomeProps = {
 };
 
 export default function Home({ auth, services }: THomeProps) {
-  const router = useRouter();
-  const [modalActive, setModalActive] = useState(false);
-
-  const closeButtonHandler = () => {
-    setModalActive(false);
-  };
-
-  const loginHandler = () => {
-    document.cookie = cookie.serialize('token', '');
-    setModalActive(true);
-  };
-
-  const logoutHandler = () => {
-    document.cookie = cookie.serialize('token', '');
-    setModalActive(false);
-    router.push('/', undefined, { scroll: false });
-  };
+  const { loginHandler, logoutHandler } = useContext(AppContext);
 
   return (
     <StyledHome>
-      <FormAuth active={modalActive} onClick={closeButtonHandler} />
       <Container column>
         <StyledTitle>О нас</StyledTitle>
         <StyledHomeDesc>
