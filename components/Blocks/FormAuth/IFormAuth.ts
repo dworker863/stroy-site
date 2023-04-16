@@ -1,6 +1,7 @@
 export interface IFormAuth {
   closeButtonHandler: () => void;
-  loginHandler: () => void;
+  submitHandler: () => void;
+  registrHandler: () => void;
 }
 
 export interface IStyledFormAuthModal {

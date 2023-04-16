@@ -11,6 +11,14 @@ export const StyledButton = styled.button<IStyledButton>`
   background-color: ${({ theme }) => theme.colors.secondary};
   color: #fff;
 
+  &:nth-last-child(2) {
+    margin-top: 30px;
+  }
+
+  a + &:nth-last-child(2) {
+    margin-top: 0;
+  }
+
   ${({ center }) =>
     center &&
     css`

@@ -9,7 +9,11 @@ import Button from '../../Elements/Button/Button';
 import { login } from '../../../api/api';
 import { useRouter } from 'next/router';
 
-const FormAuth: FC<IFormAuth> = ({ closeButtonHandler, loginHandler }) => {
+const FormAuth: FC<IFormAuth> = ({
+  closeButtonHandler,
+  submitHandler,
+  registrHandler,
+}) => {
   const router = useRouter();
 
   return (
@@ -30,7 +34,7 @@ const FormAuth: FC<IFormAuth> = ({ closeButtonHandler, loginHandler }) => {
         console.log(user);
 
         setSubmitting(false);
-        loginHandler();
+        submitHandler();
         closeButtonHandler();
         router.push('/', undefined, { scroll: false });
       }}
@@ -48,7 +52,13 @@ const FormAuth: FC<IFormAuth> = ({ closeButtonHandler, loginHandler }) => {
           {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
         </ErrorMessage>
 
-        <Button type="submit" text="Войти" center={true} />
+        <Button type="submit" text="Войти" center />
+        <Button
+          type="button"
+          text="Зарегистрироваться"
+          onClick={registrHandler}
+          center
+        />
       </Form>
     </Formik>
   );

@@ -8,6 +8,7 @@ import FormAuth from '../../Blocks/FormAuth/FormAuth';
 import { IAppContext } from './ILayout';
 import { StyledOverlay } from './StyledLayot';
 import Modal from '../../Blocks/Modal/Modal';
+import FormRegistration from '../../Blocks/FormRegistration/FormRegistration';
 
 const roboto = Roboto({ weight: '400', subsets: ['latin'] });
 export const AppContext = React.createContext<IAppContext>({
@@ -21,7 +22,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const [modalActive, setModalActive] = useState(false);
   const [auth, setAuth] = useState(false);
-  console.log(auth + '0');
+  const [modalType, setModalType] = useState('login');
 
   useEffect(() => {
     if (typeof window !== undefined) {
@@ -32,6 +33,14 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
   const closeButtonHandler = () => {
     setModalActive(false);
+  };
+
+  const registrModeHandler = () => {
+    setModalType('registration');
+  };
+
+  const loginModeHandler = () => {
+    setModalType('login');
   };
 
   const loginHandler = () => {
@@ -51,10 +60,15 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <AppContext.Provider value={{ auth, setAuth, loginHandler, logoutHandler }}>
       <div className={roboto.className}>
         <Modal active={modalActive} closeButtonHandler={closeButtonHandler}>
-          <FormAuth
-            closeButtonHandler={closeButtonHandler}
-            loginHandler={loginHandler}
-          />
+          {modalType === 'registration' ? (
+            <FormRegistration loginHandler={loginModeHandler} />
+          ) : (
+            <FormAuth
+              closeButtonHandler={closeButtonHandler}
+              submitHandler={loginHandler}
+              registrHandler={registrModeHandler}
+            />
+          )}
         </Modal>
         <StyledOverlay active={modalActive}>
           <Header />
