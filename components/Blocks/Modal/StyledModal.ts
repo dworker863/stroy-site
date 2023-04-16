@@ -1,8 +1,7 @@
-import { Form } from 'formik';
 import styled from 'styled-components';
-import { IStyledFormAuthModal } from './IFormAuth';
+import { IStyledModal } from './IModal';
 
-export const StyledFormAuthModal = styled.div<IStyledFormAuthModal>`
+export const StyledModal = styled.div<IStyledModal>`
   z-index: 1000;
   position: fixed;
   top: 50%;
@@ -16,8 +15,4 @@ export const StyledFormAuthModal = styled.div<IStyledFormAuthModal>`
   border-radius: 5px;
   transform: translate(-50%, -50%);
   background-color: #fff;
-`;
-
-export const StyledForm = styled(Form)`
-  text-align: center;
 `;

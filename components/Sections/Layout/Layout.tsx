@@ -7,6 +7,7 @@ import cookie from 'cookie';
 import FormAuth from '../../Blocks/FormAuth/FormAuth';
 import { IAppContext } from './ILayout';
 import { StyledOverlay } from './StyledLayot';
+import Modal from '../../Blocks/Modal/Modal';
 
 const roboto = Roboto({ weight: '400', subsets: ['latin'] });
 export const AppContext = React.createContext<IAppContext>({
@@ -49,11 +50,12 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <AppContext.Provider value={{ auth, setAuth, loginHandler, logoutHandler }}>
       <div className={roboto.className}>
-        <FormAuth
-          active={modalActive}
-          closeButtonHandler={closeButtonHandler}
-          loginHandler={loginHandler}
-        />
+        <Modal active={modalActive} closeButtonHandler={closeButtonHandler}>
+          <FormAuth
+            closeButtonHandler={closeButtonHandler}
+            loginHandler={loginHandler}
+          />
+        </Modal>
         <StyledOverlay active={modalActive}>
           <Header />
           <main>{children}</main>

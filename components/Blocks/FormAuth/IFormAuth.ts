@@ -1,5 +1,4 @@
 export interface IFormAuth {
-  active: boolean;
   closeButtonHandler: () => void;
   loginHandler: () => void;
 }
