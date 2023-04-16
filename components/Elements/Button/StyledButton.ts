@@ -24,7 +24,6 @@ export const StyledButton = styled.button<IStyledButton>`
     css`
       margin-left: auto;
       margin-right: auto;
-      /* margin: 0 auto; */
     `}
 
   ${({ auth }) =>

@@ -1,4 +1,10 @@
-import React, { Dispatch, ReactNode, useEffect, useState } from 'react';
+import React, {
+  ReactNode,
+  useEffect,
+  useState,
+  MouseEvent,
+  useRef,
+} from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Roboto } from '@next/font/google';
@@ -20,6 +26,8 @@ export const AppContext = React.createContext<IAppContext>({
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+  const modalRef = useRef<HTMLDivElement>(null);
+
   const [modalActive, setModalActive] = useState(false);
   const [auth, setAuth] = useState(false);
   const [modalType, setModalType] = useState('login');
@@ -56,10 +64,21 @@ const Layout = ({ children }: { children: ReactNode }) => {
     setAuth(false);
     router.push('/', undefined, { scroll: false });
   };
+
+  const overlayClickHandler = (e: MouseEvent<HTMLDivElement>) => {
+    if (modalRef.current && modalActive && e.target !== modalRef.current) {
+      setModalActive(false);
+    }
+  };
+
   return (
     <AppContext.Provider value={{ auth, setAuth, loginHandler, logoutHandler }}>
       <div className={roboto.className}>
-        <Modal active={modalActive} closeButtonHandler={closeButtonHandler}>
+        <Modal
+          ref={modalRef}
+          active={modalActive}
+          closeButtonHandler={closeButtonHandler}
+        >
           {modalType === 'registration' ? (
             <FormRegistration loginHandler={loginModeHandler} />
           ) : (
@@ -70,7 +89,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
             />
           )}
         </Modal>
-        <StyledOverlay active={modalActive}>
+        <StyledOverlay active={modalActive} onClick={overlayClickHandler}>
           <Header />
           <main>{children}</main>
           <Footer />
