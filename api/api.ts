@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IService } from '../commonInterfaces/IService';
 import { IUser } from '../commonInterfaces/IUser';
 
 const baseURL = 'http://192.168.1.2:8000/';
@@ -37,6 +38,21 @@ export const fetchServices = () => {
     .then((res) => {
       console.log(res);
       return res;
+    })
+    .catch((e) => {
+      return e.response.data.message;
+    });
+};
+
+export const postService = (service: IService) => {
+  return instance
+    .post('services', service, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then((res) => {
+      return res.data;
     })
     .catch((e) => {
       return e.response.data.message;

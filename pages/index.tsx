@@ -56,20 +56,3 @@ export default function Home({ auth, services }: THomeProps) {
     </StyledHome>
   );
 }
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const cookies = cookie.parse(ctx.req.headers.cookie || '');
-  const auth = !!cookies.token;
-
-  const res = await fetch('http://192.168.1.2:8000/services');
-
-  const services = await res.json();
-  console.log(services);
-
-  return {
-    props: {
-      auth,
-      services,
-    },
-  };
-};
