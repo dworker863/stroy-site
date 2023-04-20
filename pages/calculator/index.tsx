@@ -1,35 +1,46 @@
-import React, { useState } from 'react';
+import React, { createContext, useState } from 'react';
 import Button from '../../components/Elements/Button/Button';
 import { StyledCalculator, StyledServicesWrapper } from './StyledCalculator';
 import cookie from 'cookie';
 import { GetServerSideProps, NextPage } from 'next';
-import { ICalculator } from './ICalculator';
+import { ICalculator, ICalculatorContext } from './ICalculator';
 import Services from '../../components/Blocks/Services/Services';
 import Cart from '../../components/Blocks/Cart/Cart';
 import Container from '../../components/Blocks/Container/Container';
-import Search from '../../components/Blocks/Search/Search';
+import { IService } from '../../commonInterfaces/IService';
+
+export const CalculatorContext = createContext<ICalculatorContext>({
+  serviceButtonHandler: (value: IService) => {},
+});
 
 const Calculator: NextPage<ICalculator> = ({ auth, services }) => {
   const [showServices, setShowServices] = useState(false);
+  const [cartServices, setCartServices] = useState<IService[]>([]);
 
-  const serviceButtonHandler = () => {
+  const serviceButtonHandler = (service: IService) => {
+    if (showServices && !auth) {
+      setCartServices([...cartServices, service]);
+    }
+
     setShowServices(!showServices);
   };
 
   return (
-    <StyledCalculator>
-      <Container>
-        <StyledServicesWrapper>
-          <Button
-            type="button"
-            text={auth ? 'Добавить Услугу' : 'Выбрать Услугу'}
-            onClick={serviceButtonHandler}
-          />
-          {showServices && <Services auth={auth} services={services} />}
-          <Cart />
-        </StyledServicesWrapper>
-      </Container>
-    </StyledCalculator>
+    <CalculatorContext.Provider value={{ serviceButtonHandler }}>
+      <StyledCalculator>
+        <Container>
+          <StyledServicesWrapper>
+            <Button
+              type="button"
+              text={auth ? 'Добавить Услугу' : 'Выбрать Услугу'}
+              onClick={serviceButtonHandler}
+            />
+            {showServices && <Services auth={auth} services={services} />}
+            <Cart cartServices={cartServices} />
+          </StyledServicesWrapper>
+        </Container>
+      </StyledCalculator>
+    </CalculatorContext.Provider>
   );
 };
 

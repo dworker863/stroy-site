@@ -4,7 +4,7 @@ export interface IButton {
   inline?: boolean;
   center?: boolean;
   auth?: boolean;
-  onClick?: () => void;
+  onClick?: (value?: any) => void;
 }
 
 export interface IStyledButton {
