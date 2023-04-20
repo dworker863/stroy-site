@@ -1,25 +1,16 @@
-import { GetServerSideProps } from 'next';
 import Container from '../components/Blocks/Container/Container';
 import Reviews from '../components/Blocks/Reviews/Reviews';
 import { StyledTitle } from '../components/commonStyles/StyledTitle';
-import { StyledHome, StyledHomeDesc } from './StyledHome';
-import cookie from 'cookie';
 import { IService } from '../commonInterfaces/IService';
-import Button from '../components/Elements/Button/Button';
-import { useContext } from 'react';
-import { AppContext } from '../components/Sections/Layout/Layout';
+import { StyledPage } from '../commonStyles/StyledPage';
+import { StyledDesc } from '../commonStyles/StyledDesc';
 
-type THomeProps = {
-  auth: boolean;
-  services: IService[];
-};
-
-export default function Home({ auth, services }: THomeProps) {
+export default function Home() {
   return (
-    <StyledHome>
+    <StyledPage>
       <Container column>
         <StyledTitle>О нас</StyledTitle>
-        <StyledHomeDesc>
+        <StyledDesc>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum
           dolorum eligendi reprehenderit et sit porro, maiores fuga cupiditate
           nam, totam sint modi. Earum fuga quae veritatis, quas maiores
@@ -49,10 +40,10 @@ export default function Home({ auth, services }: THomeProps) {
           et minima vero provident praesentium eligendi. Libero, nisi. Unde
           ullam commodi rerum? Dicta fuga pariatur accusantium optio modi
           similique.
-        </StyledHomeDesc>
+        </StyledDesc>
         <StyledTitle>Отзывы</StyledTitle>
       </Container>
       <Reviews />
-    </StyledHome>
+    </StyledPage>
   );
 }

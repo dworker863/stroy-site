@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
-export const StyledHomeDesc = styled.p`
+export const StyledDesc = styled.p`
   margin-bottom: 80px;
 `;
