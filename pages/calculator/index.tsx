@@ -1,23 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../../components/Elements/Button/Button';
-import { StyledCalculator } from './StyledCalculator';
+import { StyledCalculator, StyledServicesWrapper } from './StyledCalculator';
 import cookie from 'cookie';
 import { GetServerSideProps, NextPage } from 'next';
 import { ICalculator } from './ICalculator';
 import Services from '../../components/Blocks/Services/Services';
 import Cart from '../../components/Blocks/Cart/Cart';
 import Container from '../../components/Blocks/Container/Container';
+import Search from '../../components/Blocks/Search/Search';
 
 const Calculator: NextPage<ICalculator> = ({ auth, services }) => {
+  const [showServices, setShowServices] = useState(false);
+
+  const serviceButtonHandler = () => {
+    setShowServices(!showServices);
+  };
+
   return (
     <StyledCalculator>
       <Container>
-        <Button
-          type="button"
-          text={auth ? 'Добавить Услугу' : 'Выбрать Услугу'}
-        />
-        <Services auth={auth} services={services} />
-        <Cart />
+        <StyledServicesWrapper>
+          <Button
+            type="button"
+            text={auth ? 'Добавить Услугу' : 'Выбрать Услугу'}
+            onClick={serviceButtonHandler}
+          />
+          {showServices && <Services auth={auth} services={services} />}
+          <Cart />
+        </StyledServicesWrapper>
       </Container>
     </StyledCalculator>
   );
