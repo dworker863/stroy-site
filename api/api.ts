@@ -2,7 +2,7 @@ import axios from 'axios';
 import { IService } from '../commonInterfaces/IService';
 import { IUser } from '../commonInterfaces/IUser';
 
-const baseURL = 'http://192.168.1.2:8000/';
+const baseURL = 'http://192.168.1.3:8000/';
 
 export const instance = axios.create({
   baseURL: 'http://192.168.1.2:8000/',

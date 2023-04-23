@@ -23,6 +23,8 @@ li {
   list-style-type: none;
 }
 
+input,
 button {
-  border: none;
+  border: 0;
+  outline: 0;
 }
