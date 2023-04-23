@@ -9,7 +9,7 @@ import Container from '../../components/Blocks/Container/Container';
 import { IService } from '../../commonInterfaces/IService';
 import { StyledTitle } from '../../components/commonStyles/StyledTitle';
 import { StyledPage } from '../../commonStyles/StyledPage';
-import { StyledDesc } from '../../commonStyles/StyledDesc';
+import { StyledCalculatorDesc } from './StyledCalculator';
 
 export const CalculatorContext = createContext<ICalculatorContext>({
   serviceButtonHandler: (value: IService) => {},
@@ -32,7 +32,7 @@ const Calculator: NextPage<ICalculator> = ({ auth, services }) => {
       <StyledPage>
         <Container column>
           <StyledTitle>Калькулятор</StyledTitle>
-          <StyledDesc>
+          <StyledCalculatorDesc>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus
             non modi, molestias soluta perspiciatis sequi distinctio, nemo earum
             qui ut maxime voluptatibus voluptates. Sint aliquam excepturi alias,
@@ -47,11 +47,12 @@ const Calculator: NextPage<ICalculator> = ({ auth, services }) => {
             consequuntur iste ullam repudiandae. Sequi expedita ipsum atque
             molestias repudiandae facere quidem voluptates commodi voluptatum
             vitae eum recusandae, eveniet officia harum esse ea nesciunt ex?
-          </StyledDesc>
+          </StyledCalculatorDesc>
           <Button
             type="button"
             text={auth ? 'Добавить Услугу' : 'Выбрать Услугу'}
             onClick={serviceButtonHandler}
+            center
           />
           {showServices && <Services auth={auth} services={services} />}
           <Cart cartServices={cartServices} />

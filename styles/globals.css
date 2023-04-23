@@ -28,3 +28,11 @@ button {
   border: 0;
   outline: 0;
 }
+
+input {
+  border: 1px solid #c8b8db;
+  background-color: #e8f0fe;
+  border-radius: 2px;
+  font-family: Gilroy, sans-serif;
+  font-size: 16px;
+}

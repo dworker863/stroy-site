@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledSearchWrapper = styled.div`
   position: relative;
+  margin-bottom: 20px;
 
   svg {
     position: absolute;
@@ -15,9 +16,4 @@ export const StyledSearchWrapper = styled.div`
 export const StyledSearch = styled.input`
   width: 280px;
   padding: 5px 35px;
-  border-radius: 5px;
-  border: 1px solid #c8b8db;
-  background-color: #e8f0fe;
-  font-family: Gilroy, sans-serif;
-  font-size: 16px;
 `;

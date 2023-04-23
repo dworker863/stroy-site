@@ -4,6 +4,7 @@ import Search from '../../Elements/Search/Search';
 import Service from '../../Elements/Service/Service';
 import { IServices } from './IServices';
 import { CalculatorContext } from '../../../pages/calculator';
+import { StyledServicesWrapper } from './StyledServices';
 
 const Services: FC<IServices> = ({ auth, services }) => {
   const { serviceButtonHandler } = useContext(CalculatorContext);
@@ -24,13 +25,15 @@ const Services: FC<IServices> = ({ auth, services }) => {
     <>
       <Search onChange={searchChangeHandler} />
       {auth && <FormService />}
-      {currentServices.map((service) => (
-        <Service
-          key={service.id + service.name}
-          service={service}
-          onClick={serviceButtonHandler.bind(null, service)}
-        />
-      ))}
+      <StyledServicesWrapper>
+        {currentServices.map((service) => (
+          <Service
+            key={service.id + service.name}
+            service={service}
+            onClick={serviceButtonHandler.bind(null, service)}
+          />
+        ))}
+      </StyledServicesWrapper>
     </>
   );
 };
