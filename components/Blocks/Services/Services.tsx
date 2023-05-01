@@ -4,7 +4,7 @@ import Search from '../../Elements/Search/Search';
 import Service from '../../Elements/Service/Service';
 import { IServices } from './IServices';
 import { CalculatorContext } from '../../../pages/calculator';
-import { StyledServicesWrapper } from './StyledServices';
+import { StyledServices, StyledServicesWrapper } from './StyledServices';
 
 const Services: FC<IServices> = ({ auth, services }) => {
   const { serviceButtonHandler } = useContext(CalculatorContext);
@@ -20,7 +20,7 @@ const Services: FC<IServices> = ({ auth, services }) => {
   };
 
   return (
-    <>
+    <StyledServices>
       <Search onChange={searchChangeHandler} />
       {auth && <FormService />}
       <StyledServicesWrapper>
@@ -32,7 +32,7 @@ const Services: FC<IServices> = ({ auth, services }) => {
           />
         ))}
       </StyledServicesWrapper>
-    </>
+    </StyledServices>
   );
 };
 

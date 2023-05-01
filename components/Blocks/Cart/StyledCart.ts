@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const StyledCart = styled.div`
   h2 {
     font-size: 24px;
+
+    @media (max-width: 576px) {
+      text-align: center;
+    }
   }
 `;
 
