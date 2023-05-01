@@ -75,3 +75,18 @@ export const updateService = (service: IService) => {
       return err.response.data.message;
     });
 };
+
+export const deleteService = (id?: number) => {
+  return instance
+    .delete(`services/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err.response.data.message;
+    });
+};

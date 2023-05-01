@@ -1,7 +1,9 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/router';
 import React, { FC, useState } from 'react';
+import { deleteService } from '../../../api/api';
 import FormService from '../../Blocks/FormService/FormService';
 import { IServiceProps } from './IService';
 import {
@@ -13,8 +15,15 @@ import {
 
 const Service: FC<IServiceProps> = ({ auth, service, onClick }) => {
   const [showServiceForm, setShowServiceForm] = useState(false);
+  const router = useRouter();
+
   const updateServiceHandler = () => {
     setShowServiceForm(!showServiceForm);
+  };
+
+  const deleteServiceHandler = async (id?: number) => {
+    const result = await deleteService(id);
+    router.push('calculator', undefined, { scroll: false });
   };
 
   return (
@@ -27,7 +36,10 @@ const Service: FC<IServiceProps> = ({ auth, service, onClick }) => {
               icon={faPen as IconProp}
               onClick={updateServiceHandler}
             />
-            <StyledServiceBtn icon={faTrash as IconProp} />
+            <StyledServiceBtn
+              icon={faTrash as IconProp}
+              onClick={deleteServiceHandler.bind(null, service.id)}
+            />
           </StyledServiceBtns>
         )}
       </StyledService>
