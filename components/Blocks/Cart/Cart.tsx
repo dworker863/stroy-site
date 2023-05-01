@@ -1,8 +1,13 @@
 import React, { FC, useEffect, useState } from 'react';
+import { StyledTitle } from '../../commonStyles/StyledTitle';
 import Button from '../../Elements/Button/Button';
 import CartService from '../CartService/CartService';
 import { ICart } from './ICart';
-import { StyledCart } from './StyledCart';
+import {
+  StyledCart,
+  StyledCartPrice,
+  StyledCartServicesWrapper,
+} from './StyledCart';
 
 const Cart: FC<ICart> = ({ cartServices }) => {
   const cartServicesWithSum = cartServices.map((cartService) => ({
@@ -31,16 +36,24 @@ const Cart: FC<ICart> = ({ cartServices }) => {
 
   return (
     <StyledCart>
-      {cartServices.map((service) => (
-        <CartService
-          key={service.id + service.name}
-          service={service}
-          cart={cart}
-          setCart={setCart}
-        />
-      ))}
-      Общая стоимость: {cartSum}
-      <Button type="button" text="Рассчитать" onClick={sumButtonHandler} />
+      <StyledTitle>Корзина</StyledTitle>
+      <StyledCartServicesWrapper>
+        {cartServices.map((service) => (
+          <CartService
+            key={service.id + service.name}
+            service={service}
+            cart={cart}
+            setCart={setCart}
+          />
+        ))}
+      </StyledCartServicesWrapper>
+      <StyledCartPrice>Общая стоимость: {cartSum}</StyledCartPrice>
+      <Button
+        type="button"
+        text="Рассчитать"
+        onClick={sumButtonHandler}
+        center
+      />
     </StyledCart>
   );
 };
