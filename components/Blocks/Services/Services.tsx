@@ -10,8 +10,6 @@ const Services: FC<IServices> = ({ auth, services }) => {
   const { serviceButtonHandler } = useContext(CalculatorContext);
   const [searchValue, setSearchValue] = useState('');
 
-  console.log(services);
-
   const currentServices = services.filter((service) => {
     const regex = new RegExp(`^${searchValue}`);
     return regex.test(service.name);
