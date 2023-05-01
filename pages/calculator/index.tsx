@@ -23,7 +23,9 @@ const Calculator: NextPage<ICalculator> = ({ auth, services }) => {
     if (showServices && !auth) {
       setCartServices([...cartServices, service]);
     }
+  };
 
+  const showServicesButtonHandler = () => {
     setShowServices(!showServices);
   };
 
@@ -51,7 +53,7 @@ const Calculator: NextPage<ICalculator> = ({ auth, services }) => {
           <Button
             type="button"
             text={auth ? 'Добавить Услугу' : 'Выбрать Услугу'}
-            onClick={serviceButtonHandler}
+            onClick={showServicesButtonHandler}
             center
           />
           {showServices && <Services auth={auth} services={services} />}
