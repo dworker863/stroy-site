@@ -35,17 +35,6 @@ export const login = ({ username, password }: IUser) => {
     });
 };
 
-export const fetchServices = () => {
-  return fetch(`${baseURL}/services`)
-    .then((res) => {
-      console.log(res);
-      return res;
-    })
-    .catch((e) => {
-      return e.response.data.message;
-    });
-};
-
 export const postService = (service: IService) => {
   return instance
     .post('services', service, {
