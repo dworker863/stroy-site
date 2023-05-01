@@ -6,6 +6,10 @@ export const StyledServices = styled.div`
 
   @media (max-width: 576px) {
     align-items: center;
+
+    button {
+      margin: 20px auto;
+    }
   }
 `;
 

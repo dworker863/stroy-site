@@ -4,6 +4,14 @@ import styled from 'styled-components';
 export const StyledServiceWrapper = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 576px) {
+    align-items: center;
+
+    button {
+      margin: 20px auto;
+    }
+  }
 `;
 
 export const StyledService = styled.div`
@@ -17,7 +25,7 @@ export const StyledService = styled.div`
   color: #fff;
 
   @media (max-width: 576px) {
-    width: 320px;
+    width: 300px;
   }
 `;
 
