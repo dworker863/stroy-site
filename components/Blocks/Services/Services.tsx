@@ -27,6 +27,7 @@ const Services: FC<IServices> = ({ auth, services }) => {
         {currentServices.map((service) => (
           <Service
             key={service.id + service.name}
+            auth={auth}
             service={service}
             onClick={serviceButtonHandler.bind(null, service)}
           />

@@ -12,7 +12,7 @@ export const StyledButton = styled.button<IStyledButton>`
   color: #fff;
 
   &:nth-last-child(2) {
-    margin-top: 30px;
+    margin-top: 40px;
   }
 
   a + &:nth-last-child(2) {

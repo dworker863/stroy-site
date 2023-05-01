@@ -5,7 +5,7 @@ import { IUser } from '../commonInterfaces/IUser';
 const baseURL = 'http://192.168.1.3:8000/';
 
 export const instance = axios.create({
-  baseURL: 'http://192.168.1.2:8000/',
+  baseURL: 'http://192.168.1.3:8000/',
   withCredentials: true,
 });
 
@@ -26,6 +26,8 @@ export const login = ({ username, password }: IUser) => {
     .post('auth/login', { username, password })
     .then((res) => {
       localStorage.setItem('token', res.data.access_token);
+      console.log(localStorage.getItem('token'));
+
       return res.data;
     })
     .catch((e) => {
@@ -56,5 +58,20 @@ export const postService = (service: IService) => {
     })
     .catch((e) => {
       return e.response.data.message;
+    });
+};
+
+export const updateService = (service: IService) => {
+  return instance
+    .patch(`services/${service.id}`, service, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err.response.data.message;
     });
 };

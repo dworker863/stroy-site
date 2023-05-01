@@ -6,16 +6,26 @@ import { IService } from '../../../commonInterfaces/IService';
 import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
-import { postService } from '../../../api/api';
+import { postService, updateService } from '../../../api/api';
+import { IFormService } from './IFormService';
+import { useRouter } from 'next/router';
 
-const FormService: FC = () => {
+const FormService: FC<IFormService> = ({
+  id,
+  name,
+  measure,
+  price,
+  setShowServiceForm,
+}) => {
+  const router = useRouter();
+
   return (
     <>
       <Formik
         initialValues={{
-          name: '',
-          measure: 'м2',
-          price: 0,
+          name: name || '',
+          measure: measure || 'м2',
+          price: price || 0,
         }}
         validationSchema={Yup.object({
           name: Yup.string().required('Укажите название услуги'),
@@ -26,10 +36,14 @@ const FormService: FC = () => {
           values: IService,
           { setSubmitting }: FormikHelpers<IService>,
         ) => {
-          const service = await postService(values);
+          if (id) {
+            const service = await updateService({ id, ...values });
+            setShowServiceForm && setShowServiceForm(false);
+          } else {
+            const service = await postService(values);
+          }
 
-          console.log(service);
-
+          router.push('/calculator', undefined, { scroll: false });
           setSubmitting(false);
         }}
       >
@@ -52,7 +66,7 @@ const FormService: FC = () => {
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
 
-          <Button type="submit" text="Добавить" />
+          <Button type="submit" text={id ? 'Изменить' : 'Добавить'} />
         </Form>
       </Formik>
     </>

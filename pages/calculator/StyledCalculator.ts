@@ -5,7 +5,7 @@ export const StyledCalculatorDesc = styled(StyledDesc)`
   margin-bottom: 0px;
 
   & + button {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 40px;
+    margin-bottom: 40px;
   }
 `;
