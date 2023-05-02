@@ -2,7 +2,7 @@ import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import React from 'react';
 import ContactsBlock from '../../components/Blocks/ContactsBlock/ContactsBlock';
 import Container from '../../components/Blocks/Container/Container';
-import { StyledTitle } from '../../components/commonStyles/StyledTitle';
+import { StyledTitle } from '../../commonStyles/StyledTitle';
 import { StyledContacts } from './StyledContacts';
 
 const Contacts = () => {

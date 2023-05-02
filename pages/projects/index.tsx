@@ -5,7 +5,7 @@ import cookie from 'cookie';
 import { IProjects } from './IProjects';
 import { StyledPage } from '../../commonStyles/StyledPage';
 import Container from '../../components/Blocks/Container/Container';
-import { StyledTitle } from '../../components/commonStyles/StyledTitle';
+import { StyledTitle } from '../../commonStyles/StyledTitle';
 
 const Projects: NextPage<IProjects> = ({ auth, projects }) => {
   return (
@@ -22,7 +22,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = cookie.parse(ctx.req.headers.cookie || '');
   const auth = !!cookies.token;
 
-  const data = await fetch('http://192.168.1.3:8000/projects');
+  const data = await fetch('http://192.168.1.4:8000/projects');
   const projects = await data.json();
 
   return {

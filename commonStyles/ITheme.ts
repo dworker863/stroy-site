@@ -7,5 +7,7 @@ export interface ITheme {
     grey: string;
     fontColor: string;
     bgColor: string;
+    socialColor: string;
+    brown: string;
   };
 }

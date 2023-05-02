@@ -7,7 +7,7 @@ import Services from '../../components/Blocks/Services/Services';
 import Cart from '../../components/Blocks/Cart/Cart';
 import Container from '../../components/Blocks/Container/Container';
 import { IService } from '../../commonInterfaces/IService';
-import { StyledTitle } from '../../components/commonStyles/StyledTitle';
+import { StyledTitle } from '../../commonStyles/StyledTitle';
 import { StyledPage } from '../../commonStyles/StyledPage';
 import { StyledCalculatorDesc } from './StyledCalculator';
 
@@ -70,7 +70,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = cookie.parse(ctx.req.headers.cookie || '');
   const auth = !!cookies.token;
 
-  const res = await fetch('http://192.168.1.3:8000/services');
+  const res = await fetch('http://192.168.1.4:8000/services');
 
   const services = await res.json();
 

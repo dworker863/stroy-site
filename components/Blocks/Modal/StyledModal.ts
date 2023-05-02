@@ -12,6 +12,7 @@ export const StyledModal = styled.div<IStyledModal>`
   height: auto;
   padding-top: 40px;
   padding-bottom: 20px;
+  border: 2px solid ${({ theme }) => theme.colors.purple};
   border-radius: 5px;
   transform: translate(-50%, -50%);
   background-color: #fff;

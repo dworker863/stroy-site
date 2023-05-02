@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { StyledRedSpan } from '../../commonStyles/StyledRedSpan';
+import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
 import { StyledLogo } from './StyledLogo';
 
 const Logo: FC = () => {

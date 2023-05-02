@@ -4,7 +4,8 @@ export const StyledCartService = styled.div`
   display: flex;
   flex-direction: column;
   width: 200px;
-  border: 1px solid #c8b8db;
+  /* border: 1px solid #c8b8db; */
+  border: 1px solid ${({ theme }) => theme.colors.purple};
   border-radius: 5px;
 `;
 

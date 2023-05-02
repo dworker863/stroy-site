@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react';
-import { StyledTitle } from '../../commonStyles/StyledTitle';
+import { StyledTitle } from '../../../commonStyles/StyledTitle';
 import Button from '../../Elements/Button/Button';
 import CartService from '../CartService/CartService';
 import { ICart } from './ICart';
