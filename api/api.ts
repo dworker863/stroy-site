@@ -5,7 +5,7 @@ import { IUser } from '../commonInterfaces/IUser';
 const baseURL = 'http://192.168.1.3:8000/';
 
 export const instance = axios.create({
-  baseURL: 'http://192.168.1.3:8000/',
+  baseURL: 'http://192.168.1.4:8000/',
   withCredentials: true,
 });
 

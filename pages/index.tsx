@@ -1,7 +1,6 @@
 import Container from '../components/Blocks/Container/Container';
 import Reviews from '../components/Blocks/Reviews/Reviews';
 import { StyledTitle } from '../commonStyles/StyledTitle';
-import { IService } from '../commonInterfaces/IService';
 import { StyledPage } from '../commonStyles/StyledPage';
 import { StyledDesc } from '../commonStyles/StyledDesc';
 

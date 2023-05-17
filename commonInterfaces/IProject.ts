@@ -1,6 +1,10 @@
+import { IReview } from './IReview';
+
 export interface IProject {
+  id?: number;
   name: string;
   description: string;
-  review: string;
+  projectReview: IReview;
   images: any[];
+  price: number;
 }

@@ -6,13 +6,18 @@ import { IProjects } from './IProjects';
 import { StyledPage } from '../../commonStyles/StyledPage';
 import Container from '../../components/Blocks/Container/Container';
 import { StyledTitle } from '../../commonStyles/StyledTitle';
+import CardProject from '../../components/Blocks/CardProject/CardProject';
 
 const Projects: NextPage<IProjects> = ({ auth, projects }) => {
   return (
     <StyledPage>
       <Container column>
         <StyledTitle>Работы</StyledTitle>
-        {projects.map((project) => project.name)}
+        <StyledProjects>
+          {projects.map((project) => (
+            <CardProject key={project.id + project.name} project={project} />
+          ))}
+        </StyledProjects>
       </Container>
     </StyledPage>
   );

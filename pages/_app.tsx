@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import '../commonStyles/globals.css';
 import type { AppProps } from 'next/app';
 import Layout from '../components/Sections/Layout/Layout';
 import { ThemeProvider } from 'styled-components';
@@ -7,7 +7,7 @@ import '@fortawesome/fontawesome-svg-core/styles.css';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
-import React, { useState } from 'react';
+import React from 'react';
 import { defaultTheme } from '../commonStyles/theme';
 
 config.autoAddCss = false;
