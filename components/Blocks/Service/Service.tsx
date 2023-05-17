@@ -4,7 +4,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 import React, { FC, useState } from 'react';
 import { deleteService } from '../../../api/api';
-import FormService from '../../Blocks/FormService/FormService';
+import FormService from '../FormService/FormService';
 import { IServiceProps } from './IService';
 import {
   StyledService,
