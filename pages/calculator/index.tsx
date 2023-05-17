@@ -2,20 +2,20 @@ import React, { createContext, useState } from 'react';
 import Button from '../../components/Elements/Button/Button';
 import cookie from 'cookie';
 import { GetServerSideProps, NextPage } from 'next';
-import { ICalculator, ICalculatorContext } from './ICalculator';
+import { ICalculatorContext, ICalculatorPage } from './ICalculatorPage';
 import Services from '../../components/Blocks/Services/Services';
 import Cart from '../../components/Blocks/Cart/Cart';
 import Container from '../../components/Blocks/Container/Container';
 import { IService } from '../../commonInterfaces/IService';
 import { StyledTitle } from '../../commonStyles/StyledTitle';
 import { StyledPage } from '../../commonStyles/StyledPage';
-import { StyledCalculatorDesc } from './StyledCalculator';
+import { StyledCalculatorDesc } from './StyledCalculatorPage';
 
 export const CalculatorContext = createContext<ICalculatorContext>({
   serviceButtonHandler: (value: IService) => {},
 });
 
-const Calculator: NextPage<ICalculator> = ({ auth, services }) => {
+const CalculatorPage: NextPage<ICalculatorPage> = ({ auth, services }) => {
   const [showServices, setShowServices] = useState(false);
   const [cartServices, setCartServices] = useState<IService[]>([]);
 
@@ -64,7 +64,7 @@ const Calculator: NextPage<ICalculator> = ({ auth, services }) => {
   );
 };
 
-export default Calculator;
+export default CalculatorPage;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const cookies = cookie.parse(ctx.req.headers.cookie || '');

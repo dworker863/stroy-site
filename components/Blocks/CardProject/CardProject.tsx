@@ -1,9 +1,5 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { A11y, EffectFlip, Navigation } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-flip';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CardReview from '../CardReview/CardReview';
 import { ICardProject } from './ICardProject';
@@ -13,14 +9,29 @@ import {
   StyledCardProjectDesc,
   StyledCardProjectInfo,
   StyledCardProjectPrice,
-  StyledCardProjectReview,
   StyledCardProjectSliderButtons,
   StyledCardProjectSliderNext,
   StyledCardProjectSliderPrev,
   StyledCardProjectTitle,
+  StyledProjectBtn,
+  StyledProjectBtns,
 } from './StyledCardProject';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { faPen } from '@fortawesome/free-solid-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const CardProject: FC<ICardProject> = ({ project }) => {
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/effect-flip';
+import { ProjectsContext } from '../../../pages/projects';
+
+const CardProject: FC<ICardProject> = ({
+  project,
+  updateProjectFormHandler,
+}) => {
+  const { auth } = useContext(ProjectsContext);
+
   return (
     <StyledCardProject>
       <StyledCardProjectTitle>{project.name}</StyledCardProjectTitle>
@@ -61,6 +72,18 @@ const CardProject: FC<ICardProject> = ({ project }) => {
         </StyledCardProjectInfo>
         <CardReview />
       </StyledCardProjectContent>
+      {auth && (
+        <StyledProjectBtns>
+          <StyledProjectBtn
+            icon={faPen as IconProp}
+            onClick={updateProjectFormHandler}
+          />
+          <StyledProjectBtn
+            icon={faTrash as IconProp}
+            // onClick={deleteServiceHandler.bind(null, service.id)}
+          />
+        </StyledProjectBtns>
+      )}
     </StyledCardProject>
   );
 };

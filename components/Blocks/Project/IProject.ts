@@ -1,5 +1,5 @@
 import { IProject } from '../../../commonInterfaces/IProject';
 
-export interface IFormProject {
-  project?: IProject;
+export interface IProjectState {
+  project: IProject;
 }

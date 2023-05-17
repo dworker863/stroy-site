@@ -4,8 +4,9 @@ import ContactsBlock from '../../components/Blocks/ContactsBlock/ContactsBlock';
 import Container from '../../components/Blocks/Container/Container';
 import { StyledTitle } from '../../commonStyles/StyledTitle';
 import { StyledContacts } from './StyledContacts';
+import { NextPage } from 'next';
 
-const Contacts = () => {
+const ContactsPage: NextPage = () => {
   const defaultState = {
     center: [43.235015, 76.958805],
     zoom: 16,
@@ -26,4 +27,4 @@ const Contacts = () => {
   );
 };
 
-export default Contacts;
+export default ContactsPage;

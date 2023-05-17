@@ -8,16 +8,16 @@ import { StyledLabel } from '../../../commonStyles/StyledLabel';
 import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
 
-const FormProject: FC<IFormProject> = () => {
+const FormProject: FC<IFormProject> = ({ project }) => {
   return (
     <>
       <Formik
         initialValues={{
-          name: '',
-          description: '',
+          name: project?.name || '',
+          description: project?.description || '',
           review: '',
-          images: [],
-          price: 0,
+          images: project?.images || [],
+          price: project?.price || 0,
         }}
         validationSchema={Yup.object({
           name: Yup.string().required('Укажите название проекта'),

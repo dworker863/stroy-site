@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 export const StyledCardProject = styled.div`
@@ -5,6 +6,7 @@ export const StyledCardProject = styled.div`
   display: flex;
   flex-direction: column;
   width: 600px;
+  margin-bottom: 40px;
   border: 1px solid ${({ theme }) => theme.colors.purple};
   border-radius: 10px;
 
@@ -64,3 +66,22 @@ export const StyledCardProjectSliderButtons = styled.div`
 `;
 export const StyledCardProjectSliderPrev = styled.span``;
 export const StyledCardProjectSliderNext = styled.span``;
+
+export const StyledProjectBtns = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  cursor: pointer;
+  width: 100px;
+  padding: 10px 30px;
+  border-bottom-left-radius: 8px;
+  background-color: ${({ theme }) => theme.colors.secondary};
+`;
+
+export const StyledProjectBtn = styled(FontAwesomeIcon)`
+  color: #fff;
+
+  &:last-child {
+    margin-left: 10px;
+  }
+`;

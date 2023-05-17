@@ -1,6 +1,6 @@
-import { IService } from './../../commonInterfaces/IService';
+import { IService } from '../../commonInterfaces/IService';
 
-export interface ICalculator {
+export interface ICalculatorPage {
   auth: boolean;
   services: IService[];
 }
