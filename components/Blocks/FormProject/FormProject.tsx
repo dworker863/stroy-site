@@ -1,28 +1,41 @@
 import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
-import React, { FC } from 'react';
-import { IProject } from '../../../commonInterfaces/IProject';
+import React, { FC, useState } from 'react';
 import { IFormProject } from './IFromProject';
 import * as Yup from 'yup';
 import Button from '../../Elements/Button/Button';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
 import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
+import { StyledFormRating, StyledFormReview } from './StyledFormProject';
+import StarRatings from 'react-star-ratings';
 
 const FormProject: FC<IFormProject> = ({ project }) => {
+  const [rating, setRating] = useState(5);
+
+  const changeRatingHandler = (newRating: number) => {
+    setRating(newRating);
+  };
+
   return (
     <>
       <Formik
+        enableReinitialize
         initialValues={{
           name: project?.name || '',
           description: project?.description || '',
-          review: '',
+          review: {
+            author: project?.projectReview.author || '',
+            stars: project?.projectReview.stars || 5,
+            text: project?.projectReview.text || '',
+            date: project?.projectReview.date || '',
+          },
           images: project?.images || [],
           price: project?.price || 0,
         }}
         validationSchema={Yup.object({
           name: Yup.string().required('Укажите название проекта'),
           description: Yup.string().required('Укажите описание проекта'),
-          review: Yup.string(),
+          // review: Yup.string(),
           images: Yup.string(),
           price: Yup.number(),
         })}
@@ -30,38 +43,69 @@ const FormProject: FC<IFormProject> = ({ project }) => {
           values: any,
           { setSubmitting }: FormikHelpers<any>,
         ) => {
+          console.log(values);
           setSubmitting(false);
         }}
       >
-        <Form>
-          <StyledLabel htmlFor="name">Название</StyledLabel>
-          <StyledField id="name" type="text" name="name" />
-          <ErrorMessage name="name">
-            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-          </ErrorMessage>
-          <StyledLabel htmlFor="description">Описание</StyledLabel>
-          <StyledField id="description" type="text" name="description" />
-          <ErrorMessage name="description">
-            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-          </ErrorMessage>
-          <StyledLabel htmlFor="review">Отзыв</StyledLabel>
-          <StyledField id="review" type="text" name="review" />
-          <ErrorMessage name="review">
-            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-          </ErrorMessage>
-          <StyledLabel htmlFor="images">Фото</StyledLabel>
-          <StyledField id="images" type="text" name="images" />
-          <ErrorMessage name="images">
-            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-          </ErrorMessage>
-          <StyledLabel htmlFor="price">Цена</StyledLabel>
-          <StyledField id="price" type="text" name="price" />
-          <ErrorMessage name="price">
-            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-          </ErrorMessage>
+        {({ setFieldValue, values }) => (
+          <Form>
+            <StyledLabel htmlFor="name">Название</StyledLabel>
+            <StyledField id="name" type="text" name="name" />
+            <ErrorMessage name="name">
+              {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+            </ErrorMessage>
+            <StyledLabel htmlFor="description">Описание</StyledLabel>
+            <StyledField id="description" type="text" name="description" />
+            <ErrorMessage name="description">
+              {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+            </ErrorMessage>
+            <StyledLabel htmlFor="author">Отзыв</StyledLabel>
+            <StyledFormReview>
+              <StyledLabel htmlFor="author">Автор</StyledLabel>
+              <StyledField id="author" type="text" name="review.author" />
+              <ErrorMessage name="review.author">
+                {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+              </ErrorMessage>
+              <StyledLabel>Рейтинг</StyledLabel>
+              <StyledFormRating>
+                <StarRatings
+                  rating={rating}
+                  starRatedColor="gold"
+                  starHoverColor="gold"
+                  numberOfStars={5}
+                  starDimension="24px"
+                  starSpacing="2px"
+                  changeRating={(newRating) => {
+                    setFieldValue('review.stars', newRating);
+                    changeRatingHandler(newRating);
+                  }}
+                />
+              </StyledFormRating>
+              <StyledLabel htmlFor="text">Текст</StyledLabel>
+              <StyledField id="text" type="text" name="review.text" />
+              <ErrorMessage name="review.text">
+                {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+              </ErrorMessage>
+              <StyledLabel htmlFor="date">Дата</StyledLabel>
+              <StyledField id="date" type="text" name="review.date" />
+              <ErrorMessage name="review.date">
+                {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+              </ErrorMessage>
+            </StyledFormReview>
+            <StyledLabel htmlFor="images">Фото</StyledLabel>
+            <StyledField id="images" type="text" name="images" />
+            <ErrorMessage name="images">
+              {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+            </ErrorMessage>
+            <StyledLabel htmlFor="price">Цена</StyledLabel>
+            <StyledField id="price" type="text" name="price" />
+            <ErrorMessage name="price">
+              {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+            </ErrorMessage>
 
-          <Button type="submit" text="Добавить" />
-        </Form>
+            <Button type="submit" text="Добавить" />
+          </Form>
+        )}
       </Formik>
     </>
   );
