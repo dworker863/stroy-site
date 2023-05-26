@@ -1,4 +1,4 @@
-import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
+import { ErrorMessage, Form, Formik, FormikHelpers, useField } from 'formik';
 import React, { FC, useState } from 'react';
 import { IFormProject } from './IFromProject';
 import * as Yup from 'yup';
@@ -8,12 +8,32 @@ import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
 import { StyledFormRating, StyledFormReview } from './StyledFormProject';
 import StarRatings from 'react-star-ratings';
+import MaskedInput from 'react-text-mask';
 
 const FormProject: FC<IFormProject> = ({ project }) => {
   const [rating, setRating] = useState(5);
+  const now = new Date().toLocaleString('kz-KZ', {
+    day: 'numeric',
+    month: 'numeric',
+    year: 'numeric',
+  });
+
+  const mask = [
+    /[1-9]/,
+    /[1-9]/,
+    '.',
+    /[1-9]/,
+    /[1-9]/,
+    '.',
+    /[1-9]/,
+    /[1-9]/,
+    /[1-9]/,
+    /[1-9]/,
+  ];
 
   const changeRatingHandler = (newRating: number) => {
     setRating(newRating);
+    console.log(now);
   };
 
   return (
@@ -87,7 +107,16 @@ const FormProject: FC<IFormProject> = ({ project }) => {
                 {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
               </ErrorMessage>
               <StyledLabel htmlFor="date">Дата</StyledLabel>
-              <StyledField id="date" type="text" name="review.date" />
+              <StyledField
+                id="date"
+                name="review.date"
+                type="text"
+                as={MaskedInput}
+                mask={mask}
+                guide={true}
+                placeholder={now}
+                placeholderChar={'\u2000'}
+              />
               <ErrorMessage name="review.date">
                 {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
               </ErrorMessage>
