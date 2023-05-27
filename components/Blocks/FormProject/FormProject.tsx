@@ -101,7 +101,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
           setSubmitting(false);
         }}
       >
-        {({ setFieldValue, values }) => (
+        {({ setFieldValue, values, handleChange }) => (
           <Form>
             <StyledLabel htmlFor="name">Название</StyledLabel>
             <StyledField id="name" type="text" name="name" />
@@ -114,6 +114,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
               name="description"
               as="textarea"
               rows={6}
+              onChange={handleChange}
             />
             <ErrorMessage name="description">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
@@ -161,6 +162,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
                   as="textarea"
                   name="review.text"
                   rows={6}
+                  onChange={handleChange}
                 />
                 <ErrorMessage name="review.text">
                   {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
