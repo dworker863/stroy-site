@@ -12,6 +12,10 @@ import MaskedInput from 'react-text-mask';
 
 const FormProject: FC<IFormProject> = ({ project }) => {
   const [rating, setRating] = useState(5);
+  const [showReview, setShowReview] = useState(false);
+
+  console.log(project);
+
   const now = new Date().toLocaleString('kz-KZ', {
     day: 'numeric',
     month: 'numeric',
@@ -19,21 +23,25 @@ const FormProject: FC<IFormProject> = ({ project }) => {
   });
 
   const mask = [
-    /[1-9]/,
-    /[1-9]/,
+    /[0-9]/,
+    /[0-9]/,
+    '.',
+    /[0-9]/,
+    /[0-9]/,
     '.',
     /[1-9]/,
-    /[1-9]/,
-    '.',
-    /[1-9]/,
-    /[1-9]/,
-    /[1-9]/,
-    /[1-9]/,
+    /[0-9]/,
+    /[0-9]/,
+    /[0-9]/,
   ];
 
   const changeRatingHandler = (newRating: number) => {
     setRating(newRating);
-    console.log(now);
+    console.log(typeof now);
+  };
+
+  const toggleReviewHandler = () => {
+    setShowReview(!showReview);
   };
 
   return (
@@ -43,27 +51,45 @@ const FormProject: FC<IFormProject> = ({ project }) => {
         initialValues={{
           name: project?.name || '',
           description: project?.description || '',
-          review: {
-            author: project?.projectReview.author || '',
-            stars: project?.projectReview.stars || 5,
-            text: project?.projectReview.text || '',
-            date: project?.projectReview.date || '',
-          },
+          toggleReview: project?.projectReview ? true : showReview,
+          review: showReview
+            ? {
+                author: project?.projectReview.author || '',
+                stars: project?.projectReview.stars || 5,
+                text: project?.projectReview.text || '',
+                date: project?.projectReview.date || now,
+              }
+            : null,
           images: project?.images || [],
           price: project?.price || 0,
         }}
         validationSchema={Yup.object({
           name: Yup.string().required('Укажите название проекта'),
-          description: Yup.string().required('Укажите описание проекта'),
-          // review: Yup.string(),
+          description: Yup.string(),
+          // .required('Укажите описание проекта'),
+          toggleReview: Yup.boolean(),
+          review: Yup.object()
+            .shape({
+              author: Yup.string().when('toggleReview', (toogleReview) => {
+                return toogleReview
+                  ? Yup.string().required('Укажите автора')
+                  : Yup.string();
+              }),
+              stars: Yup.string().when('toggleReview', (toogleReview) => {
+                return toogleReview
+                  ? Yup.number().required('Укажите рейтинг')
+                  : Yup.number();
+              }),
+              text: Yup.string(),
+              date: Yup.string(),
+            })
+            .nullable(),
           images: Yup.string(),
           price: Yup.number(),
         })}
-        onSubmit={async (
-          values: any,
-          { setSubmitting }: FormikHelpers<any>,
-        ) => {
+        onSubmit={(values: any, { setSubmitting }: FormikHelpers<any>) => {
           console.log(values);
+          console.log(1);
           setSubmitting(false);
         }}
       >
@@ -75,52 +101,64 @@ const FormProject: FC<IFormProject> = ({ project }) => {
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
             <StyledLabel htmlFor="description">Описание</StyledLabel>
-            <StyledField id="description" type="text" name="description" />
+            <StyledField
+              id="description"
+              as="textarea"
+              name="description"
+              rows={6}
+            />
             <ErrorMessage name="description">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
-            <StyledLabel htmlFor="author">Отзыв</StyledLabel>
-            <StyledFormReview>
-              <StyledLabel htmlFor="author">Автор</StyledLabel>
-              <StyledField id="author" type="text" name="review.author" />
-              <ErrorMessage name="review.author">
-                {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-              </ErrorMessage>
-              <StyledLabel>Рейтинг</StyledLabel>
-              <StyledFormRating>
-                <StarRatings
-                  rating={rating}
-                  starRatedColor="gold"
-                  starHoverColor="gold"
-                  numberOfStars={5}
-                  starDimension="24px"
-                  starSpacing="2px"
-                  changeRating={(newRating) => {
-                    setFieldValue('review.stars', newRating);
-                    changeRatingHandler(newRating);
-                  }}
+            <Button type="button" text="Отзыв" onClick={toggleReviewHandler} />
+            {showReview && (
+              <StyledFormReview show={showReview}>
+                <StyledLabel htmlFor="author">Автор</StyledLabel>
+                <StyledField id="author" type="text" name="review.author" />
+                <ErrorMessage name="review.author">
+                  {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+                </ErrorMessage>
+                <StyledLabel>Рейтинг</StyledLabel>
+                <StyledFormRating>
+                  <StarRatings
+                    rating={rating}
+                    starRatedColor="gold"
+                    starHoverColor="gold"
+                    numberOfStars={5}
+                    starDimension="24px"
+                    starSpacing="2px"
+                    changeRating={(newRating) => {
+                      setFieldValue('review.stars', newRating);
+                      changeRatingHandler(newRating);
+                    }}
+                  />
+                </StyledFormRating>
+                <StyledLabel htmlFor="text">Текст</StyledLabel>
+                <StyledField
+                  id="text"
+                  as="textarea"
+                  name="review.text"
+                  rows={6}
                 />
-              </StyledFormRating>
-              <StyledLabel htmlFor="text">Текст</StyledLabel>
-              <StyledField id="text" type="text" name="review.text" />
-              <ErrorMessage name="review.text">
-                {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-              </ErrorMessage>
-              <StyledLabel htmlFor="date">Дата</StyledLabel>
-              <StyledField
-                id="date"
-                name="review.date"
-                type="text"
-                as={MaskedInput}
-                mask={mask}
-                guide={true}
-                placeholder={now}
-                placeholderChar={'\u2000'}
-              />
-              <ErrorMessage name="review.date">
-                {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-              </ErrorMessage>
-            </StyledFormReview>
+                <ErrorMessage name="review.text">
+                  {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+                </ErrorMessage>
+                <StyledLabel htmlFor="date">Дата</StyledLabel>
+                <StyledField
+                  id="date"
+                  name="review.date"
+                  type="text"
+                  as={MaskedInput}
+                  mask={mask}
+                  guide={true}
+                  placeholder={now}
+                  placeholderChar={'\u2000'}
+                />
+                <ErrorMessage name="review.date">
+                  {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+                </ErrorMessage>
+              </StyledFormReview>
+            )}
             <StyledLabel htmlFor="images">Фото</StyledLabel>
             <StyledField id="images" type="text" name="images" />
             <ErrorMessage name="images">

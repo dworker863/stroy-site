@@ -29,7 +29,8 @@ button {
   outline: 0;
 }
 
-input {
+input,
+textarea {
   border: 1px solid #c8b8db;
   background-color: #e8f0fe;
   border-radius: 2px;
