@@ -6,13 +6,22 @@ import Button from '../../Elements/Button/Button';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
 import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
-import { StyledFormRating, StyledFormReview } from './StyledFormProject';
+import {
+  StyledDropZone,
+  StyledFormRating,
+  StyledFormReview,
+  StyledImagesWrapper,
+  StyledPlus,
+} from './StyledFormProject';
 import StarRatings from 'react-star-ratings';
 import MaskedInput from 'react-text-mask';
+import Dropzone from 'react-dropzone';
+import * as path from 'path';
 
 const FormProject: FC<IFormProject> = ({ project }) => {
   const [rating, setRating] = useState(5);
   const [showReview, setShowReview] = useState(false);
+  const [dropImages, setDropImages] = useState<any>([]);
 
   console.log(project);
 
@@ -47,7 +56,6 @@ const FormProject: FC<IFormProject> = ({ project }) => {
   return (
     <>
       <Formik
-        enableReinitialize
         initialValues={{
           name: project?.name || '',
           description: project?.description || '',
@@ -60,7 +68,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
                 date: project?.projectReview.date || now,
               }
             : null,
-          images: project?.images || [],
+          images: project?.images || dropImages,
           price: project?.price || 0,
         }}
         validationSchema={Yup.object({
@@ -84,7 +92,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
               date: Yup.string(),
             })
             .nullable(),
-          images: Yup.string(),
+          images: Yup.array(),
           price: Yup.number(),
         })}
         onSubmit={(values: any, { setSubmitting }: FormikHelpers<any>) => {
@@ -103,14 +111,28 @@ const FormProject: FC<IFormProject> = ({ project }) => {
             <StyledLabel htmlFor="description">Описание</StyledLabel>
             <StyledField
               id="description"
-              as="textarea"
               name="description"
+              as="textarea"
               rows={6}
             />
             <ErrorMessage name="description">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
-            <Button type="button" text="Отзыв" onClick={toggleReviewHandler} />
+            <Button
+              type="button"
+              text="Добавить Отзыв"
+              onClick={() => {
+                showReview
+                  ? (values.review = null)
+                  : (values.review = {
+                      author: project?.projectReview.author || '',
+                      stars: project?.projectReview.stars || 5,
+                      text: project?.projectReview.text || '',
+                      date: project?.projectReview.date || now,
+                    });
+                toggleReviewHandler();
+              }}
+            />
             {showReview && (
               <StyledFormReview show={showReview}>
                 <StyledLabel htmlFor="author">Автор</StyledLabel>
@@ -160,7 +182,27 @@ const FormProject: FC<IFormProject> = ({ project }) => {
               </StyledFormReview>
             )}
             <StyledLabel htmlFor="images">Фото</StyledLabel>
-            <StyledField id="images" type="text" name="images" />
+            <Dropzone
+              onDrop={(acceptedFiles) => {
+                setDropImages([...dropImages, ...acceptedFiles]);
+              }}
+            >
+              {({ getRootProps, getInputProps, acceptedFiles }) => (
+                <StyledDropZone {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  <p>Загрузите или перетащите фото</p>
+                  <StyledPlus>+</StyledPlus>
+                </StyledDropZone>
+              )}
+            </Dropzone>
+            <StyledImagesWrapper>
+              {dropImages.map((image: any) => (
+                <img
+                  key={URL.createObjectURL(image)}
+                  src={URL.createObjectURL(image)}
+                />
+              ))}
+            </StyledImagesWrapper>
             <ErrorMessage name="images">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
