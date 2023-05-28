@@ -31,12 +31,6 @@ export const StyledDropZone = styled.div`
   background-color: #e8f0fe;
 `;
 
-export const StyledImagesWrapper = styled.div`
-  img {
-    height: 100px;
-  }
-`;
-
 export const StyledPlus = styled.div`
   font-size: 48px;
   color: ${({ theme }) => theme.colors.primary};

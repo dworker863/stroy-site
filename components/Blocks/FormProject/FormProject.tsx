@@ -1,4 +1,4 @@
-import { ErrorMessage, Form, Formik, FormikHelpers, useField } from 'formik';
+import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
 import React, { FC, useState } from 'react';
 import { IFormProject } from './IFromProject';
 import * as Yup from 'yup';
@@ -10,13 +10,13 @@ import {
   StyledDropZone,
   StyledFormRating,
   StyledFormReview,
-  StyledImagesWrapper,
   StyledPlus,
 } from './StyledFormProject';
 import StarRatings from 'react-star-ratings';
 import MaskedInput from 'react-text-mask';
 import Dropzone from 'react-dropzone';
-import * as path from 'path';
+import Image from '../../Elements/Photo/Photo';
+import Photo from '../../Elements/Photo/Photo';
 
 const FormProject: FC<IFormProject> = ({ project }) => {
   const [rating, setRating] = useState(5);
@@ -197,14 +197,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
                 </StyledDropZone>
               )}
             </Dropzone>
-            <StyledImagesWrapper>
-              {dropImages.map((image: any) => (
-                <img
-                  key={URL.createObjectURL(image)}
-                  src={URL.createObjectURL(image)}
-                />
-              ))}
-            </StyledImagesWrapper>
+            <Photo photos={dropImages} />
             <ErrorMessage name="images">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
