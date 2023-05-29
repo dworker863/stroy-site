@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IProject } from '../commonInterfaces/IProject';
 import { IService } from '../commonInterfaces/IService';
 import { IUser } from '../commonInterfaces/IUser';
 
@@ -68,6 +69,55 @@ export const updateService = (service: IService) => {
 export const deleteService = (id?: number) => {
   return instance
     .delete(`services/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err.response.data.message;
+    });
+};
+
+export const postProject = (project: IProject) => {
+  const formData = new FormData();
+  console.log(project.images);
+
+  formData.append('name', project.name);
+  formData.append('description', project.description);
+
+  if (project.review !== null) {
+    console.log(JSON.stringify(project.review));
+
+    formData.append('review', JSON.stringify(project.review));
+  }
+
+  project.images.map((image) => {
+    formData.append('images', image);
+  });
+
+  formData.append('price', String(project.price));
+
+  return instance
+    .post(`projects`, formData, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch((err) => {
+      return err.response.data.message;
+    });
+};
+
+export const deleteProject = (id?: number) => {
+  return instance
+    .delete(`projects/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },

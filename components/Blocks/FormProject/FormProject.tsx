@@ -15,15 +15,15 @@ import {
 import StarRatings from 'react-star-ratings';
 import MaskedInput from 'react-text-mask';
 import Dropzone from 'react-dropzone';
-import Image from '../../Elements/Photo/Photo';
 import Photo from '../../Elements/Photo/Photo';
+import { postProject } from '../../../api/api';
+import { useRouter } from 'next/router';
 
 const FormProject: FC<IFormProject> = ({ project }) => {
   const [rating, setRating] = useState(5);
   const [showReview, setShowReview] = useState(false);
   const [dropImages, setDropImages] = useState<any>([]);
-
-  console.log(project);
+  const router = useRouter();
 
   const now = new Date().toLocaleString('kz-KZ', {
     day: 'numeric',
@@ -46,7 +46,6 @@ const FormProject: FC<IFormProject> = ({ project }) => {
 
   const changeRatingHandler = (newRating: number) => {
     setRating(newRating);
-    console.log(typeof now);
   };
 
   const toggleReviewHandler = () => {
@@ -62,10 +61,10 @@ const FormProject: FC<IFormProject> = ({ project }) => {
           toggleReview: project?.projectReview ? true : showReview,
           review: showReview
             ? {
-                author: project?.projectReview.author || '',
-                stars: project?.projectReview.stars || 5,
-                text: project?.projectReview.text || '',
-                date: project?.projectReview.date || now,
+                author: project?.projectReview?.author || '',
+                stars: project?.projectReview?.stars || 5,
+                text: project?.projectReview?.text || '',
+                date: project?.projectReview?.date || now,
               }
             : null,
           images: project?.images || dropImages,
@@ -95,9 +94,14 @@ const FormProject: FC<IFormProject> = ({ project }) => {
           images: Yup.array(),
           price: Yup.number(),
         })}
-        onSubmit={(values: any, { setSubmitting }: FormikHelpers<any>) => {
-          console.log(values);
-          console.log(1);
+        onSubmit={async (
+          values: any,
+          { setSubmitting }: FormikHelpers<any>,
+        ) => {
+          const { toggleReview, ...projectToPost } = values;
+          const data = await postProject(projectToPost);
+
+          router.push('./projects');
           setSubmitting(false);
         }}
       >
@@ -115,6 +119,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
               as="textarea"
               rows={6}
               onChange={handleChange}
+              value={values.description}
             />
             <ErrorMessage name="description">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
@@ -126,10 +131,10 @@ const FormProject: FC<IFormProject> = ({ project }) => {
                 showReview
                   ? (values.review = null)
                   : (values.review = {
-                      author: project?.projectReview.author || '',
-                      stars: project?.projectReview.stars || 5,
-                      text: project?.projectReview.text || '',
-                      date: project?.projectReview.date || now,
+                      author: project?.projectReview?.author || '',
+                      stars: project?.projectReview?.stars || 5,
+                      text: project?.projectReview?.text || '',
+                      date: project?.projectReview?.date || now,
                     });
                 toggleReviewHandler();
               }}
@@ -163,6 +168,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
                   name="review.text"
                   rows={6}
                   onChange={handleChange}
+                  value={values.review?.text}
                 />
                 <ErrorMessage name="review.text">
                   {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
@@ -187,6 +193,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
             <Dropzone
               onDrop={(acceptedFiles) => {
                 setDropImages([...dropImages, ...acceptedFiles]);
+                setFieldValue('images', [...dropImages, ...acceptedFiles]);
               }}
             >
               {({ getRootProps, getInputProps, acceptedFiles }) => (

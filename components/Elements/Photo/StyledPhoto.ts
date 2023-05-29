@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 export const StyledPhotosWrapper = styled.div`
   display: flex;
+  margin-bottom: 20px;
 `;
 
 export const StyledPhoto = styled.div`

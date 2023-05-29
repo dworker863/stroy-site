@@ -25,12 +25,20 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-flip';
 import { ProjectsContext } from '../../../pages/projects';
+import { deleteProject } from '../../../api/api';
+import { useRouter } from 'next/router';
 
 const CardProject: FC<ICardProject> = ({
   project,
   updateProjectFormHandler,
 }) => {
   const { auth } = useContext(ProjectsContext);
+  const router = useRouter();
+
+  const deleteProjectHandler = async (id?: number) => {
+    const project = await deleteProject(id);
+    router.push('./projects');
+  };
 
   return (
     <StyledCardProject>
@@ -80,7 +88,7 @@ const CardProject: FC<ICardProject> = ({
           />
           <StyledProjectBtn
             icon={faTrash as IconProp}
-            // onClick={deleteServiceHandler.bind(null, service.id)}
+            onClick={deleteProjectHandler.bind(null, project.id)}
           />
         </StyledProjectBtns>
       )}
