@@ -4,9 +4,11 @@ import styled from 'styled-components';
 export const StyledCardReview = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 300px;
   margin: 5px;
   border-radius: 10px;
   box-shadow: 1px 1px 5px ${({ theme }) => theme.colors.grey};
+  box-shadow: 1px 1px 5px #292828;
   color: ${({ theme }) => theme.colors.fontColor};
 `;
 

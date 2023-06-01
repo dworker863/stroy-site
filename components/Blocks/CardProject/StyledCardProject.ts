@@ -5,18 +5,20 @@ export const StyledCardProject = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 600px;
+  width: 550px;
   margin-bottom: 40px;
   border: 1px solid ${({ theme }) => theme.colors.purple};
   border-radius: 10px;
 
-  .swiper img {
-    width: 598px;
+  .swiper {
+    margin-bottom: 20px;
+    text-align: center;
   }
 `;
 
 export const StyledCardProjectTitle = styled.div`
   padding: 10px;
+  margin-bottom: 20px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   text-align: center;
@@ -26,14 +28,19 @@ export const StyledCardProjectTitle = styled.div`
 
 export const StyledCardProjectContent = styled.div`
   display: flex;
+  justify-content: space-around;
 `;
 
 export const StyledCardProjectInfo = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  width: 50%;
-  padding: 25px 10px;
+  width: 48%;
+  min-height: 300px;
+  margin: 5px;
+  border-radius: 10px;
+
+  box-shadow: 1px 1px 5px #292828;
 `;
 
 export const StyledCardProjectDesc = styled.div`
@@ -46,7 +53,10 @@ export const StyledCardProjectReview = styled.div`
 `;
 
 export const StyledCardProjectPrice = styled.div`
+  padding-top: 10px;
+  padding-bottom: 10px;
   text-align: center;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.purple};
   font-size: 24px;
   color: ${({ theme }) => theme.colors.primary};
 `;
@@ -58,7 +68,7 @@ export const StyledCardProjectDate = styled.div`
 export const StyledCardProjectSliderButtons = styled.div`
   position: absolute;
   width: 100%;
-  top: 30%;
+  top: 50%;
 
   span {
     color: ${({ theme }) => theme.colors.primary};

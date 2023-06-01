@@ -4,6 +4,9 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: ['192.168.1.4'],
+  },
 };
 
 module.exports = nextConfig;

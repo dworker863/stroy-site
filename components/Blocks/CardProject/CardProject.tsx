@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, SyntheticEvent, useContext, useState } from 'react';
 import { A11y, EffectFlip, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CardReview from '../CardReview/CardReview';
@@ -27,6 +27,7 @@ import 'swiper/css/effect-flip';
 import { ProjectsContext } from '../../../pages/projects';
 import { deleteProject } from '../../../api/api';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 const CardProject: FC<ICardProject> = ({
   project,
@@ -34,6 +35,21 @@ const CardProject: FC<ICardProject> = ({
 }) => {
   const { auth } = useContext(ProjectsContext);
   const router = useRouter();
+  const [originalWidth, setOriginalWidth] = useState(1);
+  const [originalHeight, setOriginalHeight] = useState(1);
+  const [aspectRatio, setAspectRatio] = useState(1);
+
+  const targetWidth = 250;
+
+  const imageLoadHandler = (e: SyntheticEvent<HTMLImageElement, Event>) => {
+    const image = e.target as HTMLImageElement;
+    setOriginalWidth(image.naturalWidth);
+    setOriginalHeight(image.naturalHeight);
+
+    setAspectRatio(
+      Number((image.naturalWidth / image.naturalHeight).toFixed(2)),
+    );
+  };
 
   const deleteProjectHandler = async (id?: number) => {
     const project = await deleteProject(id);
@@ -53,32 +69,30 @@ const CardProject: FC<ICardProject> = ({
         }}
         // effect={'flip'}
       >
+        <StyledCardProjectSliderButtons>
+          <StyledCardProjectSliderPrev className="swiper-button-prev" />
+          <StyledCardProjectSliderNext className="swiper-button-next" />
+        </StyledCardProjectSliderButtons>
         {project.images.map((image) => (
           <SwiperSlide key={project.id + project.name}>
-            <img src={image} alt={project.name} />
+            <Image
+              src={image}
+              alt={project.name}
+              width={targetWidth}
+              height={targetWidth / aspectRatio}
+              onLoad={imageLoadHandler}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
-      <StyledCardProjectSliderButtons>
-        <StyledCardProjectSliderPrev className="swiper-button-prev" />
-        <StyledCardProjectSliderNext className="swiper-button-next" />
-      </StyledCardProjectSliderButtons>
       <StyledCardProjectContent>
         <StyledCardProjectInfo>
           <StyledCardProjectPrice>
             {project.price + ' тг'}
           </StyledCardProjectPrice>
-          <StyledCardProjectDesc>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-            eligendi sint, autem ratione, minus incidunt illum necessitatibus
-            fugiat vitae odio quos eius quis eum, ab unde? Iste earum libero
-            totam? Consectetur debitis quos dolorem at cum atque amet harum
-            adipisci ipsum in quo optio aut animi eveniet maxime ut, quibusdam
-            reprehenderit, iste est repudiandae consequuntur. Incidunt illo
-            quaerat minus ad!
-          </StyledCardProjectDesc>
+          <StyledCardProjectDesc>{project.description}</StyledCardProjectDesc>
         </StyledCardProjectInfo>
-        <CardReview />
+        <CardReview review={project.projectReview} />
       </StyledCardProjectContent>
       {auth && (
         <StyledProjectBtns>
