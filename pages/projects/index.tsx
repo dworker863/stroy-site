@@ -8,7 +8,7 @@ import Container from '../../components/Blocks/Container/Container';
 import { StyledTitle } from '../../commonStyles/StyledTitle';
 import Button from '../../components/Elements/Button/Button';
 import FormProject from '../../components/Blocks/FormProject/FormProject';
-import Projects from '../../components/Blocks/Projects/Projects';
+import Projects from '../../components/Sections/Projects/Projects';
 
 export const ProjectsContext = createContext<IProjectsContext>({
   auth: false,

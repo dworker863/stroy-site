@@ -3,7 +3,7 @@ import Button from '../../components/Elements/Button/Button';
 import cookie from 'cookie';
 import { GetServerSideProps, NextPage } from 'next';
 import { ICalculatorContext, ICalculatorPage } from './ICalculatorPage';
-import Services from '../../components/Blocks/Services/Services';
+import Services from '../../components/Sections/Services/Services';
 import Cart from '../../components/Blocks/Cart/Cart';
 import Container from '../../components/Blocks/Container/Container';
 import { IService } from '../../commonInterfaces/IService';

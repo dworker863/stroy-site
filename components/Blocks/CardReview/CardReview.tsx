@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import React, { FC, useState } from 'react';
+import { ICardReview } from './ICardReview';
 import {
   StyledAuthorName,
   StyledAuthorPhoto,
@@ -12,9 +13,7 @@ import {
   StyledStars,
 } from './StyledCardReview';
 
-const CardReview: FC = () => {
-  const [rating, setRating] = useState(5);
-
+const CardReview: FC<ICardReview> = ({ review }) => {
   return (
     <StyledCardReview>
       <StyledCardAuthorWrapper>
@@ -27,9 +26,9 @@ const CardReview: FC = () => {
           />
         </StyledAuthorPhoto>
         <StyledCardAuthor>
-          <StyledAuthorName>Lorem ipsum</StyledAuthorName>
+          <StyledAuthorName>{review?.author}</StyledAuthorName>
           <StyledStars
-            rating={rating}
+            rating={review?.stars}
             starRatedColor="gold"
             starHoverColor="gold"
             numberOfStars={5}
@@ -39,13 +38,8 @@ const CardReview: FC = () => {
         </StyledCardAuthor>
       </StyledCardAuthorWrapper>
       <StyledCardText>
-        <StyledCardMessage>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero nam
-          repellat, labore accusamus numquam cupiditate, fuga laborum
-          consequuntur facilis ex nostrum beatae nihil dolore officia obcaecati
-          exercitationem a?
-        </StyledCardMessage>
-        <StyledCardDate>12.01.2022</StyledCardDate>
+        <StyledCardMessage>{review?.text}</StyledCardMessage>
+        <StyledCardDate>{review?.date}</StyledCardDate>
       </StyledCardText>
     </StyledCardReview>
   );

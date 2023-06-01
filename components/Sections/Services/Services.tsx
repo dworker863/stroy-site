@@ -1,7 +1,7 @@
 import React, { FC, useContext, useState } from 'react';
-import FormService from '../FormService/FormService';
+import FormService from '../../Blocks/FormService/FormService';
 import Search from '../../Elements/Search/Search';
-import Service from '../Service/Service';
+import Service from '../../Blocks/Service/Service';
 import { IServices } from './IServices';
 import { CalculatorContext } from '../../../pages/calculator';
 import { StyledServices, StyledServicesWrapper } from './StyledServices';

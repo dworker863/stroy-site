@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import Project from '../Project/Project';
+import Project from '../../Blocks/Project/Project';
 import { IProjects } from './IProjects';
 import { StyledProjects } from './StyledProjects';
 
