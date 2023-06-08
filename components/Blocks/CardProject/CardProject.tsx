@@ -1,4 +1,10 @@
-import React, { FC, SyntheticEvent, useContext, useState } from 'react';
+import React, {
+  FC,
+  SyntheticEvent,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { A11y, EffectFlip, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CardReview from '../CardReview/CardReview';
@@ -20,14 +26,14 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/effect-flip';
 import { ProjectsContext } from '../../../pages/projects';
 import { deleteProject } from '../../../api/api';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const CardProject: FC<ICardProject> = ({
   project,
@@ -36,10 +42,18 @@ const CardProject: FC<ICardProject> = ({
   const { auth } = useContext(ProjectsContext);
   const router = useRouter();
   const [originalWidth, setOriginalWidth] = useState(1);
+  const [smallImage, setSmallImage] = useState(false);
   const [originalHeight, setOriginalHeight] = useState(1);
   const [aspectRatio, setAspectRatio] = useState(1);
 
-  const targetWidth = 250;
+  useEffect(() => {
+    const media = window.matchMedia(`(max-width: 576px)`);
+    if (media.matches) {
+      setSmallImage(true);
+    }
+  }, []);
+
+  const targetWidth = smallImage ? 250 : 450;
 
   const imageLoadHandler = (e: SyntheticEvent<HTMLImageElement, Event>) => {
     const image = e.target as HTMLImageElement;
@@ -63,23 +77,28 @@ const CardProject: FC<ICardProject> = ({
         modules={[Navigation, EffectFlip, A11y]}
         grabCursor={true}
         slidesPerView={1}
+        // navigation={true}
         navigation={{
           prevEl: '.swiper-button-prev',
           nextEl: '.swiper-button-next',
         }}
-        // effect={'flip'}
       >
         <StyledCardProjectSliderButtons>
           <StyledCardProjectSliderPrev className="swiper-button-prev" />
           <StyledCardProjectSliderNext className="swiper-button-next" />
         </StyledCardProjectSliderButtons>
         {project.images.map((image) => (
-          <SwiperSlide key={project.id + project.name}>
+          <SwiperSlide
+            key={project.id + project.name}
+            style={{
+              width: `${targetWidth}`,
+              height: `calc(${targetWidth}px / ${aspectRatio})`,
+            }}
+          >
             <Image
+              fill
               src={image}
               alt={project.name}
-              width={targetWidth}
-              height={targetWidth / aspectRatio}
               onLoad={imageLoadHandler}
             />
           </SwiperSlide>

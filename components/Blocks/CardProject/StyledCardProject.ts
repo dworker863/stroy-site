@@ -7,18 +7,24 @@ export const StyledCardProject = styled.div`
   flex-direction: column;
   width: 550px;
   margin-bottom: 40px;
+  padding-bottom: 5px;
   border: 1px solid ${({ theme }) => theme.colors.purple};
   border-radius: 10px;
 
   .swiper {
+    position: relative;
+    width: 100%;
     margin-bottom: 20px;
     text-align: center;
+  }
+
+  @media (max-width: 576px) {
+    width: 300px;
   }
 `;
 
 export const StyledCardProjectTitle = styled.div`
   padding: 10px;
-  margin-bottom: 20px;
   border-top-right-radius: 8px;
   border-top-left-radius: 8px;
   text-align: center;
@@ -29,6 +35,10 @@ export const StyledCardProjectTitle = styled.div`
 export const StyledCardProjectContent = styled.div`
   display: flex;
   justify-content: space-around;
+
+  @media (max-width: 576px) {
+    flex-direction: column;
+  }
 `;
 
 export const StyledCardProjectInfo = styled.div`
@@ -39,8 +49,11 @@ export const StyledCardProjectInfo = styled.div`
   min-height: 300px;
   margin: 5px;
   border-radius: 10px;
-
   box-shadow: 1px 1px 5px #292828;
+
+  @media (max-width: 576px) {
+    width: calc(100% - 10px);
+  }
 `;
 
 export const StyledCardProjectDesc = styled.div`
@@ -66,15 +79,20 @@ export const StyledCardProjectDate = styled.div`
 `;
 
 export const StyledCardProjectSliderButtons = styled.div`
+  z-index: 1000;
   position: absolute;
-  width: 100%;
   top: 50%;
+  left: 0;
+  width: 550px;
+  height: 50px;
+  transform: translateY(-50%);
 
   span {
     color: ${({ theme }) => theme.colors.primary};
   }
 `;
 export const StyledCardProjectSliderPrev = styled.span``;
+
 export const StyledCardProjectSliderNext = styled.span``;
 
 export const StyledProjectBtns = styled.div`
