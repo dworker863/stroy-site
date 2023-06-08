@@ -34,6 +34,7 @@ import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/effect-flip';
 
 const CardProject: FC<ICardProject> = ({
   project,
@@ -77,7 +78,7 @@ const CardProject: FC<ICardProject> = ({
         modules={[Navigation, EffectFlip, A11y]}
         grabCursor={true}
         slidesPerView={1}
-        // navigation={true}
+        effect={'flip'}
         navigation={{
           prevEl: '.swiper-button-prev',
           nextEl: '.swiper-button-next',
