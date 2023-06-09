@@ -16,8 +16,9 @@ import StarRatings from 'react-star-ratings';
 import MaskedInput from 'react-text-mask';
 import Dropzone from 'react-dropzone';
 import Photo from '../../Elements/Photo/Photo';
-import { postProject } from '../../../api/api';
+import { postProject, updateProject } from '../../../api/api';
 import { useRouter } from 'next/router';
+import { IProject } from '../../../commonInterfaces/IProject';
 
 const FormProject: FC<IFormProject> = ({ project }) => {
   const [rating, setRating] = useState(5);
@@ -95,11 +96,22 @@ const FormProject: FC<IFormProject> = ({ project }) => {
           price: Yup.number(),
         })}
         onSubmit={async (
-          values: any,
-          { setSubmitting }: FormikHelpers<any>,
+          values: { toggleReview: boolean } & IProject,
+          {
+            setSubmitting,
+          }: FormikHelpers<{ toggleReview: boolean } & IProject>,
         ) => {
           const { toggleReview, ...projectToPost } = values;
-          const data = await postProject(projectToPost);
+          console.log(project);
+
+          if (project) {
+            const data = await updateProject({
+              id: project.id,
+              ...projectToPost,
+            });
+          } else {
+            const data = await postProject(projectToPost);
+          }
 
           router.push('./projects');
           setSubmitting(false);
@@ -214,7 +226,10 @@ const FormProject: FC<IFormProject> = ({ project }) => {
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
 
-            <Button type="submit" text="Добавить" />
+            <Button
+              type="submit"
+              text={project ? 'Редактировать' : 'Добавить'}
+            />
           </Form>
         )}
       </Formik>

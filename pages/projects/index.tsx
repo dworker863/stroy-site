@@ -65,6 +65,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const data = await fetch('http://192.168.1.4:8000/projects');
   const projects = await data.json();
+  console.log(projects);
 
   return {
     props: {

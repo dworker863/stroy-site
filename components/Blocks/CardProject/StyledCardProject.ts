@@ -83,7 +83,7 @@ export const StyledCardProjectSliderButtons = styled.div`
   position: absolute;
   top: 50%;
   left: 0;
-  width: 550px;
+  width: 100%;
   height: 50px;
   transform: translateY(-50%);
 

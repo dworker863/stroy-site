@@ -115,6 +115,40 @@ export const postProject = (project: IProject) => {
     });
 };
 
+export const updateProject = (project: IProject) => {
+  const formData = new FormData();
+  console.log(project.images);
+
+  formData.append('name', project.name);
+  formData.append('description', project.description);
+
+  if (project.review !== null) {
+    console.log(JSON.stringify(project.review));
+
+    formData.append('review', JSON.stringify(project.review));
+  }
+
+  project.images.map((image) => {
+    formData.append('images', image);
+  });
+
+  formData.append('price', String(project.price));
+
+  return instance
+    .patch(`projects/${project.id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then((res) => {
+      console.log(res.data);
+      return res.data;
+    })
+    .catch((err) => {
+      return err.response.data.message;
+    });
+};
+
 export const deleteProject = (id?: number) => {
   return instance
     .delete(`projects/${id}`, {
