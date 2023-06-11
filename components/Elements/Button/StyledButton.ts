@@ -1,4 +1,4 @@
-import { IStyledButton } from './IButton';
+import { IStyledButton } from './TButton';
 import styled, { css } from 'styled-components';
 
 export const StyledButton = styled.button<IStyledButton>`

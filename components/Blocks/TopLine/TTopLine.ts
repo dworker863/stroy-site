@@ -1,4 +1,4 @@
-export interface ITopLine {
+export type TTopLineProps = {
   hamburgerActive: boolean;
   hamburgerHandler: () => void;
-}
+};

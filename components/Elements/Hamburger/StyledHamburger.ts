@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
-import { IStyledHamburger, IStyledHamburgerWrapper } from './IHamburger';
+import { TActive } from '../../../commonTypesInterfaces/TActive';
 
-export const StyledHamburgerWrapper = styled.div<IStyledHamburgerWrapper>`
+export const StyledHamburgerWrapper = styled.div`
   display: none;
   cursor: pointer;
   position: absolute;
@@ -15,7 +15,7 @@ export const StyledHamburgerWrapper = styled.div<IStyledHamburgerWrapper>`
   }
 `;
 
-export const StyledHamburger = styled.div<IStyledHamburger>`
+export const StyledHamburger = styled.div<TActive>`
   position: absolute;
   right: 0;
   top: 10px;
@@ -40,8 +40,8 @@ export const StyledHamburger = styled.div<IStyledHamburger>`
   &:after {
     top: 20px;
   }
-  ${({ isActive }) =>
-    isActive &&
+  ${({ active }) =>
+    active &&
     css`
       top: 20px;
       transform: rotate(-135deg);

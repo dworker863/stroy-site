@@ -1,10 +1,10 @@
 import Link from 'next/link';
-import React, { FC } from 'react';
+import { FC } from 'react';
+import { TDirection } from '../../../commonTypesInterfaces/TDirection';
 import Socials from '../../Elements/Socials/Socials';
-import { INav } from './INav';
 import { StyledMenu, StyledNav, StyledNavItem } from './StyledNav';
 
-const Nav: FC<INav> = ({ column }) => {
+const Nav: FC<TDirection> = ({ column }) => {
   return (
     <StyledNav column={column}>
       <StyledMenu>

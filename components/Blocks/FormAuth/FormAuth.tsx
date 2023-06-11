@@ -1,6 +1,6 @@
 import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
-import { IFormAuth, IFormAuthValues } from './IFormAuth';
-import React, { FC, useState } from 'react';
+import { TFormAuthProps } from './TFormAuth';
+import { FC, useState } from 'react';
 import * as Yup from 'yup';
 import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
@@ -8,12 +8,9 @@ import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
 import Button from '../../Elements/Button/Button';
 import { login } from '../../../api/api';
 import { useRouter } from 'next/router';
+import { IUser } from '../../../commonTypesInterfaces/IUser';
 
-const FormAuth: FC<IFormAuth> = ({
-  closeButtonHandler,
-  submitHandler,
-  registrHandler,
-}) => {
+const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
   const router = useRouter();
   const [err, setErr] = useState('');
 
@@ -29,15 +26,13 @@ const FormAuth: FC<IFormAuth> = ({
         password: Yup.string().required('Введите номер пароль'),
       })}
       onSubmit={async (
-        values: IFormAuthValues,
-        { setSubmitting }: FormikHelpers<IFormAuthValues>,
+        values: IUser,
+        { setSubmitting }: FormikHelpers<IUser>,
       ) => {
         const user = await login(values);
 
         if (typeof user !== 'string') {
           submitHandler();
-          closeButtonHandler();
-          router.push('/', undefined, { scroll: false });
         } else {
           setErr(user);
         }
@@ -63,7 +58,7 @@ const FormAuth: FC<IFormAuth> = ({
         <Button
           type="button"
           text="Зарегистрироваться"
-          onClick={registrHandler}
+          onClick={registrBtnHandler}
           center
         />
       </Form>

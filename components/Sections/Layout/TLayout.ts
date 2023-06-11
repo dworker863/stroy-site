@@ -2,11 +2,6 @@ import { Dispatch, SetStateAction, ReactNode } from 'react';
 
 export type TAppContext = {
   auth: boolean;
-  // setAuth: Dispatch<SetStateAction<boolean>>;
-  loginHandler: () => void;
+  setModalActive: Dispatch<SetStateAction<boolean>>;
   logoutHandler: () => void;
-};
-
-export type TLayoutProps = {
-  children: ReactNode;
 };

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { INav } from './INav';
+import { INav } from './TNav';
 
 export const StyledNav = styled.nav<INav>`
   @media (max-width: 992px) {

@@ -1,8 +1,8 @@
-import React, { FC, ReactNode } from 'react';
-import { IContainer } from './IContainer';
+import { FC } from 'react';
+import { TContainerProps } from './TContainer';
 import { StyledContainer } from './StyledContainer';
 
-const Container: FC<IContainer> = ({ children, column }) => {
+const Container: FC<TContainerProps> = ({ children, column }) => {
   return <StyledContainer column={column}>{children}</StyledContainer>;
 };
 

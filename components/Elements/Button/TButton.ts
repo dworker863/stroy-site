@@ -1,15 +1,15 @@
-export interface IButton {
+export type TButtonProps = {
   text: string;
   type: 'button' | 'submit' | 'reset';
   inline?: boolean;
   center?: boolean;
   auth?: boolean;
   onClick?: (value?: any) => void;
-}
+};
 
-export interface IStyledButton {
+export type TStyledButton = {
   inline?: boolean;
   center?: boolean;
   auth?: boolean;
   onClick?: () => void;
-}
+};

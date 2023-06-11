@@ -11,7 +11,7 @@ export const instance = axios.create({
 export const registration = ({
   username,
   password,
-}: IUser): Promise<string> => {
+}: IUser): Promise<IUser & { access_token: string }> => {
   return instance
     .post('auth/registration', { username, password })
     .then((res) => {

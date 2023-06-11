@@ -1,7 +1,7 @@
+import { TDirection } from './../../../commonTypesInterfaces/TDirection';
 import styled, { css } from 'styled-components';
-import { IContainer } from './IContainer';
 
-export const StyledContainer = styled.div<IContainer>`
+export const StyledContainer = styled.div<TDirection>`
   display: flex;
   justify-content: space-between;
   width: 1320px;

@@ -1,16 +1,16 @@
 import Link from 'next/link';
-import React, { FC, useContext } from 'react';
+import { FC, useContext } from 'react';
 import Button from '../../Elements/Button/Button';
 import Hamburger from '../../Elements/Hamburger/Hamburger';
 import Logo from '../../Elements/Logo/Logo';
 import { AppContext } from '../../Sections/Layout/Layout';
 import Container from '../Container/Container';
 import Nav from '../Nav/Nav';
-import { ITopLine } from './ITopLine';
+import { TTopLineProps } from './TTopLine';
 import { StyledTopLine } from './StyledTopLine';
 
-const TopLine: FC<ITopLine> = ({ hamburgerActive, hamburgerHandler }) => {
-  const { auth, loginHandler, logoutHandler } = useContext(AppContext);
+const TopLine: FC<TTopLineProps> = ({ hamburgerActive, hamburgerHandler }) => {
+  const { auth, setModalActive, logoutHandler } = useContext(AppContext);
 
   return (
     <StyledTopLine>
@@ -23,7 +23,7 @@ const TopLine: FC<ITopLine> = ({ hamburgerActive, hamburgerHandler }) => {
           type="button"
           text={!auth ? '' : 'Выйти'}
           auth={auth}
-          onClick={auth ? logoutHandler : loginHandler}
+          onClick={auth ? logoutHandler : setModalActive.bind(null, true)}
         />
         <Nav />
       </Container>

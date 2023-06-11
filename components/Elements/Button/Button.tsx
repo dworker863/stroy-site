@@ -1,8 +1,15 @@
-import React, { FC } from 'react';
-import { IButton } from './IButton';
+import { FC } from 'react';
+import { TButtonProps } from './TButton';
 import { StyledButton } from './StyledButton';
 
-const Button: FC<IButton> = ({ text, type, onClick, inline, center, auth }) => {
+const Button: FC<TButtonProps> = ({
+  text,
+  type,
+  onClick,
+  inline,
+  center,
+  auth,
+}) => {
   return (
     <StyledButton
       type={type}

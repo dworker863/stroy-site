@@ -9,5 +9,6 @@ export interface ITheme {
     bgColor: string;
     socialColor: string;
     brown: string;
+    green: string;
   };
 }

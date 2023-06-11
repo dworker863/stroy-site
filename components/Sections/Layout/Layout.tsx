@@ -1,28 +1,34 @@
-import React, { useEffect, useState, MouseEvent, useRef, FC } from 'react';
+import {
+  createContext,
+  useEffect,
+  useState,
+  MouseEvent,
+  useRef,
+  FC,
+} from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Roboto } from '@next/font/google';
-import { useRouter } from 'next/router';
-import cookie from 'cookie';
 import FormAuth from '../../Blocks/FormAuth/FormAuth';
-import { TAppContext, TLayoutProps } from './TLayout';
-import { StyledOverlay } from './StyledLayot';
+import { TAppContext } from './TLayout';
+import { StyledOverlay } from './StyledLayout';
 import Modal from '../../Blocks/Modal/Modal';
 import FormRegistration from '../../Blocks/FormRegistration/FormRegistration';
 import { checkJwt } from '../../../api/api';
-import { IFormAuthValues } from '../../Blocks/FormAuth/IFormAuth';
+import { TWrapper } from '../../../commonTypesInterfaces/TWrapper';
+import { useRouter } from 'next/router';
 
 const roboto = Roboto({ weight: '400', subsets: ['latin'], display: 'swap' });
 
-export const AppContext = React.createContext<TAppContext>({
+export const AppContext = createContext<TAppContext>({
   auth: false,
-  loginHandler: () => {},
+  setModalActive: () => {},
   logoutHandler: () => {},
 });
 
-const Layout: FC<TLayoutProps> = ({ children }) => {
-  const router = useRouter();
+const Layout: FC<TWrapper> = ({ children }) => {
   const modalRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   const [modalActive, setModalActive] = useState(false);
   const [auth, setAuth] = useState(false);
@@ -46,24 +52,23 @@ const Layout: FC<TLayoutProps> = ({ children }) => {
     setModalActive(false);
   };
 
-  const registrModeHandler = () => {
+  const registrBtnHandler = () => {
     setModalType('registration');
   };
 
-  const loginModeHandler = () => {
+  const loginBtnHandler = () => {
     setModalType('login');
   };
 
-  const loginHandler = () => {
+  const submitHandler = () => {
     setAuth(true);
-    setModalActive(true);
+    setModalActive(false);
+    router.push(router.pathname, undefined, { scroll: false });
   };
 
   const logoutHandler = () => {
-    document.cookie = cookie.serialize('token', '');
     localStorage.setItem('token', '');
     setAuth(false);
-    router.push('/', undefined, { scroll: false });
   };
 
   const overlayClickHandler = (e: MouseEvent<HTMLDivElement>) => {
@@ -73,7 +78,7 @@ const Layout: FC<TLayoutProps> = ({ children }) => {
   };
 
   return (
-    <AppContext.Provider value={{ auth, loginHandler, logoutHandler }}>
+    <AppContext.Provider value={{ auth, setModalActive, logoutHandler }}>
       <div className={roboto.className}>
         <Modal
           ref={modalRef}
@@ -81,12 +86,14 @@ const Layout: FC<TLayoutProps> = ({ children }) => {
           closeButtonHandler={closeButtonHandler}
         >
           {modalType === 'registration' ? (
-            <FormRegistration loginHandler={loginModeHandler} />
+            <FormRegistration
+              loginBtnHandler={loginBtnHandler}
+              submitHandler={submitHandler}
+            />
           ) : (
             <FormAuth
-              closeButtonHandler={closeButtonHandler}
-              submitHandler={loginHandler}
-              registrHandler={registrModeHandler}
+              submitHandler={submitHandler}
+              registrBtnHandler={registrBtnHandler}
             />
           )}
         </Modal>

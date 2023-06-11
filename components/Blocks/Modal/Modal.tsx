@@ -1,4 +1,4 @@
-import React, { FC, ForwardedRef, forwardRef } from 'react';
+import { FC, ForwardedRef, forwardRef } from 'react';
 import ButtonClose from '../../Elements/ButtonClose/ButtonClose';
 import { TModalProps } from './TModal';
 import { StyledModal } from './StyledModal';

@@ -1,8 +1,8 @@
-import React, { FC } from 'react';
-import { IButtonClose } from './IButtonClose';
+import { FC } from 'react';
+import { TClickHandler } from '../../../commonTypesInterfaces/TClickHandler';
 import { StyledButtonClose } from './StyledButtonClose';
 
-const ButtonClose: FC<IButtonClose> = ({ onClick }) => {
+const ButtonClose: FC<TClickHandler> = ({ onClick }) => {
   return (
     <>
       <StyledButtonClose type="button" onClick={onClick}>

@@ -1,17 +1,22 @@
 import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
-import React, { FC } from 'react';
+import { FC, useState } from 'react';
 import {
-  IFormRegistration,
-  IFormRegistrationValues,
-} from './IFormRegistration';
+  TFormRegistrationProps,
+  TFormRegistrationValues,
+} from './TFormRegistration';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
 import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
 import Button from '../../Elements/Button/Button';
 import { registration } from '../../../api/api';
 
-const FormRegistration: FC<IFormRegistration> = ({ loginHandler }) => {
+const FormRegistration: FC<TFormRegistrationProps> = ({
+  loginBtnHandler,
+  submitHandler,
+}) => {
+  const [err, setErr] = useState('');
+
   return (
     <Formik
       initialValues={{
@@ -27,12 +32,17 @@ const FormRegistration: FC<IFormRegistration> = ({ loginHandler }) => {
           .required('Подтвердите пароль'),
       })}
       onSubmit={async (
-        values: IFormRegistrationValues,
+        values: TFormRegistrationValues,
         { setSubmitting }: FormikHelpers<any>,
       ) => {
         const { username, password } = values;
         const user = await registration({ username, password });
-        loginHandler();
+
+        if (typeof user !== 'string') {
+          submitHandler();
+        } else {
+          setErr(user);
+        }
 
         setSubmitting(false);
       }}
@@ -61,9 +71,10 @@ const FormRegistration: FC<IFormRegistration> = ({ loginHandler }) => {
         <ErrorMessage name="passwordConfirm">
           {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
         </ErrorMessage>
+        <StyledErrorMessage>{err}</StyledErrorMessage>
 
         <Button type="submit" text="Зарегистрироваться" center />
-        <Button type="button" text="Назад" onClick={loginHandler} center />
+        <Button type="button" text="Назад" onClick={loginBtnHandler} center />
       </Form>
     </Formik>
   );

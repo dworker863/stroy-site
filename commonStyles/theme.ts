@@ -11,5 +11,6 @@ export const defaultTheme: DefaultTheme = {
     bgColor: '#e8f0fe',
     socialColor: '#f6ecc8',
     brown: '#392828eb',
+    green: '#198754',
   },
 };

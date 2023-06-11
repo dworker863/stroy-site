@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from 'react';
+import { FC, useState } from 'react';
 import Container from '../../Blocks/Container/Container';
 import NavMobile from '../../Blocks/NavMobile/NavMobile';
 import TopLine from '../../Blocks/TopLine/TopLine';

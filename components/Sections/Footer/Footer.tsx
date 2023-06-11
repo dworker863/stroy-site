@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Container from '../../Blocks/Container/Container';
 import {
   StyledCopyrights,
@@ -15,7 +15,6 @@ import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { Montserrat } from '@next/font/google';
 import Nav from '../../Blocks/Nav/Nav';
-import Contacts from '../../Blocks/ContactsBlock/ContactsBlock';
 import ContactsBlock from '../../Blocks/ContactsBlock/ContactsBlock';
 
 const montserrat = Montserrat({

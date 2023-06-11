@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
-import { IStyledOverlay } from './TLayout';
+import { TActive } from '../../../commonTypesInterfaces/TActive';
 
-export const StyledOverlay = styled.div<IStyledOverlay>`
+export const StyledOverlay = styled.div<TActive>`
   ${({ active }) =>
     active &&
     css`

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
 import { StyledLogo } from './StyledLogo';
 
