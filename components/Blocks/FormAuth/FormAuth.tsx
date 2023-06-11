@@ -1,6 +1,6 @@
 import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
 import { IFormAuth, IFormAuthValues } from './IFormAuth';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import * as Yup from 'yup';
 import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
@@ -15,6 +15,7 @@ const FormAuth: FC<IFormAuth> = ({
   registrHandler,
 }) => {
   const router = useRouter();
+  const [err, setErr] = useState('');
 
   return (
     <Formik
@@ -22,8 +23,9 @@ const FormAuth: FC<IFormAuth> = ({
         username: '',
         password: '',
       }}
+      validateOnChange={false}
       validationSchema={Yup.object({
-        username: Yup.string().required('Введите номер телефона'),
+        username: Yup.string().required('Введите имя пользователя'),
         password: Yup.string().required('Введите номер пароль'),
       })}
       onSubmit={async (
@@ -31,12 +33,16 @@ const FormAuth: FC<IFormAuth> = ({
         { setSubmitting }: FormikHelpers<IFormAuthValues>,
       ) => {
         const user = await login(values);
-        console.log(user);
+
+        if (typeof user !== 'string') {
+          submitHandler();
+          closeButtonHandler();
+          router.push('/', undefined, { scroll: false });
+        } else {
+          setErr(user);
+        }
 
         setSubmitting(false);
-        submitHandler();
-        closeButtonHandler();
-        router.push('/', undefined, { scroll: false });
       }}
     >
       <Form>
@@ -51,6 +57,7 @@ const FormAuth: FC<IFormAuth> = ({
         <ErrorMessage name="password">
           {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
         </ErrorMessage>
+        <StyledErrorMessage>{err}</StyledErrorMessage>
 
         <Button type="submit" text="Войти" center />
         <Button

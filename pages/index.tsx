@@ -4,10 +4,10 @@ import { StyledTitle } from '../commonStyles/StyledTitle';
 import { StyledPage } from '../commonStyles/StyledPage';
 import { StyledDesc } from '../commonStyles/StyledDesc';
 import { GetServerSideProps, NextPage } from 'next';
-import { IProject } from '../commonInterfaces/IProject';
+import { IProject } from '../commonTypesInterfaces/IProject';
 import { createContext } from 'react';
 import cookie from 'cookie';
-import { IReview } from '../commonInterfaces/IReview';
+import { IReview } from '../commonTypesInterfaces/IReview';
 
 export interface IHome {
   projects: IProject[];

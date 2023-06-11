@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { IStyledOverlay } from './ILayout';
+import { IStyledOverlay } from './TLayout';
 
 export const StyledOverlay = styled.div<IStyledOverlay>`
   ${({ active }) =>

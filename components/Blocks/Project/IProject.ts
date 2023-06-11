@@ -1,4 +1,4 @@
-import { IProject } from '../../../commonInterfaces/IProject';
+import { IProject } from '../../../commonTypesInterfaces/IProject';
 
 export interface IProjectState {
   project: IProject;

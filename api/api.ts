@@ -1,16 +1,17 @@
 import axios from 'axios';
-import { IProject } from '../commonInterfaces/IProject';
-import { IService } from '../commonInterfaces/IService';
-import { IUser } from '../commonInterfaces/IUser';
-
-const baseURL = 'http://192.168.1.3:8000/';
+import { IProject } from '../commonTypesInterfaces/IProject';
+import { IService } from '../commonTypesInterfaces/IService';
+import { IUser } from '../commonTypesInterfaces/IUser';
 
 export const instance = axios.create({
   baseURL: 'http://192.168.1.4:8000/',
   withCredentials: true,
 });
 
-export const registration = ({ username, password }: IUser) => {
+export const registration = ({
+  username,
+  password,
+}: IUser): Promise<string> => {
   return instance
     .post('auth/registration', { username, password })
     .then((res) => {
@@ -22,17 +23,33 @@ export const registration = ({ username, password }: IUser) => {
     });
 };
 
-export const login = ({ username, password }: IUser) => {
+export const login = ({
+  username,
+  password,
+}: IUser): Promise<IUser & { access_token: string }> => {
   return instance
     .post('auth/login', { username, password })
     .then((res) => {
       localStorage.setItem('token', res.data.access_token);
-      console.log(localStorage.getItem('token'));
-
       return res.data;
     })
     .catch((e) => {
       return e.response.data.message;
+    });
+};
+
+export const checkJwt = (): Promise<boolean> => {
+  return instance
+    .get('auth/login', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((err) => {
+      return err.response.data.message;
     });
 };
 
@@ -83,14 +100,11 @@ export const deleteService = (id?: number) => {
 
 export const postProject = (project: IProject) => {
   const formData = new FormData();
-  console.log(project.images);
 
   formData.append('name', project.name);
   formData.append('description', project.description);
 
   if (project.review !== null) {
-    console.log(JSON.stringify(project.review));
-
     formData.append('review', JSON.stringify(project.review));
   }
 
@@ -107,7 +121,6 @@ export const postProject = (project: IProject) => {
       },
     })
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((err) => {
@@ -117,14 +130,11 @@ export const postProject = (project: IProject) => {
 
 export const updateProject = (project: IProject) => {
   const formData = new FormData();
-  console.log(project.images);
 
   formData.append('name', project.name);
   formData.append('description', project.description);
 
   if (project.review !== null) {
-    console.log(JSON.stringify(project.review));
-
     formData.append('review', JSON.stringify(project.review));
   }
 
@@ -141,7 +151,6 @@ export const updateProject = (project: IProject) => {
       },
     })
     .then((res) => {
-      console.log(res.data);
       return res.data;
     })
     .catch((err) => {

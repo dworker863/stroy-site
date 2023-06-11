@@ -10,8 +10,7 @@ import { ITopLine } from './ITopLine';
 import { StyledTopLine } from './StyledTopLine';
 
 const TopLine: FC<ITopLine> = ({ hamburgerActive, hamburgerHandler }) => {
-  const { auth, setAuth, loginHandler, logoutHandler } = useContext(AppContext);
-  console.log(auth);
+  const { auth, loginHandler, logoutHandler } = useContext(AppContext);
 
   return (
     <StyledTopLine>

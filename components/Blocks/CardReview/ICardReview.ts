@@ -1,4 +1,4 @@
-import { IReview } from './../../../commonInterfaces/IReview';
+import { IReview } from '../../../commonTypesInterfaces/IReview';
 
 export interface ICardReview {
   review?: IReview;

@@ -6,7 +6,7 @@ import { ICalculatorContext, ICalculatorPage } from './ICalculatorPage';
 import Services from '../../components/Sections/Services/Services';
 import Cart from '../../components/Blocks/Cart/Cart';
 import Container from '../../components/Blocks/Container/Container';
-import { IService } from '../../commonInterfaces/IService';
+import { IService } from '../../commonTypesInterfaces/IService';
 import { StyledTitle } from '../../commonStyles/StyledTitle';
 import { StyledPage } from '../../commonStyles/StyledPage';
 import { StyledCalculatorDesc } from './StyledCalculatorPage';

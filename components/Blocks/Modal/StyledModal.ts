@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { IStyledModal } from './IModal';
+import { TActive } from '../../../commonTypesInterfaces/TActive';
 
-export const StyledModal = styled.div<IStyledModal>`
+export const StyledModal = styled.div<TActive>`
   z-index: 1000;
   position: fixed;
   top: 50%;

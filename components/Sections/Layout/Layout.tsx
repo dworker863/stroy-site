@@ -1,30 +1,26 @@
-import React, {
-  ReactNode,
-  useEffect,
-  useState,
-  MouseEvent,
-  useRef,
-} from 'react';
+import React, { useEffect, useState, MouseEvent, useRef, FC } from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Roboto } from '@next/font/google';
 import { useRouter } from 'next/router';
 import cookie from 'cookie';
 import FormAuth from '../../Blocks/FormAuth/FormAuth';
-import { IAppContext } from './ILayout';
+import { TAppContext, TLayoutProps } from './TLayout';
 import { StyledOverlay } from './StyledLayot';
 import Modal from '../../Blocks/Modal/Modal';
 import FormRegistration from '../../Blocks/FormRegistration/FormRegistration';
+import { checkJwt } from '../../../api/api';
+import { IFormAuthValues } from '../../Blocks/FormAuth/IFormAuth';
 
-const roboto = Roboto({ weight: '400', subsets: ['latin'] });
-export const AppContext = React.createContext<IAppContext>({
+const roboto = Roboto({ weight: '400', subsets: ['latin'], display: 'swap' });
+
+export const AppContext = React.createContext<TAppContext>({
   auth: false,
-  setAuth: () => {},
   loginHandler: () => {},
   logoutHandler: () => {},
 });
 
-const Layout = ({ children }: { children: ReactNode }) => {
+const Layout: FC<TLayoutProps> = ({ children }) => {
   const router = useRouter();
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -33,10 +29,17 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const [modalType, setModalType] = useState('login');
 
   useEffect(() => {
-    if (typeof window !== undefined) {
-      const token = localStorage.getItem('token') || '';
-      setAuth(!!token);
-    }
+    const checkAuth = async () => {
+      if (typeof window !== undefined) {
+        const jwtAuth = await checkJwt();
+
+        if (typeof jwtAuth === 'boolean') {
+          setAuth(jwtAuth);
+        }
+      }
+    };
+
+    checkAuth();
   }, [auth]);
 
   const closeButtonHandler = () => {
@@ -52,8 +55,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
   };
 
   const loginHandler = () => {
-    const token = localStorage.getItem('token') || '';
-    document.cookie = cookie.serialize('token', token);
     setAuth(true);
     setModalActive(true);
   };
@@ -72,7 +73,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <AppContext.Provider value={{ auth, setAuth, loginHandler, logoutHandler }}>
+    <AppContext.Provider value={{ auth, loginHandler, logoutHandler }}>
       <div className={roboto.className}>
         <Modal
           ref={modalRef}

@@ -1,11 +1,7 @@
 import { ReactElement } from 'react';
 
-export interface IModal {
+export type TModalProps = {
   children: ReactElement;
   active: boolean;
   closeButtonHandler: () => void;
-}
-
-export interface IStyledModal {
-  active: boolean;
-}
+};

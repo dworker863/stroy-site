@@ -17,8 +17,6 @@ const Cart: FC<ICart> = ({ cartServices }) => {
   const [cart, setCart] = useState(cartServicesWithSum);
   const [cartSum, setCartSum] = useState(0);
 
-  console.log(cart);
-
   useEffect(() => {
     const newCartService = cartServices.filter((cartService) => {
       return !cart.some(({ service }) => service === cartService.name);
@@ -28,7 +26,7 @@ const Cart: FC<ICart> = ({ cartServices }) => {
       sum: 0,
     }));
     setCart([...cart, ...newCartServiceWithSum]);
-  }, [cartServices]);
+  }, [cart, cartServices]);
 
   const sumButtonHandler = () => {
     setCartSum(cart.reduce((sum, service) => (sum += service.sum), 0));

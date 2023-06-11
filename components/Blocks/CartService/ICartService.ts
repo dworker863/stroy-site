@@ -1,4 +1,4 @@
-import { IService } from '../../../commonInterfaces/IService';
+import { IService } from '../../../commonTypesInterfaces/IService';
 
 export interface ICartService {
   service: IService;

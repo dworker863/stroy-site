@@ -2,7 +2,7 @@ import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
 import React, { FC } from 'react';
 import Button from '../../Elements/Button/Button';
 import * as Yup from 'yup';
-import { IService } from '../../../commonInterfaces/IService';
+import { IService } from '../../../commonTypesInterfaces/IService';
 import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';

@@ -18,7 +18,7 @@ import Dropzone from 'react-dropzone';
 import Photo from '../../Elements/Photo/Photo';
 import { postProject, updateProject } from '../../../api/api';
 import { useRouter } from 'next/router';
-import { IProject } from '../../../commonInterfaces/IProject';
+import { IProject } from '../../../commonTypesInterfaces/IProject';
 
 const FormProject: FC<IFormProject> = ({ project }) => {
   const [rating, setRating] = useState(5);
@@ -102,7 +102,6 @@ const FormProject: FC<IFormProject> = ({ project }) => {
           }: FormikHelpers<{ toggleReview: boolean } & IProject>,
         ) => {
           const { toggleReview, ...projectToPost } = values;
-          console.log(project);
 
           if (project) {
             const data = await updateProject({
