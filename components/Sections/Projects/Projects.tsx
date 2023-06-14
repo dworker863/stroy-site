@@ -1,9 +1,9 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Project from '../../Blocks/Project/Project';
-import { IProjects } from './IProjects';
+import { TProjectsProps } from './TProjects';
 import { StyledProjects } from './StyledProjects';
 
-const Projects: FC<IProjects> = ({ projects }) => {
+const Projects: FC<TProjectsProps> = ({ projects }) => {
   return (
     <StyledProjects>
       {projects.map((project) => (

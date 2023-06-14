@@ -1,5 +1,5 @@
 import { IProject } from '../../../commonTypesInterfaces/IProject';
 
-export interface IProjects {
+export type TProjectsProps = {
   projects: IProject[];
-}
+};

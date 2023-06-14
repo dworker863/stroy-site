@@ -48,8 +48,8 @@ export const checkJwt = (): Promise<boolean> => {
     .then((res) => {
       return res.data;
     })
-    .catch((err) => {
-      return err.response.data.message;
+    .catch((e) => {
+      return e.response.data.message;
     });
 };
 
@@ -78,8 +78,8 @@ export const updateService = (service: IService) => {
     .then((res) => {
       return res.data;
     })
-    .catch((err) => {
-      return err.response.data.message;
+    .catch((e) => {
+      return e.response.data.message;
     });
 };
 
@@ -93,12 +93,14 @@ export const deleteService = (id?: number) => {
     .then((res) => {
       return res.data;
     })
-    .catch((err) => {
-      return err.response.data.message;
+    .catch((e) => {
+      return e.response.data.message;
     });
 };
 
-export const postProject = (project: IProject) => {
+export const postProject = (project: IProject): Promise<IProject> => {
+  console.log(1);
+
   const formData = new FormData();
 
   formData.append('name', project.name);
@@ -123,12 +125,12 @@ export const postProject = (project: IProject) => {
     .then((res) => {
       return res.data;
     })
-    .catch((err) => {
-      return err.response.data.message;
+    .catch((e) => {
+      return e.response.data.message;
     });
 };
 
-export const updateProject = (project: IProject) => {
+export const updateProject = (project: IProject): Promise<any> => {
   const formData = new FormData();
 
   formData.append('name', project.name);
@@ -153,12 +155,12 @@ export const updateProject = (project: IProject) => {
     .then((res) => {
       return res.data;
     })
-    .catch((err) => {
-      return err.response.data.message;
+    .catch((e) => {
+      return e.response.data.message;
     });
 };
 
-export const deleteProject = (id?: number) => {
+export const deleteProject = (id?: number): Promise<number> => {
   return instance
     .delete(`projects/${id}`, {
       headers: {
@@ -168,7 +170,7 @@ export const deleteProject = (id?: number) => {
     .then((res) => {
       return res.data;
     })
-    .catch((err) => {
-      return err.response.data.message;
+    .catch((e) => {
+      return e.response.data.message;
     });
 };

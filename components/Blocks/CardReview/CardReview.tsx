@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import React, { FC, useState } from 'react';
-import { ICardReview } from './ICardReview';
+import { FC } from 'react';
+import { TCardReviewProps } from './TCardReview';
 import {
   StyledAuthorName,
   StyledAuthorPhoto,
@@ -13,7 +13,7 @@ import {
   StyledStars,
 } from './StyledCardReview';
 
-const CardReview: FC<ICardReview> = ({ review }) => {
+const CardReview: FC<TCardReviewProps> = ({ review }) => {
   return (
     <StyledCardReview>
       <StyledCardAuthorWrapper>

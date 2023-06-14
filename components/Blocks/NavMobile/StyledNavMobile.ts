@@ -1,7 +1,7 @@
-import { IStyledNavMobile } from './INavMobile';
 import styled, { css } from 'styled-components';
+import { TActive } from '../../../commonTypesInterfaces/TActive';
 
-export const StyledNavMobile = styled.nav<IStyledNavMobile>`
+export const StyledNavMobile = styled.nav<TActive>`
   display: none;
   position: fixed;
   z-index: 10;
@@ -12,8 +12,9 @@ export const StyledNavMobile = styled.nav<IStyledNavMobile>`
   padding-top: 200px;
   background-color: ${({ theme }) => theme.colors.brown};
   transition: 0.3s all;
-  ${({ isActive }) =>
-    isActive &&
+
+  ${({ active }) =>
+    active &&
     css`
       right: 0;
     `};

@@ -1,5 +1,5 @@
 import { IReview } from '../../../commonTypesInterfaces/IReview';
 
-export interface ICardReview {
+export type TCardReviewProps = {
   review?: IReview;
-}
+};

@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  SyntheticEvent,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import { FC, SyntheticEvent, useContext, useEffect, useState } from 'react';
 import { A11y, EffectFlip, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CardReview from '../CardReview/CardReview';
@@ -42,9 +36,7 @@ const CardProject: FC<ICardProject> = ({
 }) => {
   const { auth } = useContext(ProjectsContext);
   const router = useRouter();
-  const [originalWidth, setOriginalWidth] = useState(1);
   const [smallImage, setSmallImage] = useState(false);
-  const [originalHeight, setOriginalHeight] = useState(1);
   const [aspectRatio, setAspectRatio] = useState(1);
 
   useEffect(() => {
@@ -58,8 +50,6 @@ const CardProject: FC<ICardProject> = ({
 
   const imageLoadHandler = (e: SyntheticEvent<HTMLImageElement, Event>) => {
     const image = e.target as HTMLImageElement;
-    setOriginalWidth(image.naturalWidth);
-    setOriginalHeight(image.naturalHeight);
 
     setAspectRatio(
       Number((image.naturalWidth / image.naturalHeight).toFixed(2)),
@@ -67,7 +57,7 @@ const CardProject: FC<ICardProject> = ({
   };
 
   const deleteProjectHandler = async (id?: number) => {
-    const project = await deleteProject(id);
+    await deleteProject(id);
     router.push('./projects');
   };
 

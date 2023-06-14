@@ -1,15 +1,14 @@
-import React, { FC, useContext } from 'react';
-import Container from '../../Blocks/Container/Container';
+import { FC, useContext } from 'react';
 import { Navigation, Pagination, A11y } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
-
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import CardReview from '../../Blocks/CardReview/CardReview';
 import { StyledReviews, StyledSliderPag } from './StyledReviews';
 import { HomeContext } from '../../../pages';
 import { StyledTitle } from '../../../commonStyles/StyledTitle';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 const Reviews: FC = () => {
   const { reviews } = useContext(HomeContext);

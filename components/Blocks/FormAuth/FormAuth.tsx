@@ -7,11 +7,9 @@ import { StyledLabel } from '../../../commonStyles/StyledLabel';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
 import Button from '../../Elements/Button/Button';
 import { login } from '../../../api/api';
-import { useRouter } from 'next/router';
 import { IUser } from '../../../commonTypesInterfaces/IUser';
 
 const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
-  const router = useRouter();
   const [err, setErr] = useState('');
 
   return (

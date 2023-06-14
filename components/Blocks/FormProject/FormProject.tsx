@@ -1,6 +1,6 @@
 import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
-import React, { FC, useState } from 'react';
-import { IFormProject } from './IFromProject';
+import { FC, useState } from 'react';
+import { TFormProjectProps } from './TFromProject';
 import * as Yup from 'yup';
 import Button from '../../Elements/Button/Button';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
@@ -20,11 +20,13 @@ import { postProject, updateProject } from '../../../api/api';
 import { useRouter } from 'next/router';
 import { IProject } from '../../../commonTypesInterfaces/IProject';
 
-const FormProject: FC<IFormProject> = ({ project }) => {
+const FormProject: FC<TFormProjectProps> = ({ project }) => {
+  const router = useRouter();
+
+  const [err, setErr] = useState('');
   const [rating, setRating] = useState(5);
   const [showReview, setShowReview] = useState(false);
   const [dropImages, setDropImages] = useState<any>([]);
-  const router = useRouter();
 
   const now = new Date().toLocaleString('kz-KZ', {
     day: 'numeric',
@@ -71,10 +73,11 @@ const FormProject: FC<IFormProject> = ({ project }) => {
           images: project?.images || dropImages,
           price: project?.price || 0,
         }}
+        validateOnBlur={false}
+        validateOnChange={false}
         validationSchema={Yup.object({
           name: Yup.string().required('Укажите название проекта'),
-          description: Yup.string(),
-          // .required('Укажите описание проекта'),
+          description: Yup.string().required('Укажите описание проекта'),
           toggleReview: Yup.boolean(),
           review: Yup.object()
             .shape({
@@ -88,7 +91,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
                   ? Yup.number().required('Укажите рейтинг')
                   : Yup.number();
               }),
-              text: Yup.string(),
+              text: Yup.string().required('Укажите текст отзыва'),
               date: Yup.string(),
             })
             .nullable(),
@@ -104,15 +107,23 @@ const FormProject: FC<IFormProject> = ({ project }) => {
           const { toggleReview, ...projectToPost } = values;
 
           if (project) {
-            const data = await updateProject({
+            const res = await updateProject({
               id: project.id,
               ...projectToPost,
             });
+
+            if (typeof res === 'string') {
+              setErr(res);
+            }
           } else {
-            const data = await postProject(projectToPost);
+            const res = await postProject(projectToPost);
+
+            if (typeof res === 'string') {
+              setErr(res);
+            }
           }
 
-          router.push('./projects');
+          router.push(router.pathname, undefined, { scroll: false });
           setSubmitting(false);
         }}
       >
@@ -207,7 +218,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
                 setFieldValue('images', [...dropImages, ...acceptedFiles]);
               }}
             >
-              {({ getRootProps, getInputProps, acceptedFiles }) => (
+              {({ getRootProps, getInputProps }) => (
                 <StyledDropZone {...getRootProps()}>
                   <input {...getInputProps()} />
                   <p>Загрузите или перетащите фото</p>
@@ -224,6 +235,7 @@ const FormProject: FC<IFormProject> = ({ project }) => {
             <ErrorMessage name="price">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
+            <StyledErrorMessage>{err}</StyledErrorMessage>
 
             <Button
               type="submit"

@@ -1,11 +1,7 @@
+import { TDirection } from './../../../commonTypesInterfaces/TDirection';
 import styled, { css } from 'styled-components';
-import { INav } from './TNav';
 
-export const StyledNav = styled.nav<INav>`
-  @media (max-width: 992px) {
-    display: none;
-  }
-
+export const StyledNav = styled.nav<TDirection>`
   ${({ column }) =>
     column &&
     css`
@@ -23,6 +19,10 @@ export const StyledNav = styled.nav<INav>`
         }
       }
     `}
+
+  @media (max-width: 992px) {
+    display: none;
+  }
 `;
 
 export const StyledMenu = styled.ul`

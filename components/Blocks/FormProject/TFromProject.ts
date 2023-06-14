@@ -1,9 +1,9 @@
 import { IProject } from '../../../commonTypesInterfaces/IProject';
 
-export interface IFormProject {
+export type TFormProjectProps = {
   project?: IProject;
-}
+};
 
-export interface IStyledFormReview {
+export type TStyledFormReview = {
   show: boolean;
-}
+};

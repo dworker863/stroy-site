@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { StyledSocial, StyledSocials } from './StyledSocials';
 
 const Socials: FC = () => {

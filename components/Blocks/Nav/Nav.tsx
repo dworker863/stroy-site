@@ -10,7 +10,7 @@ const Nav: FC<TDirection> = ({ column }) => {
       <StyledMenu>
         <StyledNavItem>
           <Link href="/projects" scroll={false}>
-            Работы
+            Проекты
           </Link>
         </StyledNavItem>
         <StyledNavItem>

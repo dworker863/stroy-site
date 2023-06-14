@@ -1,9 +1,9 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import CardProject from '../CardProject/CardProject';
 import FormProject from '../FormProject/FormProject';
-import { IProjectState } from './IProject';
+import { TProjectProps } from './TProject';
 
-const Project: FC<IProjectState> = ({ project }) => {
+const Project: FC<TProjectProps> = ({ project }) => {
   const [showProjectForm, setShowProjectForm] = useState(false);
 
   const updateProjectFormHandler = () => {
@@ -11,14 +11,14 @@ const Project: FC<IProjectState> = ({ project }) => {
   };
 
   return (
-    <div>
+    <>
       <CardProject
         key={project.id + project.name}
         project={project}
         updateProjectFormHandler={updateProjectFormHandler}
       />
       {showProjectForm && <FormProject project={project} />}
-    </div>
+    </>
   );
 };
 

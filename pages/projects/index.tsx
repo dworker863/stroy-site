@@ -1,21 +1,22 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import { StyledProjectsDesc } from './StyledProjectsPage';
-import cookie from 'cookie';
-import { IProjectsContext, IProjectsPage } from './IProjectsPage';
+import { TProjectsContext, TProjectsPageProps } from './TProjectsPage';
 import { StyledPage } from '../../commonStyles/StyledPage';
 import Container from '../../components/Blocks/Container/Container';
 import { StyledTitle } from '../../commonStyles/StyledTitle';
 import Button from '../../components/Elements/Button/Button';
 import FormProject from '../../components/Blocks/FormProject/FormProject';
 import Projects from '../../components/Sections/Projects/Projects';
+import { AppContext } from '../../components/Sections/Layout/Layout';
 
-export const ProjectsContext = createContext<IProjectsContext>({
+export const ProjectsContext = createContext<TProjectsContext>({
   auth: false,
   showFormHandler: () => {},
 });
 
-const ProjectsPage: NextPage<IProjectsPage> = ({ auth, projects }) => {
+const ProjectsPage: NextPage<TProjectsPageProps> = ({ projects }) => {
+  const { auth } = useContext(AppContext);
   const [showForm, setShowForm] = useState(false);
 
   const showFormHandler = () => {
@@ -60,15 +61,11 @@ const ProjectsPage: NextPage<IProjectsPage> = ({ auth, projects }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const cookies = cookie.parse(ctx.req.headers.cookie || '');
-  const auth = !!cookies.token;
-
   const data = await fetch('http://192.168.1.4:8000/projects');
   const projects = await data.json();
 
   return {
     props: {
-      auth,
       projects,
     },
   };

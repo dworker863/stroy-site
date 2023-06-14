@@ -22,7 +22,7 @@ const Header: FC = () => {
         hamburgerActive={active}
         hamburgerHandler={setItemActiveHandler}
       />
-      <NavMobile isActive={active} navClickHandler={setItemActiveHandler} />
+      <NavMobile active={active} navClickHandler={setItemActiveHandler} />
       <Container>
         <StyledHeaderInfo>
           <StyledHeaderTitle>Lorem ipsum dolor sit amet.</StyledHeaderTitle>

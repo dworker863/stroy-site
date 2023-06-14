@@ -1,11 +1,11 @@
 import { IProject } from '../../commonTypesInterfaces/IProject';
 
-export interface IProjectsPage {
+export type TProjectsPageProps = {
   auth: boolean;
   projects: IProject[];
-}
+};
 
-export interface IProjectsContext {
+export type TProjectsContext = {
   auth: boolean;
   showFormHandler: () => void;
-}
+};

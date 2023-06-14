@@ -1,20 +1,20 @@
 import Link from 'next/link';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import Socials from '../../Elements/Socials/Socials';
-import { INavMobile } from './INavMobile';
+import { TNavMobileProps } from './TNavMobile';
 import {
   StyledMobileMenu,
   StyledNavMobile,
   StyledNavMobileItem,
 } from './StyledNavMobile';
 
-const NavMobile: FC<INavMobile> = ({ isActive, navClickHandler }) => {
+const NavMobile: FC<TNavMobileProps> = ({ active, navClickHandler }) => {
   return (
-    <StyledNavMobile isActive={isActive} onClick={navClickHandler}>
+    <StyledNavMobile active={active} onClick={navClickHandler}>
       <StyledMobileMenu>
         <StyledNavMobileItem>
           <Link href="/projects" scroll={false}>
-            Работы
+            Проекты
           </Link>
         </StyledNavMobileItem>
         <StyledNavMobileItem>

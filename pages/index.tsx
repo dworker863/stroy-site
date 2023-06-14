@@ -6,20 +6,19 @@ import { StyledDesc } from '../commonStyles/StyledDesc';
 import { GetServerSideProps, NextPage } from 'next';
 import { IProject } from '../commonTypesInterfaces/IProject';
 import { createContext } from 'react';
-import cookie from 'cookie';
 import { IReview } from '../commonTypesInterfaces/IReview';
 
-export interface IHome {
+export type THome = {
   projects: IProject[];
   reviews: (IReview | undefined)[];
-}
+};
 
-export const HomeContext = createContext<IHome>({
+export const HomeContext = createContext<THome>({
   projects: [],
   reviews: [],
 });
 
-const Home: NextPage<IHome> = ({ projects }) => {
+const Home: NextPage<THome> = ({ projects }) => {
   const reviews = projects
     .filter((project) => project.projectReview)
     .map((project) => project.projectReview);

@@ -1,14 +1,13 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import React, { FC, useState } from 'react';
-import { IPhoto } from './IPhoto';
+import { FC, useState } from 'react';
+import { TPhotoProps } from './TPhoto';
 import {
   StyledPhoto,
   StyledPhotosCloseBtn,
   StyledPhotosWrapper,
 } from './StyledPhoto';
 
-const Photo: FC<IPhoto> = ({ photos }) => {
+const Photo: FC<TPhotoProps> = ({ photos }) => {
   const [arr, setArr] = useState(photos);
 
   const closeBtnHandler = (array: any[], index: number) => {
@@ -23,7 +22,6 @@ const Photo: FC<IPhoto> = ({ photos }) => {
             icon={faXmark}
             onClick={closeBtnHandler.bind(null, photos, index)}
           />
-          {/* <FontAwesomeIcon  /> */}
           <img src={URL.createObjectURL(photo)} />
         </StyledPhoto>
       ))}
