@@ -1,5 +1,5 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import { ICartService } from './ICartService';
+import { ChangeEvent, FC, useState } from 'react';
+import { TCartServiceProps } from './TCartService';
 import {
   StyledCartService,
   StyledCartServiceInfo,
@@ -9,7 +9,11 @@ import {
   StyledCartServiceTotalPrice,
 } from './StyledCartService';
 
-const CartService: FC<ICartService> = ({ service, cart, setCart }) => {
+const CartService: FC<TCartServiceProps> = ({
+  service,
+  cart,
+  changeCartHandler,
+}) => {
   const [area, setArea] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
 
@@ -28,7 +32,7 @@ const CartService: FC<ICartService> = ({ service, cart, setCart }) => {
       return cartService;
     });
 
-    setCart(cartServices);
+    changeCartHandler(cartServices);
   };
 
   return (

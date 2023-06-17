@@ -1,5 +1,5 @@
 import { IService } from '../../../commonTypesInterfaces/IService';
 
-export interface ICart {
+export type TCartProps = {
   cartServices: IService[];
-}
+};

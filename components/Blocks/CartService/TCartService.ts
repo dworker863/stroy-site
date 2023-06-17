@@ -1,7 +1,7 @@
 import { IService } from '../../../commonTypesInterfaces/IService';
 
-export interface ICartService {
+export type TCartServiceProps = {
   service: IService;
   cart: { service: string; sum: number }[];
-  setCart: (cart: { service: string; sum: number }[]) => void;
-}
+  changeCartHandler: (cart: { service: string; sum: number }[]) => void;
+};
