@@ -1,6 +1,6 @@
 import { IService } from '../../../commonTypesInterfaces/IService';
 
-export interface IServices {
+export type TServicesProps = {
   auth: boolean;
   services: IService[];
-}
+};

@@ -1,13 +1,11 @@
-import React, { FC, useContext, useState } from 'react';
+import { FC, useState } from 'react';
 import FormService from '../../Blocks/FormService/FormService';
 import Search from '../../Elements/Search/Search';
 import Service from '../../Blocks/Service/Service';
-import { IServices } from './IServices';
-import { CalculatorContext } from '../../../pages/calculator';
+import { TServicesProps } from './TServices';
 import { StyledServices, StyledServicesWrapper } from './StyledServices';
 
-const Services: FC<IServices> = ({ auth, services }) => {
-  const { serviceButtonHandler } = useContext(CalculatorContext);
+const Services: FC<TServicesProps> = ({ auth, services }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const currentServices = services.filter((service) => {
@@ -21,7 +19,7 @@ const Services: FC<IServices> = ({ auth, services }) => {
 
   return (
     <StyledServices>
-      <Search onChange={searchChangeHandler} />
+      <Search changeHandler={searchChangeHandler} />
       {auth && <FormService />}
       <StyledServicesWrapper>
         {currentServices.map((service) => (
@@ -29,7 +27,6 @@ const Services: FC<IServices> = ({ auth, services }) => {
             key={service.id + service.name}
             auth={auth}
             service={service}
-            onClick={serviceButtonHandler.bind(null, service)}
           />
         ))}
       </StyledServicesWrapper>

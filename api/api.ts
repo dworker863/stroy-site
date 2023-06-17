@@ -99,8 +99,6 @@ export const deleteService = (id?: number) => {
 };
 
 export const postProject = (project: IProject): Promise<IProject> => {
-  console.log(1);
-
   const formData = new FormData();
 
   formData.append('name', project.name);

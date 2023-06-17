@@ -1,34 +1,36 @@
+import { FC, useContext, useState } from 'react';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
-import React, { FC, useState } from 'react';
 import { deleteService } from '../../../api/api';
 import FormService from '../FormService/FormService';
-import { IServiceProps } from './IService';
+import { TServiceProps } from './TService';
 import {
   StyledService,
   StyledServiceBtn,
   StyledServiceBtns,
   StyledServiceWrapper,
 } from './StyledService';
+import { CalculatorContext } from '../../../pages/calculator';
 
-const Service: FC<IServiceProps> = ({ auth, service, onClick }) => {
-  const [showServiceForm, setShowServiceForm] = useState(false);
+const Service: FC<TServiceProps> = ({ auth, service }) => {
   const router = useRouter();
+  const { serviceButtonHandler } = useContext(CalculatorContext);
+  const [showServiceForm, setShowServiceForm] = useState(false);
 
   const updateServiceHandler = () => {
     setShowServiceForm(!showServiceForm);
   };
 
   const deleteServiceHandler = async (id?: number) => {
-    const result = await deleteService(id);
+    await deleteService(id);
     router.push('calculator', undefined, { scroll: false });
   };
 
   return (
     <StyledServiceWrapper>
-      <StyledService onClick={onClick}>
+      <StyledService onClick={serviceButtonHandler.bind(null, service)}>
         {service.name}
         {auth && (
           <StyledServiceBtns>
@@ -49,7 +51,7 @@ const Service: FC<IServiceProps> = ({ auth, service, onClick }) => {
           name={service.name}
           measure={service.measure}
           price={service.price}
-          setShowServiceForm={setShowServiceForm}
+          showServiceFormHandler={setShowServiceForm}
         />
       )}
     </StyledServiceWrapper>

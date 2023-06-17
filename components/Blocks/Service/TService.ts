@@ -1,7 +1,6 @@
 import { IService } from '../../../commonTypesInterfaces/IService';
 
-export interface IServiceProps {
+export type TServiceProps = {
   auth: boolean;
   service: IService;
-  onClick: () => void;
-}
+};

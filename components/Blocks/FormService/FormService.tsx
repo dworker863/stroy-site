@@ -1,5 +1,5 @@
 import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
-import React, { FC } from 'react';
+import { FC, useState } from 'react';
 import Button from '../../Elements/Button/Button';
 import * as Yup from 'yup';
 import { IService } from '../../../commonTypesInterfaces/IService';
@@ -7,24 +7,25 @@ import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
 import { postService, updateService } from '../../../api/api';
-import { IFormService } from './IFormService';
+import { TFormServiceProps } from './TFormService';
 import { useRouter } from 'next/router';
 
-const FormService: FC<IFormService> = ({
+const FormService: FC<TFormServiceProps> = ({
   id,
   name,
   measure,
   price,
-  setShowServiceForm,
+  showServiceFormHandler,
 }) => {
   const router = useRouter();
+  const [err, setErr] = useState('');
 
   return (
     <>
       <Formik
         initialValues={{
           name: name || '',
-          measure: measure || 'м2',
+          measure: measure || 'м' + '\u00b2',
           price: price || 0,
         }}
         validationSchema={Yup.object({
@@ -37,13 +38,21 @@ const FormService: FC<IFormService> = ({
           { setSubmitting }: FormikHelpers<IService>,
         ) => {
           if (id) {
-            const service = await updateService({ id, ...values });
-            setShowServiceForm && setShowServiceForm(false);
-          } else {
-            const service = await postService(values);
-          }
+            const res = await updateService({ id, ...values });
 
-          router.push('/calculator', undefined, { scroll: false });
+            if (typeof res === 'string') {
+              setErr(res);
+            } else {
+              showServiceFormHandler && showServiceFormHandler(false);
+            }
+          } else {
+            const res = await postService(values);
+
+            if (typeof res === 'string') {
+              setErr(res);
+            }
+          }
+          router.push(router.pathname, undefined, { scroll: false });
           setSubmitting(false);
         }}
       >
@@ -65,6 +74,7 @@ const FormService: FC<IFormService> = ({
           <ErrorMessage name="price">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
+          <StyledErrorMessage>{err}</StyledErrorMessage>
 
           <Button type="submit" text={id ? 'Изменить' : 'Добавить'} />
         </Form>

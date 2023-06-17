@@ -1,8 +1,7 @@
-import React, { createContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import Button from '../../components/Elements/Button/Button';
-import cookie from 'cookie';
 import { GetServerSideProps, NextPage } from 'next';
-import { ICalculatorContext, ICalculatorPage } from './ICalculatorPage';
+import { TCalculatorContext, TCalculatorPageProps } from './TCalculatorPage';
 import Services from '../../components/Sections/Services/Services';
 import Cart from '../../components/Blocks/Cart/Cart';
 import Container from '../../components/Blocks/Container/Container';
@@ -10,12 +9,15 @@ import { IService } from '../../commonTypesInterfaces/IService';
 import { StyledTitle } from '../../commonStyles/StyledTitle';
 import { StyledPage } from '../../commonStyles/StyledPage';
 import { StyledCalculatorDesc } from './StyledCalculatorPage';
+import { AppContext } from '../../components/Sections/Layout/Layout';
 
-export const CalculatorContext = createContext<ICalculatorContext>({
-  serviceButtonHandler: (value: IService) => {},
+export const CalculatorContext = createContext<TCalculatorContext>({
+  serviceButtonHandler: () => {},
 });
 
-const CalculatorPage: NextPage<ICalculatorPage> = ({ auth, services }) => {
+const CalculatorPage: NextPage<TCalculatorPageProps> = ({ services }) => {
+  const { auth } = useContext(AppContext);
+
   const [showServices, setShowServices] = useState(false);
   const [cartServices, setCartServices] = useState<IService[]>([]);
 
@@ -67,16 +69,12 @@ const CalculatorPage: NextPage<ICalculatorPage> = ({ auth, services }) => {
 export default CalculatorPage;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const cookies = cookie.parse(ctx.req.headers.cookie || '');
-  const auth = !!cookies.token;
-
   const res = await fetch('http://192.168.1.4:8000/services');
 
   const services = await res.json();
 
   return {
     props: {
-      auth,
       services,
     },
   };

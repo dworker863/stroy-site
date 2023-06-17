@@ -14,19 +14,20 @@ const Cart: FC<ICart> = ({ cartServices }) => {
     service: cartService.name,
     sum: 0,
   }));
+
   const [cart, setCart] = useState(cartServicesWithSum);
   const [cartSum, setCartSum] = useState(0);
 
-  useEffect(() => {
-    const newCartService = cartServices.filter((cartService) => {
-      return !cart.some(({ service }) => service === cartService.name);
-    });
-    const newCartServiceWithSum = newCartService.map((cartService) => ({
-      service: cartService.name,
-      sum: 0,
-    }));
-    setCart([...cart, ...newCartServiceWithSum]);
-  }, [cart, cartServices]);
+  // useEffect(() => {
+  //   const newCartService = cartServices.filter((cartService) => {
+  //     return !cart.some(({ service }) => service === cartService.name);
+  //   });
+  //   const newCartServiceWithSum = newCartService.map((cartService) => ({
+  //     service: cartService.name,
+  //     sum: 0,
+  //   }));
+  //   setCart([...cart, ...newCartServiceWithSum]);
+  // }, [cart, cartServices]);
 
   const sumButtonHandler = () => {
     setCartSum(cart.reduce((sum, service) => (sum += service.sum), 0));
