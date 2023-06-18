@@ -18,6 +18,11 @@ const NavMobile: FC<TNavMobileProps> = ({ active, navClickHandler }) => {
           </Link>
         </StyledNavMobileItem>
         <StyledNavMobileItem>
+          <Link href="/video" scroll={false}>
+            Видео
+          </Link>
+        </StyledNavMobileItem>
+        <StyledNavMobileItem>
           <Link href="/calculator" scroll={false}>
             Калькулятор
           </Link>

@@ -1,5 +1,5 @@
 import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
-import { FC, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import { TFormProjectProps } from './TFromProject';
 import * as Yup from 'yup';
 import Button from '../../Elements/Button/Button';
@@ -19,8 +19,10 @@ import Photo from '../../Elements/Photo/Photo';
 import { postProject, updateProject } from '../../../api/api';
 import { useRouter } from 'next/router';
 import { IProject } from '../../../commonTypesInterfaces/IProject';
+import { ProjectsContext } from '../../../pages/projects';
 
 const FormProject: FC<TFormProjectProps> = ({ project }) => {
+  const { showFormHandler } = useContext(ProjectsContext);
   const router = useRouter();
 
   const [err, setErr] = useState('');
@@ -114,6 +116,10 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
 
             if (typeof res === 'string') {
               setErr(res);
+            } else {
+              console.log(333);
+
+              showFormHandler();
             }
           } else {
             const res = await postProject(projectToPost);

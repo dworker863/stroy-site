@@ -14,6 +14,11 @@ const Nav: FC<TDirection> = ({ column }) => {
           </Link>
         </StyledNavItem>
         <StyledNavItem>
+          <Link href="/video" scroll={false}>
+            Видео
+          </Link>
+        </StyledNavItem>
+        <StyledNavItem>
           <Link href="/calculator" scroll={false}>
             Калькулятор
           </Link>

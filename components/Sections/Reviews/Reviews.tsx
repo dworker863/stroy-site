@@ -39,7 +39,7 @@ const Reviews: FC = () => {
         }}
       >
         {reviews.map((review: any) => (
-          <SwiperSlide key={review.name}>
+          <SwiperSlide key={review.name + review.id}>
             <CardReview review={review} />
           </SwiperSlide>
         ))}

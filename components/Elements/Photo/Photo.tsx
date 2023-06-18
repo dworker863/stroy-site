@@ -8,6 +8,8 @@ import {
 } from './StyledPhoto';
 
 const Photo: FC<TPhotoProps> = ({ photos }) => {
+  console.log(2222);
+
   const [arr, setArr] = useState(photos);
 
   const closeBtnHandler = (array: any[], index: number) => {
