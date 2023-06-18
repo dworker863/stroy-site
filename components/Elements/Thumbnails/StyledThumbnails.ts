@@ -1,12 +1,12 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
-export const StyledPhotosWrapper = styled.div`
+export const StyledThumbnailsWrapper = styled.div`
   display: flex;
   margin-bottom: 20px;
 `;
 
-export const StyledPhoto = styled.div`
+export const StyledThumbnail = styled.div`
   position: relative;
   width: max-content;
 
@@ -15,7 +15,7 @@ export const StyledPhoto = styled.div`
   }
 `;
 
-export const StyledPhotosCloseBtn = styled(FontAwesomeIcon)`
+export const StyledThumbnailsCloseBtn = styled(FontAwesomeIcon)`
   cursor: pointer;
   position: absolute;
   top: 4px;

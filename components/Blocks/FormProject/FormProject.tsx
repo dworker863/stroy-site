@@ -6,20 +6,17 @@ import Button from '../../Elements/Button/Button';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
 import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
-import {
-  StyledDropZone,
-  StyledFormRating,
-  StyledFormReview,
-  StyledPlus,
-} from './StyledFormProject';
+import { StyledFormRating, StyledFormReview } from './StyledFormProject';
 import StarRatings from 'react-star-ratings';
 import MaskedInput from 'react-text-mask';
 import Dropzone from 'react-dropzone';
-import Photo from '../../Elements/Photo/Photo';
+import Thumbnails from '../../Elements/Thumbnails/Thumbnails';
 import { postProject, updateProject } from '../../../api/api';
 import { useRouter } from 'next/router';
 import { IProject } from '../../../commonTypesInterfaces/IProject';
 import { ProjectsContext } from '../../../pages/projects';
+import { StyledDropZone } from '../../../commonStyles/StyledDropzone';
+import { StyledPlus } from '../../../commonStyles/StyledPlus';
 
 const FormProject: FC<TFormProjectProps> = ({ project }) => {
   const { showFormHandler } = useContext(ProjectsContext);
@@ -232,7 +229,7 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
                 </StyledDropZone>
               )}
             </Dropzone>
-            <Photo photos={dropImages} />
+            <Thumbnails thumbnails={dropImages} />
             <ErrorMessage name="images">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>

@@ -1,3 +1,3 @@
 export type TPhotoProps = {
-  photos: any[];
+  thumbnails: any[];
 };
