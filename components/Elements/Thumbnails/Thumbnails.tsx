@@ -11,6 +11,7 @@ const Thumbnails: FC<TPhotoProps> = ({ thumbnails }) => {
   const [arr, setArr] = useState(thumbnails);
 
   const closeBtnHandler = (array: any[], index: number) => {
+    console.log(thumbnails);
     setArr(array.splice(index, 1));
   };
 
@@ -30,7 +31,7 @@ const Thumbnails: FC<TPhotoProps> = ({ thumbnails }) => {
         ))}
       </StyledThumbnailsWrapper>
     );
-  }, [thumbnails]);
+  }, [thumbnails.length]);
 
   return memoizedThumbnails;
 };
