@@ -114,8 +114,6 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
             if (typeof res === 'string') {
               setErr(res);
             } else {
-              console.log(333);
-
               showFormHandler();
             }
           } else {
