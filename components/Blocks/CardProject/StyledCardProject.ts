@@ -5,7 +5,7 @@ export const StyledCardProject = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 550px;
+  width: 650px;
   margin-bottom: 40px;
   padding-bottom: 5px;
   border: 1px solid ${({ theme }) => theme.colors.purple};
@@ -18,8 +18,20 @@ export const StyledCardProject = styled.div`
     text-align: center;
   }
 
+  @media (max-width: 1400px) {
+    width: 550px;
+  }
+
+  @media (max-width: 1200px) {
+    width: 650px;
+  }
+
+  @media (max-width: 769px) {
+    width: 550px;
+  }
+
   @media (max-width: 576px) {
-    width: 300px;
+    width: 280px;
   }
 `;
 
