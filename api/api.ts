@@ -114,6 +114,8 @@ export const postProject = (project: IProject): Promise<IProject> => {
 
   formData.append('price', String(project.price));
 
+  console.log(1111);
+
   return instance
     .post(`projects`, formData, {
       headers: {

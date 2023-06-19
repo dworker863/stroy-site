@@ -1,18 +1,21 @@
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FC, useMemo, useState } from 'react';
-import { TPhotoProps } from './TThumbnails';
+import { TThumbnailsProps } from './TThumbnails';
 import {
   StyledThumbnail,
   StyledThumbnailsCloseBtn,
   StyledThumbnailsWrapper,
 } from './StyledThumbnails';
 
-const Thumbnails: FC<TPhotoProps> = ({ thumbnails }) => {
+const Thumbnails: FC<TThumbnailsProps> = ({
+  thumbnails,
+  changeFilesHandler,
+}) => {
   const [arr, setArr] = useState(thumbnails);
 
   const closeBtnHandler = (array: any[], index: number) => {
-    console.log(thumbnails);
     setArr(array.splice(index, 1));
+    changeFilesHandler('images', thumbnails);
   };
 
   const memoizedThumbnails = useMemo(() => {

@@ -227,7 +227,10 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
                 </StyledDropZone>
               )}
             </Dropzone>
-            <Thumbnails thumbnails={dropImages} />
+            <Thumbnails
+              thumbnails={dropImages}
+              changeFilesHandler={setFieldValue}
+            />
             <ErrorMessage name="images">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
