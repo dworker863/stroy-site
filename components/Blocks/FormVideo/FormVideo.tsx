@@ -60,7 +60,10 @@ const FormVideo: FC = () => {
               </StyledDropZone>
             )}
           </Dropzone>
-          <Thumbnails thumbnails={dropVideos} />
+          <Thumbnails
+            thumbnails={dropVideos}
+            changeFilesHandler={setFieldValue}
+          />
           <ErrorMessage name="video">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>

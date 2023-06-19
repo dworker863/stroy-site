@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { StyledVideoCard, StyledVideoDesc } from './StyledVideoCard';
-import ReactPlayer from 'react-player/lazy';
+import dynamic from 'next/dynamic';
+
+const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 
 const VideoCard: FC = () => {
   return (
