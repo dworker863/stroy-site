@@ -105,7 +105,7 @@ const CardProject: FC<ICardProject> = ({
           entityId={project.id as number}
           updateBtnHandler={updateProjectFormHandler}
           deleteBtnHandler={deleteProjectHandler}
-          styles
+          styles="project"
         />
       )}
     </StyledCardProject>

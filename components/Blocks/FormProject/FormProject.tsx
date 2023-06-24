@@ -241,10 +241,7 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
             </ErrorMessage>
             <StyledErrorMessage>{err}</StyledErrorMessage>
 
-            <Button
-              type="submit"
-              text={project ? 'Редактировать' : 'Добавить'}
-            />
+            <Button type="submit" text={project ? 'Изменить' : 'Добавить'} />
           </Form>
         )}
       </Formik>

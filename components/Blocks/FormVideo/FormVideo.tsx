@@ -112,7 +112,7 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
           <StyledErrorMessage>{err}</StyledErrorMessage>
-          <Button type="submit" text="Загрузить" />
+          <Button type="submit" text={video ? 'Изменить' : 'Добавить'} />
         </Form>
       )}
     </Formik>

@@ -27,7 +27,7 @@ const ProjectsPage: NextPage<TProjectsPageProps> = ({ projects }) => {
     <ProjectsContext.Provider value={{ auth, showFormHandler }}>
       <StyledPage>
         <Container column>
-          <StyledTitle>Работы</StyledTitle>
+          <StyledTitle>Проекты</StyledTitle>
           <StyledProjectsDesc>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus
             non modi, molestias soluta perspiciatis sequi distinctio, nemo earum

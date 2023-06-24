@@ -31,6 +31,7 @@ const Service: FC<TServiceProps> = ({ auth, service }) => {
             entityId={service.id as number}
             updateBtnHandler={updateServiceHandler}
             deleteBtnHandler={deleteServiceHandler}
+            styles="calculator"
           />
         )}
       </StyledService>
