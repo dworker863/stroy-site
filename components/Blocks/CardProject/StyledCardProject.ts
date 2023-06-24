@@ -106,22 +106,3 @@ export const StyledCardProjectSliderButtons = styled.div`
 export const StyledCardProjectSliderPrev = styled.span``;
 
 export const StyledCardProjectSliderNext = styled.span``;
-
-export const StyledProjectBtns = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  cursor: pointer;
-  width: 100px;
-  padding: 10px 30px;
-  border-bottom-left-radius: 8px;
-  background-color: ${({ theme }) => theme.colors.secondary};
-`;
-
-export const StyledProjectBtn = styled(FontAwesomeIcon)`
-  color: #fff;
-
-  &:last-child {
-    margin-left: 10px;
-  }
-`;

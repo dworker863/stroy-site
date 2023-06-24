@@ -66,8 +66,6 @@ const CalculatorPage: NextPage<TCalculatorPageProps> = ({ services }) => {
   );
 };
 
-export default CalculatorPage;
-
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const res = await fetch('http://192.168.1.4:8000/services');
 
@@ -79,3 +77,5 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     },
   };
 };
+
+export default CalculatorPage;

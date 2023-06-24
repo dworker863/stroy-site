@@ -28,13 +28,3 @@ export const StyledService = styled.div`
     width: 300px;
   }
 `;
-
-export const StyledServiceBtns = styled.div``;
-
-export const StyledServiceBtn = styled(FontAwesomeIcon)`
-  margin-left: 30px;
-
-  &:last-child {
-    margin-left: 6px;
-  }
-`;

@@ -1,18 +1,11 @@
 import { FC, useContext, useState } from 'react';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
 import { deleteService } from '../../../api/api';
 import FormService from '../FormService/FormService';
 import { TServiceProps } from './TService';
-import {
-  StyledService,
-  StyledServiceBtn,
-  StyledServiceBtns,
-  StyledServiceWrapper,
-} from './StyledService';
+import { StyledService, StyledServiceWrapper } from './StyledService';
 import { CalculatorContext } from '../../../pages/calculator';
+import EditButtons from '../../Elements/EditButtons/EditButtons';
 
 const Service: FC<TServiceProps> = ({ auth, service }) => {
   const router = useRouter();
@@ -32,17 +25,13 @@ const Service: FC<TServiceProps> = ({ auth, service }) => {
     <StyledServiceWrapper>
       <StyledService onClick={serviceButtonHandler.bind(null, service)}>
         {service.name}
+
         {auth && (
-          <StyledServiceBtns>
-            <StyledServiceBtn
-              icon={faPen as IconProp}
-              onClick={updateServiceHandler}
-            />
-            <StyledServiceBtn
-              icon={faTrash as IconProp}
-              onClick={deleteServiceHandler.bind(null, service.id)}
-            />
-          </StyledServiceBtns>
+          <EditButtons
+            entityId={service.id as number}
+            updateBtnHandler={updateServiceHandler}
+            deleteBtnHandler={deleteService}
+          />
         )}
       </StyledService>
       {showServiceForm && (

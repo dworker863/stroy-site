@@ -13,12 +13,7 @@ import {
   StyledCardProjectSliderNext,
   StyledCardProjectSliderPrev,
   StyledCardProjectTitle,
-  StyledProjectBtn,
-  StyledProjectBtns,
 } from './StyledCardProject';
-import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { faPen } from '@fortawesome/free-solid-svg-icons';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { ProjectsContext } from '../../../pages/projects';
 import { deleteProject } from '../../../api/api';
@@ -29,6 +24,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-flip';
+import EditButtons from '../../Elements/EditButtons/EditButtons';
 
 const CardProject: FC<ICardProject> = ({
   project,
@@ -105,16 +101,12 @@ const CardProject: FC<ICardProject> = ({
         <CardReview review={project.projectReview} />
       </StyledCardProjectContent>
       {auth && (
-        <StyledProjectBtns>
-          <StyledProjectBtn
-            icon={faPen as IconProp}
-            onClick={updateProjectFormHandler}
-          />
-          <StyledProjectBtn
-            icon={faTrash as IconProp}
-            onClick={deleteProjectHandler.bind(null, project.id)}
-          />
-        </StyledProjectBtns>
+        <EditButtons
+          entityId={project.id as number}
+          updateBtnHandler={updateProjectFormHandler}
+          deleteBtnHandler={deleteProjectHandler}
+          styles
+        />
       )}
     </StyledCardProject>
   );
