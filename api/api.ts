@@ -2,6 +2,7 @@ import axios from 'axios';
 import { IProject } from '../commonTypesInterfaces/IProject';
 import { IService } from '../commonTypesInterfaces/IService';
 import { IUser } from '../commonTypesInterfaces/IUser';
+import { IVideo } from '../commonTypesInterfaces/IVideo';
 
 export const instance = axios.create({
   baseURL: 'http://192.168.1.4:8000/',
@@ -114,8 +115,6 @@ export const postProject = (project: IProject): Promise<IProject> => {
 
   formData.append('price', String(project.price));
 
-  console.log(1111);
-
   return instance
     .post(`projects`, formData, {
       headers: {
@@ -163,6 +162,79 @@ export const updateProject = (project: IProject): Promise<any> => {
 export const deleteProject = (id?: number): Promise<number> => {
   return instance
     .delete(`projects/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((e) => {
+      return e.response.data.message;
+    });
+};
+
+export const postVideo = (video: IVideo): Promise<IVideo> => {
+  const formData = new FormData();
+
+  formData.append('name', video.name);
+
+  if (video.description) {
+    formData.append('description', video.description);
+  }
+
+  if (video.link) {
+    formData.append('link', video.link);
+  }
+
+  formData.append('video', video.video);
+
+  return instance
+    .post(`videos`, formData, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((e) => {
+      return e.response.data.message;
+    });
+};
+
+export const updateVideo = (video: IVideo): Promise<any> => {
+  const formData = new FormData();
+
+  formData.append('name', video.name);
+
+  if (video.description) {
+    formData.append('description', video.description);
+  }
+
+  if (video.link) {
+    formData.append('link', video.link);
+  }
+
+  formData.append('video', video.video);
+
+  return instance
+    .patch(`videos/${video.id}`, formData, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((e) => {
+      return e.response.data.message;
+    });
+};
+
+export const deleteVideo = (id: number) => {
+  return instance
+    .delete(`videos/${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
