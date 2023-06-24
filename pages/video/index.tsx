@@ -32,7 +32,7 @@ const Video: NextPage<TVideoPageProps> = ({ videos }) => {
         {showVideoForm && <FormVideo />}
         <StyledTitle>Видео</StyledTitle>
         {videos.map((video, index) => (
-          <VideoCard video={video} key={index + video.name} />
+          <VideoCard key={index + video.name} auth={auth} video={video} />
         ))}
       </Container>
     </StyledPage>

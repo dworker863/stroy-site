@@ -1,10 +1,10 @@
 export type TEditButtonsProps = {
   entityId: number;
-  styles?: boolean;
+  styles: 'project' | 'calculator' | 'video';
   updateBtnHandler: () => void;
   deleteBtnHandler: () => void;
 };
 
 export type TStyledEditButtons = {
-  styles?: boolean;
+  styles: 'project' | 'calculator' | 'video';
 };

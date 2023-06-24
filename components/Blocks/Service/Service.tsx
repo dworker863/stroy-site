@@ -30,7 +30,7 @@ const Service: FC<TServiceProps> = ({ auth, service }) => {
           <EditButtons
             entityId={service.id as number}
             updateBtnHandler={updateServiceHandler}
-            deleteBtnHandler={deleteService}
+            deleteBtnHandler={deleteServiceHandler}
           />
         )}
       </StyledService>
