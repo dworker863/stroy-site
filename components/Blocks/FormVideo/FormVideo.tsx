@@ -13,6 +13,7 @@ import { StyledField } from '../../../commonStyles/StyledField';
 import { IVideo } from '../../../commonTypesInterfaces/IVideo';
 import { TFormVideoProps } from './TFormVideo';
 import { useRouter } from 'next/router';
+import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
 
 const FormVideo: FC<TFormVideoProps> = ({ video }) => {
   const [dropVideos, setDropVideos] = useState<any>([]);
@@ -48,7 +49,13 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
             return true;
           })
           .nullable(),
-        link: Yup.string(),
+        link: Yup.string().when('video', (video) => {
+          return video
+            ? Yup.string().required(
+                'Укажите ссылку на видео или загрузите видео',
+              )
+            : Yup.string();
+        }),
       })}
       onSubmit={async (
         values: IVideo,
@@ -74,7 +81,9 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
     >
       {({ setFieldValue }) => (
         <Form>
-          <StyledLabel htmlFor="name">Название</StyledLabel>
+          <StyledLabel htmlFor="name">
+            Название <StyledRedSpan>*</StyledRedSpan>
+          </StyledLabel>
           <StyledField id="name" type="text" name="name" />
           <ErrorMessage name="name">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
@@ -86,9 +95,6 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
           </ErrorMessage>
           <StyledLabel htmlFor="link">Ссылка</StyledLabel>
           <StyledField id="link" type="text" name="link" />
-          <ErrorMessage name="link">
-            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-          </ErrorMessage>
           <StyledLabel htmlFor="video">Видео</StyledLabel>
           <Dropzone
             onDrop={(acceptedFiles) => {
@@ -109,6 +115,9 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
             changeFilesHandler={setFieldValue}
           />
           <ErrorMessage name="video">
+            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+          </ErrorMessage>
+          <ErrorMessage name="link">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
           <StyledErrorMessage>{err}</StyledErrorMessage>

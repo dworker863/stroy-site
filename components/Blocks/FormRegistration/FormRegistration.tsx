@@ -10,6 +10,7 @@ import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
 import Button from '../../Elements/Button/Button';
 import { registration } from '../../../api/api';
+import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
 
 const FormRegistration: FC<TFormRegistrationProps> = ({
   loginBtnHandler,
@@ -48,20 +49,24 @@ const FormRegistration: FC<TFormRegistrationProps> = ({
       }}
     >
       <Form>
-        <StyledLabel htmlFor="username">Имя пользователя *</StyledLabel>
+        <StyledLabel htmlFor="username">
+          Имя пользователя <StyledRedSpan>*</StyledRedSpan>
+        </StyledLabel>
         <StyledField id="username" type="text" name="username" />
         <ErrorMessage name="username">
           {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
         </ErrorMessage>
 
-        <StyledLabel htmlFor="password">Пароль *</StyledLabel>
+        <StyledLabel htmlFor="password">
+          Пароль <StyledRedSpan>*</StyledRedSpan>
+        </StyledLabel>
         <StyledField id="password" type="password" name="password" />
         <ErrorMessage name="password">
           {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
         </ErrorMessage>
 
         <StyledLabel htmlFor="passwordConfirm">
-          Подтвердите пароль *
+          Подтвердите пароль <StyledRedSpan>*</StyledRedSpan>
         </StyledLabel>
         <StyledField
           id="passwordConfirm"

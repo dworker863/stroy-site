@@ -9,6 +9,7 @@ import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
 import { postService, updateService } from '../../../api/api';
 import { TFormServiceProps } from './TFormService';
 import { useRouter } from 'next/router';
+import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
 
 const FormService: FC<TFormServiceProps> = ({
   id,
@@ -57,19 +58,25 @@ const FormService: FC<TFormServiceProps> = ({
         }}
       >
         <Form>
-          <StyledLabel htmlFor="name">Название</StyledLabel>
+          <StyledLabel htmlFor="name">
+            Название <StyledRedSpan>*</StyledRedSpan>
+          </StyledLabel>
           <StyledField id="name" type="text" name="name" />
           <ErrorMessage name="name">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
 
-          <StyledLabel htmlFor="measure">Единица измерения</StyledLabel>
+          <StyledLabel htmlFor="measure">
+            Единица измерения <StyledRedSpan>*</StyledRedSpan>
+          </StyledLabel>
           <StyledField id="measure" type="text" name="measure" />
           <ErrorMessage name="measure">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
 
-          <StyledLabel htmlFor="price">Цена</StyledLabel>
+          <StyledLabel htmlFor="price">
+            Цена <StyledRedSpan>*</StyledRedSpan>
+          </StyledLabel>
           <StyledField id="price" type="text" name="price" />
           <ErrorMessage name="price">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}

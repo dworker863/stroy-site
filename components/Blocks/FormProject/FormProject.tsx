@@ -17,6 +17,7 @@ import { IProject } from '../../../commonTypesInterfaces/IProject';
 import { ProjectsContext } from '../../../pages/projects';
 import { StyledDropZone } from '../../../commonStyles/StyledDropzone';
 import { StyledPlus } from '../../../commonStyles/StyledPlus';
+import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
 
 const FormProject: FC<TFormProjectProps> = ({ project }) => {
   const { showFormHandler } = useContext(ProjectsContext);
@@ -76,7 +77,7 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
         validateOnChange={false}
         validationSchema={Yup.object({
           name: Yup.string().required('Укажите название проекта'),
-          description: Yup.string().required('Укажите описание проекта'),
+          description: Yup.string(),
           toggleReview: Yup.boolean(),
           review: Yup.object()
             .shape({
@@ -130,7 +131,9 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
       >
         {({ setFieldValue, values, handleChange }) => (
           <Form>
-            <StyledLabel htmlFor="name">Название</StyledLabel>
+            <StyledLabel htmlFor="name">
+              Название <StyledRedSpan>*</StyledRedSpan>
+            </StyledLabel>
             <StyledField id="name" type="text" name="name" />
             <ErrorMessage name="name">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
@@ -164,12 +167,16 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
             />
             {showReview && (
               <StyledFormReview show={showReview}>
-                <StyledLabel htmlFor="author">Автор</StyledLabel>
+                <StyledLabel htmlFor="author">
+                  Автор <StyledRedSpan>*</StyledRedSpan>
+                </StyledLabel>
                 <StyledField id="author" type="text" name="review.author" />
                 <ErrorMessage name="review.author">
                   {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
                 </ErrorMessage>
-                <StyledLabel>Рейтинг</StyledLabel>
+                <StyledLabel>
+                  Рейтинг <StyledRedSpan>*</StyledRedSpan>
+                </StyledLabel>
                 <StyledFormRating>
                   <StarRatings
                     rating={rating}
@@ -184,7 +191,9 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
                     }}
                   />
                 </StyledFormRating>
-                <StyledLabel htmlFor="text">Текст</StyledLabel>
+                <StyledLabel htmlFor="text">
+                  Текст <StyledRedSpan>*</StyledRedSpan>
+                </StyledLabel>
                 <StyledField
                   id="text"
                   as="textarea"

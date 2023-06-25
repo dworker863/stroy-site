@@ -5,3 +5,7 @@ export const StyledLogo = styled.div`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.primary};
 `;
+
+export const StyledLogoWhiteSpan = styled.span`
+  color: #fff;
+`;

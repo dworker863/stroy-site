@@ -8,7 +8,7 @@ export const StyledModal = styled.div<TActive>`
   left: 50%;
   display: ${({ active }) => (active ? 'flex' : 'none')};
   justify-content: center;
-  width: 300px;
+  width: 320px;
   height: auto;
   padding-top: 40px;
   padding-bottom: 20px;

@@ -1,11 +1,10 @@
 import { FC } from 'react';
-import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
-import { StyledLogo } from './StyledLogo';
+import { StyledLogo, StyledLogoWhiteSpan } from './StyledLogo';
 
 const Logo: FC = () => {
   return (
     <StyledLogo>
-      <StyledRedSpan>ST</StyledRedSpan>roy
+      <StyledLogoWhiteSpan>ST</StyledLogoWhiteSpan>roy
     </StyledLogo>
   );
 };

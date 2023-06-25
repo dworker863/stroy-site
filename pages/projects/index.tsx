@@ -52,7 +52,7 @@ const ProjectsPage: NextPage<TProjectsPageProps> = ({ projects }) => {
               center
             />
           )}
-          {showForm && <FormProject />}
+          {auth && showForm && <FormProject />}
           <Projects projects={projects} />
         </Container>
       </StyledPage>
