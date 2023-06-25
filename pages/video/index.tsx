@@ -9,6 +9,7 @@ import { AppContext } from '../../components/Sections/Layout/Layout';
 import { GetServerSideProps } from 'next';
 import { TVideoPageProps } from './TVideoPage';
 import Video from '../../components/Blocks/Video/Video';
+import { StyledCalculatorDesc } from '../calculator/StyledCalculatorPage';
 
 const VideoPage: NextPage<TVideoPageProps> = ({ videos }) => {
   const { auth } = useContext(AppContext);
@@ -21,6 +22,23 @@ const VideoPage: NextPage<TVideoPageProps> = ({ videos }) => {
   return (
     <StyledPage>
       <Container column>
+        <StyledTitle>Видео</StyledTitle>
+        <StyledCalculatorDesc>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus
+          non modi, molestias soluta perspiciatis sequi distinctio, nemo earum
+          qui ut maxime voluptatibus voluptates. Sint aliquam excepturi alias,
+          optio iure possimus. Nisi omnis quis asperiores quae dolorum assumenda
+          nemo rem, quam dignissimos optio, dolorem expedita unde saepe laborum.
+          Doloribus quas obcaecati magnam, rem unde error quis vero hic, nam
+          itaque distinctio. Culpa, in unde saepe, perferendis dolor officia
+          repellendus eligendi voluptatibus, maxime fuga cumque quibusdam
+          mollitia assumenda! Enim minima dolore, repellat quasi tempore labore,
+          accusantium dolores optio assumenda corrupti laudantium omnis. Odit
+          labore recusandae molestias nulla consequuntur iste ullam repudiandae.
+          Sequi expedita ipsum atque molestias repudiandae facere quidem
+          voluptates commodi voluptatum vitae eum recusandae, eveniet officia
+          harum esse ea nesciunt ex?
+        </StyledCalculatorDesc>
         {auth && (
           <Button
             type="button"
@@ -30,7 +48,6 @@ const VideoPage: NextPage<TVideoPageProps> = ({ videos }) => {
           />
         )}
         {showVideoForm && <FormVideo />}
-        <StyledTitle>Видео</StyledTitle>
         {videos.map((video, index) => (
           <Video key={index + video.name} auth={auth} video={video} />
         ))}
