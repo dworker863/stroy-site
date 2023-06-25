@@ -110,18 +110,18 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
               </StyledDropZone>
             )}
           </Dropzone>
-          <Thumbnails
-            thumbnails={dropVideos}
-            changeFilesHandler={setFieldValue}
-          />
           <ErrorMessage name="video">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
           <ErrorMessage name="link">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
-          <StyledErrorMessage>{err}</StyledErrorMessage>
+          <Thumbnails
+            thumbnails={dropVideos}
+            changeFilesHandler={setFieldValue}
+          />
           <Button type="submit" text={video ? 'Изменить' : 'Добавить'} />
+          <StyledErrorMessage>{err}</StyledErrorMessage>
         </Form>
       )}
     </Formik>

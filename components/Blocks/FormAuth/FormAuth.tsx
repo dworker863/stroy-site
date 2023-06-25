@@ -1,4 +1,4 @@
-import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
+import { ErrorMessage, Formik, FormikHelpers } from 'formik';
 import { TFormAuthProps } from './TFormAuth';
 import { FC, useState } from 'react';
 import * as Yup from 'yup';
@@ -8,6 +8,7 @@ import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
 import Button from '../../Elements/Button/Button';
 import { login } from '../../../api/api';
 import { IUser } from '../../../commonTypesInterfaces/IUser';
+import { StyledModalForm } from '../../../commonStyles/StyledModalForm';
 
 const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
   const [err, setErr] = useState('');
@@ -38,19 +39,22 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
         setSubmitting(false);
       }}
     >
-      <Form>
-        <StyledLabel htmlFor="username">Имя пользователя</StyledLabel>
-        <StyledField id="username" type="text" name="username" />
-        <ErrorMessage name="username">
-          {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-        </ErrorMessage>
+      <StyledModalForm>
+        <div>
+          <StyledLabel htmlFor="username">Имя пользователя</StyledLabel>
+          <StyledField id="username" type="text" name="username" />
+          <ErrorMessage name="username">
+            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+          </ErrorMessage>
+        </div>
 
-        <StyledLabel htmlFor="password">Пароль</StyledLabel>
-        <StyledField id="password" type="password" name="password" />
-        <ErrorMessage name="password">
-          {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-        </ErrorMessage>
-        <StyledErrorMessage>{err}</StyledErrorMessage>
+        <div>
+          <StyledLabel htmlFor="password">Пароль</StyledLabel>
+          <StyledField id="password" type="password" name="password" />
+          <ErrorMessage name="password">
+            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+          </ErrorMessage>
+        </div>
 
         <Button type="submit" text="Войти" center />
         <Button
@@ -59,7 +63,8 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
           onClick={registrBtnHandler}
           center
         />
-      </Form>
+        <StyledErrorMessage>{err}</StyledErrorMessage>
+      </StyledModalForm>
     </Formik>
   );
 };

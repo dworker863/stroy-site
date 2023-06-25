@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const StyledThumbnailsWrapper = styled.div`
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 `;
 
 export const StyledThumbnail = styled.div`

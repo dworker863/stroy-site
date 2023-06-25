@@ -1,7 +1,7 @@
-import { IStyledButton } from './TButton';
 import styled, { css } from 'styled-components';
+import { TStyledButton } from './TButton';
 
-export const StyledButton = styled.button<IStyledButton>`
+export const StyledButton = styled.button<TStyledButton>`
   display: ${({ inline }) => (inline ? 'inline-block' : 'block')};
   cursor: pointer;
   margin-bottom: 20px;
@@ -12,7 +12,7 @@ export const StyledButton = styled.button<IStyledButton>`
   color: #fff;
 
   &:nth-last-child(2) {
-    margin-top: 40px;
+    /* margin-top: 40px; */
   }
 
   a + &:nth-last-child(2) {
@@ -41,5 +41,11 @@ export const StyledButton = styled.button<IStyledButton>`
       align-self: center;
       margin: 0;
       margin-right: 20px;
+    `}
+
+    ${({ type }) =>
+    type === 'submit' &&
+    css`
+      margin-top: 30px;
     `}
 `;

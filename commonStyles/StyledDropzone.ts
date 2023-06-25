@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledDropZone = styled.div`
   cursor: pointer;
   width: 200px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   padding: 20px;
   border: 1px solid #c8b8db;
   border-radius: 2px;

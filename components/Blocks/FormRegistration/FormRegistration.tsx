@@ -11,6 +11,7 @@ import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
 import Button from '../../Elements/Button/Button';
 import { registration } from '../../../api/api';
 import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
+import { StyledModalForm } from '../../../commonStyles/StyledModalForm';
 
 const FormRegistration: FC<TFormRegistrationProps> = ({
   loginBtnHandler,
@@ -48,39 +49,48 @@ const FormRegistration: FC<TFormRegistrationProps> = ({
         setSubmitting(false);
       }}
     >
-      <Form>
-        <StyledLabel htmlFor="username">
-          Имя пользователя <StyledRedSpan>*</StyledRedSpan>
-        </StyledLabel>
-        <StyledField id="username" type="text" name="username" />
-        <ErrorMessage name="username">
-          {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-        </ErrorMessage>
+      <StyledModalForm>
+        <div>
+          <StyledLabel htmlFor="username">
+            Имя пользователя <StyledRedSpan>*</StyledRedSpan>
+          </StyledLabel>
+          <StyledField id="username" type="text" name="username" />
+          <ErrorMessage name="username">
+            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+          </ErrorMessage>
+        </div>
 
-        <StyledLabel htmlFor="password">
-          Пароль <StyledRedSpan>*</StyledRedSpan>
-        </StyledLabel>
-        <StyledField id="password" type="password" name="password" />
-        <ErrorMessage name="password">
-          {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-        </ErrorMessage>
+        <div>
+          <StyledLabel htmlFor="password">
+            Пароль <StyledRedSpan>*</StyledRedSpan>
+          </StyledLabel>
+          <StyledField id="password" type="password" name="password" />
+          <ErrorMessage name="password">
+            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+          </ErrorMessage>
+        </div>
 
-        <StyledLabel htmlFor="passwordConfirm">
-          Подтвердите пароль <StyledRedSpan>*</StyledRedSpan>
-        </StyledLabel>
-        <StyledField
-          id="passwordConfirm"
-          type="password"
-          name="passwordConfirm"
-        />
-        <ErrorMessage name="passwordConfirm">
-          {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
-        </ErrorMessage>
-        <StyledErrorMessage>{err}</StyledErrorMessage>
+        <div>
+          <StyledLabel htmlFor="passwordConfirm">
+            Подтвердите пароль <StyledRedSpan>*</StyledRedSpan>
+          </StyledLabel>
+          <StyledField
+            id="passwordConfirm"
+            type="password"
+            name="passwordConfirm"
+          />
+          <ErrorMessage name="passwordConfirm">
+            {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
+          </ErrorMessage>
+        </div>
 
         <Button type="submit" text="Зарегистрироваться" center />
         <Button type="button" text="Назад" onClick={loginBtnHandler} center />
-      </Form>
+
+        <StyledErrorMessage style={{ textAlign: 'center' }}>
+          {err}
+        </StyledErrorMessage>
+      </StyledModalForm>
     </Formik>
   );
 };

@@ -146,6 +146,7 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
               rows={6}
               onChange={handleChange}
               value={values.description}
+              style={{ marginBottom: 30 }}
             />
             <ErrorMessage name="description">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
@@ -248,9 +249,8 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
             <ErrorMessage name="price">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
-            <StyledErrorMessage>{err}</StyledErrorMessage>
-
             <Button type="submit" text={project ? 'Изменить' : 'Добавить'} />
+            <StyledErrorMessage>{err}</StyledErrorMessage>
           </Form>
         )}
       </Formik>
