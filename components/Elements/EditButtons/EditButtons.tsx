@@ -11,8 +11,6 @@ const EditButtons: FC<TEditButtonsProps> = ({
   updateBtnHandler,
   deleteBtnHandler,
 }) => {
-  console.log(styles);
-
   return (
     <StyledEditBtns styles={styles}>
       <StyledEditButtons

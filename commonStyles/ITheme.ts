@@ -11,4 +11,7 @@ export interface ITheme {
     brown: string;
     green: string;
   };
+  sizes: {
+    videoRatio: number;
+  };
 }

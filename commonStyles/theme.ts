@@ -13,4 +13,7 @@ export const defaultTheme: DefaultTheme = {
     brown: '#392828eb',
     green: '#198754',
   },
+  sizes: {
+    videoRatio: 1.78,
+  },
 };

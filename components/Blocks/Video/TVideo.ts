@@ -1,4 +1,4 @@
-import { IVideo } from './../../commonTypesInterfaces/IVideo';
+import { IVideo } from '../../../commonTypesInterfaces/IVideo';
 
 export type TVideoProps = {
   auth: boolean;

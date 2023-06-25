@@ -8,7 +8,7 @@ import Button from '../../components/Elements/Button/Button';
 import { AppContext } from '../../components/Sections/Layout/Layout';
 import { GetServerSideProps } from 'next';
 import { TVideoPageProps } from './TVideoPage';
-import Video from '../../components/Video/Video';
+import Video from '../../components/Blocks/Video/Video';
 
 const VideoPage: NextPage<TVideoPageProps> = ({ videos }) => {
   const { auth } = useContext(AppContext);

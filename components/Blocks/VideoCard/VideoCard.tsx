@@ -3,6 +3,7 @@ import {
   StyledVideoCard,
   StyledVideoDesc,
   StyledVideoInfo,
+  StyledVideoPlayer,
   StyledVideoTitle,
 } from './StyledVideoCard';
 import dynamic from 'next/dynamic';
@@ -42,12 +43,14 @@ const VideoCard: FC<TVideoCardProps> = ({
         )}
       </StyledVideoTitle>
       <StyledVideoInfo>
-        <ReactPlayer
-          url={video.link || video.video}
-          width={300}
-          height={176}
-          controls
-        />
+        <StyledVideoPlayer>
+          <ReactPlayer
+            url={video.link || video.video}
+            width="100%"
+            height="100%"
+            controls
+          />
+        </StyledVideoPlayer>
         <StyledVideoDesc>{video.description}</StyledVideoDesc>
       </StyledVideoInfo>
     </StyledVideoCard>
