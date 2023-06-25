@@ -20,12 +20,6 @@ export const StyledHeaderInfo = styled.div`
   margin-left: auto;
   color: ${({ theme }) => theme.colors.fontColor};
 
-  @media (max-width: 1400px) {
-  }
-
-  @media (max-width: 1200px) {
-  }
-
   @media (max-width: 992px) {
     width: 60%;
   }

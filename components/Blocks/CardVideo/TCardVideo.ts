@@ -1,6 +1,6 @@
 import { IVideo } from '../../../commonTypesInterfaces/IVideo';
 
-export type TVideoCardProps = {
+export type TCardVideoProps = {
   auth: boolean;
   video: IVideo;
   showVideoFormHandler: () => void;

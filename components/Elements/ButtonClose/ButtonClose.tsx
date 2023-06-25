@@ -1,12 +1,17 @@
 import { FC } from 'react';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { TClickHandler } from '../../../commonTypesInterfaces/TClickHandler';
-import { StyledButtonClose } from './StyledButtonClose';
+import {
+  StyledButtonClose,
+  StyledThumbnailsCloseBtn,
+} from './StyledButtonClose';
+import { TButtonClose } from './TButtonClose';
 
-const ButtonClose: FC<TClickHandler> = ({ onClick }) => {
+const ButtonClose: FC<TButtonClose & TClickHandler> = ({ thumb, onClick }) => {
   return (
     <>
-      <StyledButtonClose type="button" onClick={onClick}>
-        &#10006;
+      <StyledButtonClose type="button" onClick={onClick} thumb={thumb}>
+        <StyledThumbnailsCloseBtn icon={faXmark} />
       </StyledButtonClose>
     </>
   );

@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import { TVideoProps } from './TVideo';
-import VideoCard from '../VideoCard/VideoCard';
+import VideoCard from '../CardVideo/CardVideo';
 import FormVideo from '../FormVideo/FormVideo';
 
 const Video: FC<TVideoProps> = ({ video, auth }) => {

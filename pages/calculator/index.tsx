@@ -59,7 +59,7 @@ const CalculatorPage: NextPage<TCalculatorPageProps> = ({ services }) => {
             center
           />
           {showServices && <Services auth={auth} services={services} />}
-          <Cart cartServices={cartServices} />
+          {!auth && <Cart cartServices={cartServices} />}
         </Container>
       </StyledPage>
     </CalculatorContext.Provider>

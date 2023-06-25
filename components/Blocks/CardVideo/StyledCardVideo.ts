@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledVideoCard = styled.div`
+export const StyledCardVideo = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 8px;

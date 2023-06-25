@@ -10,6 +10,7 @@ import { GetServerSideProps } from 'next';
 import { TVideoPageProps } from './TVideoPage';
 import Video from '../../components/Blocks/Video/Video';
 import { StyledCalculatorDesc } from '../calculator/StyledCalculatorPage';
+import { StyledVideos } from './StyledVideoPage';
 
 const VideoPage: NextPage<TVideoPageProps> = ({ videos }) => {
   const { auth } = useContext(AppContext);
@@ -48,9 +49,11 @@ const VideoPage: NextPage<TVideoPageProps> = ({ videos }) => {
           />
         )}
         {showVideoForm && <FormVideo />}
-        {videos.map((video, index) => (
-          <Video key={index + video.name} auth={auth} video={video} />
-        ))}
+        <StyledVideos>
+          {videos.map((video, index) => (
+            <Video key={index + video.name} auth={auth} video={video} />
+          ))}
+        </StyledVideos>
       </Container>
     </StyledPage>
   );

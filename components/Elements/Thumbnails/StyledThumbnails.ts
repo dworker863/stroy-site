@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 export const StyledThumbnailsWrapper = styled.div`
@@ -13,13 +12,4 @@ export const StyledThumbnail = styled.div`
   img {
     height: 100px;
   }
-`;
-
-export const StyledThumbnailsCloseBtn = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  position: absolute;
-  top: 4px;
-  right: 5px;
-  font-size: 18px;
-  color: ${({ theme }) => theme.colors.primary};
 `;

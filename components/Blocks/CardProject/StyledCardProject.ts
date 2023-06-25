@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 export const StyledCardProject = styled.div`
@@ -7,7 +6,7 @@ export const StyledCardProject = styled.div`
   flex-direction: column;
   width: 650px;
   margin-bottom: 40px;
-  padding-bottom: 5px;
+  padding-bottom: 20px;
   border: 1px solid ${({ theme }) => theme.colors.purple};
   border-radius: 10px;
 
@@ -26,8 +25,9 @@ export const StyledCardProject = styled.div`
     width: 650px;
   }
 
-  @media (max-width: 769px) {
+  @media (max-width: 768px) {
     width: 550px;
+    padding-bottom: 5px;
   }
 
   @media (max-width: 576px) {

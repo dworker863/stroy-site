@@ -1,11 +1,7 @@
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FC, useMemo, useState } from 'react';
 import { TThumbnailsProps } from './TThumbnails';
-import {
-  StyledThumbnail,
-  StyledThumbnailsCloseBtn,
-  StyledThumbnailsWrapper,
-} from './StyledThumbnails';
+import { StyledThumbnail, StyledThumbnailsWrapper } from './StyledThumbnails';
+import ButtonClose from '../ButtonClose/ButtonClose';
 
 const Thumbnails: FC<TThumbnailsProps> = ({
   thumbnails,
@@ -23,9 +19,9 @@ const Thumbnails: FC<TThumbnailsProps> = ({
       <StyledThumbnailsWrapper>
         {thumbnails.map((thumbnail: any, index) => (
           <StyledThumbnail key={URL.createObjectURL(thumbnail) + index}>
-            <StyledThumbnailsCloseBtn
-              icon={faXmark}
+            <ButtonClose
               onClick={closeBtnHandler.bind(null, thumbnails, index)}
+              thumb
             />
             {URL.createObjectURL(thumbnail) && (
               <img src={URL.createObjectURL(thumbnail)} />
