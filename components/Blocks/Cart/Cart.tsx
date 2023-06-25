@@ -50,7 +50,7 @@ const Cart: FC<TCartProps> = ({ cartServices }) => {
       <Button
         type="button"
         text="Рассчитать"
-        onClick={sumButtonHandler}
+        clickHandler={sumButtonHandler}
         center
       />
     </StyledCart>

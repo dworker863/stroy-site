@@ -14,7 +14,7 @@ const TopLine: FC<TTopLineProps> = ({ hamburgerActive, hamburgerHandler }) => {
 
   return (
     <StyledTopLine>
-      <Hamburger isActive={hamburgerActive} onClick={hamburgerHandler} />
+      <Hamburger isActive={hamburgerActive} clickHandler={hamburgerHandler} />
       <Container>
         <Link href="/">
           <Logo />
@@ -23,7 +23,7 @@ const TopLine: FC<TTopLineProps> = ({ hamburgerActive, hamburgerHandler }) => {
           type="button"
           text={!auth ? '' : 'Выйти'}
           auth={auth}
-          onClick={auth ? logoutHandler : setModalActive.bind(null, true)}
+          clickHandler={auth ? logoutHandler : setModalActive.bind(null, true)}
         />
         <Nav />
       </Container>

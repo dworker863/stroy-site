@@ -55,7 +55,7 @@ const CalculatorPage: NextPage<TCalculatorPageProps> = ({ services }) => {
           <Button
             type="button"
             text={auth ? 'Добавить Услугу' : 'Выбрать Услугу'}
-            onClick={showServicesButtonHandler}
+            clickHandler={showServicesButtonHandler}
             center
           />
           {showServices && <Services auth={auth} services={services} />}

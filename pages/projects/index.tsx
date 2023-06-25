@@ -48,7 +48,7 @@ const ProjectsPage: NextPage<TProjectsPageProps> = ({ projects }) => {
             <Button
               type="button"
               text="Добавить проект"
-              onClick={showFormHandler}
+              clickHandler={showFormHandler}
               center
             />
           )}

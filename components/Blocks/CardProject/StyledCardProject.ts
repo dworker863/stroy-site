@@ -71,6 +71,7 @@ export const StyledCardProjectInfo = styled.div`
 export const StyledCardProjectDesc = styled.div`
   padding: 10px;
   text-align: center;
+  word-wrap: break-word;
 `;
 
 export const StyledCardProjectReview = styled.div`

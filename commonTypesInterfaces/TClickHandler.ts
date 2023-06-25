@@ -1,3 +1,3 @@
 export type TClickHandler = {
-  onClick: () => void;
+  clickHandler: () => void;
 };

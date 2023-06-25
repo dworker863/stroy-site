@@ -4,7 +4,7 @@ export type TButtonProps = {
   inline?: boolean;
   center?: boolean;
   auth?: boolean;
-  onClick?: (value?: any) => void;
+  clickHandler?: (value?: any) => void;
 };
 
 export type TStyledButton = {

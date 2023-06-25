@@ -60,7 +60,7 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
         <Button
           type="button"
           text="Зарегистрироваться"
-          onClick={registrBtnHandler}
+          clickHandler={registrBtnHandler}
           center
         />
         <StyledErrorMessage>{err}</StyledErrorMessage>

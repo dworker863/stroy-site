@@ -20,7 +20,7 @@ const Thumbnails: FC<TThumbnailsProps> = ({
         {thumbnails.map((thumbnail: any, index) => (
           <StyledThumbnail key={URL.createObjectURL(thumbnail) + index}>
             <ButtonClose
-              onClick={closeBtnHandler.bind(null, thumbnails, index)}
+              clickHandler={closeBtnHandler.bind(null, thumbnails, index)}
               thumb
             />
             {URL.createObjectURL(thumbnail) && (

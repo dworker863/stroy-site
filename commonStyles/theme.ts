@@ -12,6 +12,7 @@ export const defaultTheme: DefaultTheme = {
     socialColor: '#f6ecc8',
     brown: '#392828eb',
     green: '#198754',
+    orange: '#e59700',
   },
   sizes: {
     videoRatio: 1.78,

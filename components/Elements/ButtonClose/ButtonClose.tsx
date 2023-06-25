@@ -7,10 +7,13 @@ import {
 } from './StyledButtonClose';
 import { TButtonClose } from './TButtonClose';
 
-const ButtonClose: FC<TButtonClose & TClickHandler> = ({ thumb, onClick }) => {
+const ButtonClose: FC<TButtonClose & TClickHandler> = ({
+  thumb,
+  clickHandler,
+}) => {
   return (
     <>
-      <StyledButtonClose type="button" onClick={onClick} thumb={thumb}>
+      <StyledButtonClose type="button" onClick={clickHandler} thumb={thumb}>
         <StyledThumbnailsCloseBtn icon={faXmark} />
       </StyledButtonClose>
     </>

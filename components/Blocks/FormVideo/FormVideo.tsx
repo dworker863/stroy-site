@@ -50,11 +50,13 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
           })
           .nullable(),
         link: Yup.string().when('video', (video) => {
-          return video
-            ? Yup.string().required(
+          console.log(video);
+
+          return video[0]
+            ? Yup.string()
+            : Yup.string().required(
                 'Укажите ссылку на видео или загрузите видео',
-              )
-            : Yup.string();
+              );
         }),
       })}
       onSubmit={async (
@@ -79,7 +81,7 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
         setSubmitting(false);
       }}
     >
-      {({ setFieldValue }) => (
+      {({ setFieldValue, handleChange, values }) => (
         <Form>
           <StyledLabel htmlFor="name">
             Название <StyledRedSpan>*</StyledRedSpan>
@@ -89,7 +91,14 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
           <StyledLabel htmlFor="description">Описание</StyledLabel>
-          <StyledField id="description" type="text" name="description" />
+          <StyledField
+            id="description"
+            as="textarea"
+            name="description"
+            rows={6}
+            onChange={handleChange}
+            value={values.description}
+          />
           <ErrorMessage name="description">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>

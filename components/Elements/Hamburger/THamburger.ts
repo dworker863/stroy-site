@@ -1,4 +1,4 @@
 export type THamburgerProps = {
   isActive: boolean;
-  onClick: () => void;
+  clickHandler: () => void;
 };

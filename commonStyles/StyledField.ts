@@ -7,5 +7,8 @@ export const StyledField = styled(Field)`
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 4px 8px;
-  /* color: ${({ theme }) => theme.colors.primary}; */
+
+  &:focus {
+    border: 2px solid ${({ theme }) => theme.colors.orange};
+  }
 `;

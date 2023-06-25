@@ -154,7 +154,7 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
             <Button
               type="button"
               text="Добавить Отзыв"
-              onClick={() => {
+              clickHandler={() => {
                 showReview
                   ? (values.review = null)
                   : (values.review = {

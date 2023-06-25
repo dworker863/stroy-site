@@ -5,7 +5,7 @@ import { StyledButton } from './StyledButton';
 const Button: FC<TButtonProps> = ({
   text,
   type,
-  onClick,
+  clickHandler,
   inline,
   center,
   auth,
@@ -13,7 +13,7 @@ const Button: FC<TButtonProps> = ({
   return (
     <StyledButton
       type={type}
-      onClick={onClick}
+      onClick={clickHandler}
       inline={inline}
       center={center}
       auth={auth}

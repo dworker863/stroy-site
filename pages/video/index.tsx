@@ -45,10 +45,10 @@ const VideoPage: NextPage<TVideoPageProps> = ({ videos }) => {
             type="button"
             text="Добавить видео"
             center
-            onClick={showVideoFormHandler}
+            clickHandler={showVideoFormHandler}
           />
         )}
-        {showVideoForm && <FormVideo />}
+        {auth && showVideoForm && <FormVideo />}
         <StyledVideos>
           {videos.map((video, index) => (
             <Video key={index + video.name} auth={auth} video={video} />

@@ -10,6 +10,7 @@ export interface ITheme {
     socialColor: string;
     brown: string;
     green: string;
+    orange: string;
   };
   sizes: {
     videoRatio: number;

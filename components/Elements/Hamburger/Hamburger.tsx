@@ -2,9 +2,9 @@ import { FC } from 'react';
 import { THamburgerProps } from './THamburger';
 import { StyledHamburger, StyledHamburgerWrapper } from './StyledHamburger';
 
-const Hamburger: FC<THamburgerProps> = ({ isActive, onClick }) => {
+const Hamburger: FC<THamburgerProps> = ({ isActive, clickHandler }) => {
   return (
-    <StyledHamburgerWrapper onClick={onClick}>
+    <StyledHamburgerWrapper onClick={clickHandler}>
       <StyledHamburger active={isActive} />
     </StyledHamburgerWrapper>
   );

@@ -75,6 +75,7 @@ export const StyledVideoPlayer = styled.div`
 
 export const StyledVideoDesc = styled.p`
   width: 55%;
+  word-wrap: break-word;
 
   @media (max-width: 1200px) {
     width: 50%;

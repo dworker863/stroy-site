@@ -7,7 +7,7 @@ const Modal: FC<TModalProps & { ref?: ForwardedRef<HTMLDivElement> }> =
   forwardRef(({ children, active, closeButtonHandler }, ref) => {
     return (
       <StyledModal active={active} ref={ref}>
-        <ButtonClose onClick={closeButtonHandler} />
+        <ButtonClose clickHandler={closeButtonHandler} />
         {children}
       </StyledModal>
     );

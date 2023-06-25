@@ -85,7 +85,12 @@ const FormRegistration: FC<TFormRegistrationProps> = ({
         </div>
 
         <Button type="submit" text="Зарегистрироваться" center />
-        <Button type="button" text="Назад" onClick={loginBtnHandler} center />
+        <Button
+          type="button"
+          text="Назад"
+          clickHandler={loginBtnHandler}
+          center
+        />
 
         <StyledErrorMessage style={{ textAlign: 'center' }}>
           {err}
