@@ -47,6 +47,17 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
     /[0-9]/,
   ];
 
+  const imageFormats = [
+    'image/jpeg',
+    'image/png',
+    'image/gif',
+    'image/bmp',
+    'image/tiff',
+    '(image/webp',
+    'image/svg+xml',
+    'image/heif',
+  ];
+
   const changeRatingHandler = (newRating: number) => {
     setRating(newRating);
   };
@@ -95,7 +106,21 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
               date: Yup.string(),
             })
             .nullable(),
-          images: Yup.array(),
+          images: Yup.array().test(
+            'fileType',
+            'Недопустимый формат изображения',
+            (images) => {
+              console.log(images);
+
+              if (images && images?.length > 0) {
+                return images?.every((image) =>
+                  imageFormats.includes((image as File).type),
+                );
+              }
+
+              return true;
+            },
+          ),
           price: Yup.number(),
         })}
         onSubmit={async (

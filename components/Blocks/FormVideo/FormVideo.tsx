@@ -43,7 +43,7 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
         video: Yup.mixed()
           .test('fileType', 'Недопустимый формат видео', (video) => {
             if (video) {
-              return video && videoFormats.includes((video as File).type);
+              return videoFormats.includes((video as File).type);
             }
 
             return true;
