@@ -1,6 +1,6 @@
 import { ErrorMessage, Formik, FormikHelpers } from 'formik';
 import { TFormAuthProps } from './TFormAuth';
-import { FC, useState } from 'react';
+import { FC, MouseEventHandler, useState } from 'react';
 import * as Yup from 'yup';
 import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
@@ -9,9 +9,21 @@ import Button from '../../Elements/Button/Button';
 import { login } from '../../../api/api';
 import { IUser } from '../../../commonTypesInterfaces/IUser';
 import { StyledModalForm } from '../../../commonStyles/StyledModalForm';
+import { faEye } from '@fortawesome/free-regular-svg-icons';
+import { StyledFlexWrapper } from '../../../commonStyles/StyledFlexWrapper';
+import { StyledEye } from '../../../commonStyles/StyledEye';
 
 const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
   const [err, setErr] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+
+  const showPasswordHandler: MouseEventHandler<SVGSVGElement> = (e) => {
+    if (e.type === 'mousedown') {
+      setShowPassword(true);
+    } else {
+      setShowPassword(false);
+    }
+  };
 
   return (
     <Formik
@@ -50,7 +62,18 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
 
         <div>
           <StyledLabel htmlFor="password">Пароль</StyledLabel>
-          <StyledField id="password" type="password" name="password" />
+          <StyledFlexWrapper>
+            <StyledField
+              id="password"
+              type={showPassword ? 'text' : 'password'}
+              name="password"
+            />
+            <StyledEye
+              icon={faEye}
+              onMouseUp={showPasswordHandler}
+              onMouseDown={showPasswordHandler}
+            />
+          </StyledFlexWrapper>
           <ErrorMessage name="password">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
