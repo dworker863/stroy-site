@@ -81,7 +81,8 @@ const FormService: FC<TFormServiceProps> = ({
           <ErrorMessage name="price">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
-          <Button type="submit" text={id ? 'Изменить' : 'Добавить'} />
+          <Button type="submit" text={id ? 'Изменить' : 'Добавить'} inline />
+          <Button type="reset" text="Отмена" inline />
           <StyledErrorMessage>{err}</StyledErrorMessage>
         </Form>
       </Formik>

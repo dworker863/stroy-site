@@ -129,7 +129,8 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
             thumbnails={dropVideos}
             changeFilesHandler={setFieldValue}
           />
-          <Button type="submit" text={video ? 'Изменить' : 'Добавить'} />
+          <Button type="submit" text={video ? 'Изменить' : 'Добавить'} inline />
+          <Button type="reset" text="Отмена" inline />
           <StyledErrorMessage>{err}</StyledErrorMessage>
         </Form>
       )}

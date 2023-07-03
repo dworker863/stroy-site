@@ -274,7 +274,12 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
             <ErrorMessage name="price">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
-            <Button type="submit" text={project ? 'Изменить' : 'Добавить'} />
+            <Button
+              type="submit"
+              text={project ? 'Изменить' : 'Добавить'}
+              inline
+            />
+            <Button type="reset" text="Отмена" inline />
             <StyledErrorMessage>{err}</StyledErrorMessage>
           </Form>
         )}
