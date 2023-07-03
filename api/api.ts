@@ -27,11 +27,16 @@ export const registration = ({
 export const login = ({
   username,
   password,
-}: IUser): Promise<IUser & { access_token: string }> => {
+  remember,
+}: IUser & { remember: boolean }): Promise<
+  IUser & { access_token: string }
+> => {
   return instance
     .post('auth/login', { username, password })
     .then((res) => {
-      localStorage.setItem('token', res.data.access_token);
+      if (remember) {
+        localStorage.setItem('token', res.data.access_token);
+      }
       return res.data;
     })
     .catch((e) => {

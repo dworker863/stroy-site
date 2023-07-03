@@ -12,6 +12,8 @@ import { StyledModalForm } from '../../../commonStyles/StyledModalForm';
 import { faEye } from '@fortawesome/free-regular-svg-icons';
 import { StyledFlexWrapper } from '../../../commonStyles/StyledFlexWrapper';
 import { StyledEye } from '../../../commonStyles/StyledEye';
+import { StyledCheckbox } from '../../../commonStyles/StyledCheckbox';
+import { StyledRemember } from './StyledFormAuth';
 
 const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
   const [err, setErr] = useState('');
@@ -30,15 +32,17 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
       initialValues={{
         username: '',
         password: '',
+        remember: false,
       }}
       validateOnChange={false}
       validationSchema={Yup.object({
         username: Yup.string().required('Введите имя пользователя'),
         password: Yup.string().required('Введите номер пароль'),
+        remember: Yup.boolean(),
       })}
       onSubmit={async (
-        values: IUser,
-        { setSubmitting }: FormikHelpers<IUser>,
+        values: IUser & { remember: boolean },
+        { setSubmitting }: FormikHelpers<IUser & { remember: boolean }>,
       ) => {
         const user = await login(values);
 
@@ -46,6 +50,9 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
           submitHandler();
         } else {
           setErr(user);
+        }
+
+        if (remember) {
         }
 
         setSubmitting(false);
@@ -78,6 +85,13 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
         </div>
+
+        <StyledRemember>
+          <StyledCheckbox id="remember" type="checkbox" name="remember" />
+          <StyledLabel htmlFor="remember" inline>
+            Запомнить меня
+          </StyledLabel>
+        </StyledRemember>
 
         <Button type="submit" text="Войти" center />
         <Button
