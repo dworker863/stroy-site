@@ -121,7 +121,7 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
               return true;
             },
           ),
-          price: Yup.number(),
+          price: Yup.number().typeError('Цена должна быть числом'),
         })}
         onSubmit={async (
           values: { toggleReview: boolean } & IProject,

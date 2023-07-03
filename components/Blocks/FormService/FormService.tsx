@@ -32,7 +32,9 @@ const FormService: FC<TFormServiceProps> = ({
         validationSchema={Yup.object({
           name: Yup.string().required('Укажите название услуги'),
           measure: Yup.string().required('Укажите единицу измерения услуги'),
-          price: Yup.number().required('Укажите цену'),
+          price: Yup.number()
+            .typeError('Цена должна быть числом')
+            .required('Укажите цену'),
         })}
         onSubmit={async (
           values: IService,
