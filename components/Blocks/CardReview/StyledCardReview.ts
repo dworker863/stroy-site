@@ -4,6 +4,7 @@ import styled from 'styled-components';
 export const StyledCardReview = styled.div`
   display: flex;
   flex-direction: column;
+  width: 48%;
   min-height: 300px;
   margin: 5px;
   border-radius: 10px;
@@ -47,6 +48,7 @@ export const StyledCardText = styled.div`
 `;
 
 export const StyledCardMessage = styled.p`
+  word-wrap: break-word;
   margin-bottom: 40px;
 `;
 

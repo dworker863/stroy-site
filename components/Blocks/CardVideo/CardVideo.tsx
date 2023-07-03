@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import {
   StyledCardVideo,
   StyledVideoDesc,
@@ -11,6 +11,7 @@ import { TCardVideoProps } from './TCardVideo';
 import EditButtons from '../../Elements/EditButtons/EditButtons';
 import { deleteVideo } from '../../../api/api';
 import { useRouter } from 'next/router';
+import { StyledFullText } from '../../../commonStyles/StyledFullText';
 
 const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 
@@ -20,6 +21,7 @@ const VideoCard: FC<TCardVideoProps> = ({
   showVideoFormHandler,
 }) => {
   const router = useRouter();
+  const [showText, setShowText] = useState(false);
 
   const updateVideoHandler = () => {
     showVideoFormHandler();
@@ -27,6 +29,10 @@ const VideoCard: FC<TCardVideoProps> = ({
   const deleteVideoHandler = () => {
     deleteVideo(video.id as number);
     router.push(router.pathname, undefined, { scroll: false });
+  };
+
+  const showFullTextHandler = () => {
+    setShowText(!showText);
   };
 
   return (
@@ -51,7 +57,29 @@ const VideoCard: FC<TCardVideoProps> = ({
             controls
           />
         </StyledVideoPlayer>
-        <StyledVideoDesc>{video.description}</StyledVideoDesc>
+        <StyledVideoDesc>
+          {!showText &&
+          video?.description &&
+          video?.description.length > 200 ? (
+            <>
+              {video?.description.slice(0, 200) + '...'}
+              <StyledFullText onClick={showFullTextHandler}>
+                Читать
+              </StyledFullText>
+            </>
+          ) : !video?.description ? (
+            ''
+          ) : video?.description.length > 200 ? (
+            <>
+              {video?.description + '   '}
+              <StyledFullText onClick={showFullTextHandler}>
+                Скрыть
+              </StyledFullText>
+            </>
+          ) : (
+            video.description
+          )}
+        </StyledVideoDesc>
       </StyledVideoInfo>
     </StyledCardVideo>
   );

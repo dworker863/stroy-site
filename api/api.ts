@@ -184,9 +184,7 @@ export const postVideo = (video: IVideo): Promise<IVideo> => {
 
   formData.append('name', video.name);
 
-  if (video.description) {
-    formData.append('description', video.description);
-  }
+  formData.append('description', video.description);
 
   if (video.link) {
     formData.append('link', video.link);
@@ -213,9 +211,7 @@ export const updateVideo = (video: IVideo): Promise<any> => {
 
   formData.append('name', video.name);
 
-  if (video.description) {
-    formData.append('description', video.description);
-  }
+  formData.append('description', video.description);
 
   if (video.link) {
     formData.append('link', video.link);

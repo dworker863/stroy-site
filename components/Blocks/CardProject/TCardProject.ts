@@ -1,6 +1,6 @@
 import { IProject } from '../../../commonTypesInterfaces/IProject';
 
-export interface ICardProject {
+export type TCardProjectProps = {
   project: IProject;
   updateProjectFormHandler: () => void;
-}
+};

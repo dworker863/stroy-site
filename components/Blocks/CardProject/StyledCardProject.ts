@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import { TActive } from './../../../commonTypesInterfaces/TActive';
+import styled, { css } from 'styled-components';
 
 export const StyledCardProject = styled.div`
   position: relative;
@@ -44,9 +45,15 @@ export const StyledCardProjectTitle = styled.div`
   background-color: ${({ theme }) => theme.colors.secondary};
 `;
 
-export const StyledCardProjectContent = styled.div`
+export const StyledCardProjectContent = styled.div<TActive>`
   display: flex;
   justify-content: space-around;
+
+  ${({ active }) =>
+    active &&
+    css`
+      padding-bottom: 20px;
+    `}
 
   @media (max-width: 576px) {
     flex-direction: column;
@@ -70,7 +77,6 @@ export const StyledCardProjectInfo = styled.div`
 
 export const StyledCardProjectDesc = styled.div`
   padding: 10px;
-  text-align: center;
   word-wrap: break-word;
 `;
 

@@ -2,7 +2,7 @@ import { FC, SyntheticEvent, useContext, useEffect, useState } from 'react';
 import { A11y, EffectFlip, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import CardReview from '../CardReview/CardReview';
-import { ICardProject } from './ICardProject';
+import { TCardProjectProps } from './TCardProject';
 import {
   StyledCardProject,
   StyledCardProjectContent,
@@ -25,8 +25,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/effect-flip';
 import EditButtons from '../../Elements/EditButtons/EditButtons';
+import { StyledFullText } from '../../../commonStyles/StyledFullText';
 
-const CardProject: FC<ICardProject> = ({
+const CardProject: FC<TCardProjectProps> = ({
   project,
   updateProjectFormHandler,
 }) => {
@@ -34,6 +35,7 @@ const CardProject: FC<ICardProject> = ({
   const router = useRouter();
   const [smallImage, setSmallImage] = useState(false);
   const [aspectRatio, setAspectRatio] = useState(1);
+  const [showText, setShowText] = useState(false);
 
   useEffect(() => {
     const media = window.matchMedia(`(max-width: 576px)`);
@@ -55,6 +57,10 @@ const CardProject: FC<ICardProject> = ({
   const deleteProjectHandler = async (id?: number) => {
     await deleteProject(id);
     router.push('./projects');
+  };
+
+  const showFullTextHandler = () => {
+    setShowText(!showText);
   };
 
   return (
@@ -91,12 +97,34 @@ const CardProject: FC<ICardProject> = ({
           </SwiperSlide>
         ))}
       </Swiper>
-      <StyledCardProjectContent>
+      <StyledCardProjectContent active={auth}>
         <StyledCardProjectInfo>
           <StyledCardProjectPrice>
             {project.price + ' тг'}
           </StyledCardProjectPrice>
-          <StyledCardProjectDesc>{project.description}</StyledCardProjectDesc>
+          <StyledCardProjectDesc>
+            {!showText &&
+            project?.description &&
+            project?.description.length > 200 ? (
+              <>
+                {project?.description.slice(0, 200) + '...'}
+                <StyledFullText onClick={showFullTextHandler}>
+                  Читать
+                </StyledFullText>
+              </>
+            ) : !project?.description ? (
+              ''
+            ) : project?.description.length > 200 ? (
+              <>
+                {project?.description + '   '}
+                <StyledFullText onClick={showFullTextHandler}>
+                  Скрыть
+                </StyledFullText>
+              </>
+            ) : (
+              project.description
+            )}
+          </StyledCardProjectDesc>
         </StyledCardProjectInfo>
         <CardReview review={project.projectReview} />
       </StyledCardProjectContent>

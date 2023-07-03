@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { TCardReviewProps } from './TCardReview';
 import {
   StyledAuthorName,
@@ -12,8 +12,17 @@ import {
   StyledCardText,
   StyledStars,
 } from './StyledCardReview';
+import { StyledFullText } from '../../../commonStyles/StyledFullText';
 
 const CardReview: FC<TCardReviewProps> = ({ review }) => {
+  const [showText, setShowText] = useState(false);
+
+  const showFullTextHandler = () => {
+    setShowText(!showText);
+  };
+
+  console.log(review?.text.length);
+
   return (
     <StyledCardReview>
       <StyledCardAuthorWrapper>
@@ -38,7 +47,27 @@ const CardReview: FC<TCardReviewProps> = ({ review }) => {
         </StyledCardAuthor>
       </StyledCardAuthorWrapper>
       <StyledCardText>
-        <StyledCardMessage>{review?.text}</StyledCardMessage>
+        <StyledCardMessage>
+          {!showText && review?.text && review?.text.length > 200 ? (
+            <>
+              {review?.text.slice(0, 200) + '...'}
+              <StyledFullText onClick={showFullTextHandler}>
+                Читать
+              </StyledFullText>
+            </>
+          ) : !review?.text ? (
+            ''
+          ) : review?.text.length > 200 ? (
+            <>
+              {review?.text + '   '}
+              <StyledFullText onClick={showFullTextHandler}>
+                Скрыть
+              </StyledFullText>
+            </>
+          ) : (
+            review.text
+          )}
+        </StyledCardMessage>
         <StyledCardDate>{review?.date}</StyledCardDate>
       </StyledCardText>
     </StyledCardReview>
