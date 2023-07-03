@@ -10,6 +10,7 @@ import { StyledTitle } from '../../commonStyles/StyledTitle';
 import { StyledPage } from '../../commonStyles/StyledPage';
 import { StyledCalculatorDesc } from './StyledCalculatorPage';
 import { AppContext } from '../../components/Sections/Layout/Layout';
+import { StyledErrorMessage } from '../../commonStyles/StyledErrorMessage';
 
 export const CalculatorContext = createContext<TCalculatorContext>({
   serviceButtonHandler: () => {},
@@ -20,8 +21,22 @@ const CalculatorPage: NextPage<TCalculatorPageProps> = ({ services }) => {
 
   const [showServices, setShowServices] = useState(false);
   const [cartServices, setCartServices] = useState<IService[]>([]);
+  const [err, setErr] = useState('');
 
   const serviceButtonHandler = (service: IService) => {
+    const checkService = cartServices.some(
+      (cartService) => cartService.name === service.name,
+    );
+
+    if (checkService) {
+      setErr('Данная услуга уже добавлена');
+      return;
+    }
+
+    if (!checkService && err) {
+      setErr('');
+    }
+
     if (showServices && !auth) {
       setCartServices([...cartServices, service]);
     }
@@ -29,6 +44,11 @@ const CalculatorPage: NextPage<TCalculatorPageProps> = ({ services }) => {
 
   const showServicesButtonHandler = () => {
     setShowServices(!showServices);
+  };
+
+  const clearCartHandler = () => {
+    setCartServices([]);
+    setErr('');
   };
 
   return (
@@ -59,7 +79,13 @@ const CalculatorPage: NextPage<TCalculatorPageProps> = ({ services }) => {
             center
           />
           {showServices && <Services auth={auth} services={services} />}
-          {!auth && <Cart cartServices={cartServices} />}
+          {err && <StyledErrorMessage>{err}</StyledErrorMessage>}
+          {!auth && (
+            <Cart
+              cartServices={cartServices}
+              clearCartHandler={clearCartHandler}
+            />
+          )}
         </Container>
       </StyledPage>
     </CalculatorContext.Provider>

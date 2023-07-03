@@ -1,3 +1,4 @@
+import { StyledTitle } from './../../../commonStyles/StyledTitle';
 import styled from 'styled-components';
 
 export const StyledCart = styled.div`
@@ -8,6 +9,10 @@ export const StyledCart = styled.div`
       text-align: center;
     }
   }
+`;
+
+export const StyledCartTitle = styled(StyledTitle)`
+  margin-top: 40px;
 `;
 
 export const StyledCartServicesWrapper = styled.div`

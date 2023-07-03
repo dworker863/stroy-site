@@ -7,9 +7,10 @@ import {
   StyledCart,
   StyledCartPrice,
   StyledCartServicesWrapper,
+  StyledCartTitle,
 } from './StyledCart';
 
-const Cart: FC<TCartProps> = ({ cartServices }) => {
+const Cart: FC<TCartProps> = ({ cartServices, clearCartHandler }) => {
   const cartServicesWithSum = cartServices.map((cartService) => ({
     service: cartService.name,
     sum: 0,
@@ -35,7 +36,7 @@ const Cart: FC<TCartProps> = ({ cartServices }) => {
 
   return (
     <StyledCart>
-      <StyledTitle>Корзина</StyledTitle>
+      <StyledCartTitle>Корзина</StyledCartTitle>
       <StyledCartServicesWrapper>
         {cartServices.map((service) => (
           <CartService
@@ -51,8 +52,19 @@ const Cart: FC<TCartProps> = ({ cartServices }) => {
         type="button"
         text="Рассчитать"
         clickHandler={sumButtonHandler}
-        center
+        inline
       />
+      {cartServices.length > 0 && (
+        <Button
+          type="button"
+          text="Очистить корзину"
+          clickHandler={() => {
+            setCartSum(0);
+            clearCartHandler();
+          }}
+          inline
+        />
+      )}
     </StyledCart>
   );
 };

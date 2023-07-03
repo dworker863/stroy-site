@@ -16,7 +16,6 @@ export const StyledServices = styled.div`
 export const StyledServicesWrapper = styled.div`
   display: flex;
   gap: 15px;
-  margin-bottom: 40px;
 
   @media (max-width: 576px) {
     flex-direction: column;
