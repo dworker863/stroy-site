@@ -52,9 +52,6 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
           setErr(user);
         }
 
-        if (remember) {
-        }
-
         setSubmitting(false);
       }}
     >
@@ -89,7 +86,7 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
         <StyledRemember>
           <StyledCheckbox id="remember" type="checkbox" name="remember" />
           <StyledLabel htmlFor="remember" inline>
-            Запомнить меня
+            Запомнить
           </StyledLabel>
         </StyledRemember>
 
