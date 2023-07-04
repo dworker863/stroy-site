@@ -19,6 +19,7 @@ import { StyledDropZone } from '../../../commonStyles/StyledDropzone';
 import { StyledPlus } from '../../../commonStyles/StyledPlus';
 import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
 import { AxiosProgressEvent } from 'axios';
+import BarProgress from '../../Elements/BarProgress/BarProgress';
 
 const FormProject: FC<TFormProjectProps> = ({ project }) => {
   const { showFormHandler } = useContext(ProjectsContext);
@@ -156,6 +157,8 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
             } else {
               showFormHandler();
             }
+
+            setProgress(0);
           } else {
             const res = await postProject(
               projectToPost,
@@ -166,6 +169,8 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
             if (typeof res === 'string') {
               setErr(res);
             }
+
+            setProgress(0);
           }
 
           router.push(router.pathname, undefined, { scroll: false });
@@ -292,7 +297,7 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
             <ErrorMessage name="price">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
-            <div>{progress}</div>
+            {progress > 0 && <BarProgress percent={progress} />}
             <Button
               type="submit"
               text={project ? 'Изменить' : 'Добавить'}

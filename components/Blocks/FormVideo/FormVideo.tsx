@@ -15,6 +15,7 @@ import { TFormVideoProps } from './TFormVideo';
 import { useRouter } from 'next/router';
 import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
 import { AxiosProgressEvent } from 'axios';
+import BarProgress from '../../Elements/BarProgress/BarProgress';
 
 const FormVideo: FC<TFormVideoProps> = ({ video }) => {
   const [dropVideos, setDropVideos] = useState<any>([]);
@@ -83,6 +84,8 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
           if (typeof res === 'string') {
             setErr(res);
           }
+
+          setProgress(0);
         } else {
           const res = await postVideo(
             values,
@@ -93,6 +96,8 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
           if (typeof res === 'string') {
             setErr(res);
           }
+
+          setProgress(0);
         }
 
         router.push(router.pathname, undefined, { scroll: false });
@@ -147,7 +152,7 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
             thumbnails={dropVideos}
             changeFilesHandler={setFieldValue}
           />
-          <div>{progress}</div>
+          {progress > 0 && <BarProgress percent={progress} />}
           <Button type="submit" text={video ? 'Изменить' : 'Добавить'} inline />
           <Button type="reset" text="Отмена" inline />
           <StyledErrorMessage>{err}</StyledErrorMessage>
