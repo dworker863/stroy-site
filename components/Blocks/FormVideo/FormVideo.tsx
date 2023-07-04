@@ -155,6 +155,7 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
           {progress > 0 && <BarProgress percent={progress} />}
           <Button type="submit" text={video ? 'Изменить' : 'Добавить'} inline />
           <Button type="reset" text="Отмена" inline />
+          {/* <Button type="button" text="Скрыть" clickHandler={} inline /> */}
           <StyledErrorMessage>{err}</StyledErrorMessage>
         </Form>
       )}

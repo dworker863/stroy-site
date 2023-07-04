@@ -82,7 +82,7 @@ const CardProject: FC<TCardProjectProps> = ({
         </StyledCardProjectSliderButtons>
         {project.images.map((image) => (
           <SwiperSlide
-            key={project.id + project.name}
+            key={project.id + image}
             style={{
               width: `${targetWidth}`,
               height: `calc(${targetWidth}px / ${aspectRatio})`,

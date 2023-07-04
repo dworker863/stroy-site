@@ -21,7 +21,10 @@ import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
 import { AxiosProgressEvent } from 'axios';
 import BarProgress from '../../Elements/BarProgress/BarProgress';
 
-const FormProject: FC<TFormProjectProps> = ({ project }) => {
+const FormProject: FC<TFormProjectProps> = ({
+  project,
+  updateProjectFormHandler,
+}) => {
   const { showFormHandler } = useContext(ProjectsContext);
   const router = useRouter();
 
@@ -304,6 +307,14 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
               inline
             />
             <Button type="reset" text="Отмена" inline />
+            <Button
+              type="button"
+              text="Скрыть"
+              clickHandler={
+                project ? updateProjectFormHandler : showFormHandler
+              }
+              inline
+            />
             <StyledErrorMessage>{err}</StyledErrorMessage>
           </Form>
         )}

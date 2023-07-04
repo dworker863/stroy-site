@@ -18,7 +18,12 @@ const Project: FC<TProjectProps> = ({ project }) => {
         project={project}
         updateProjectFormHandler={updateProjectFormHandler}
       />
-      {showProjectForm && <FormProject project={project} />}
+      {showProjectForm && (
+        <FormProject
+          project={project}
+          updateProjectFormHandler={updateProjectFormHandler}
+        />
+      )}
     </StyledProject>
   );
 };
