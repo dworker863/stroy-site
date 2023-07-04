@@ -48,7 +48,9 @@ const VideoPage: NextPage<TVideoPageProps> = ({ videos }) => {
             clickHandler={showVideoFormHandler}
           />
         )}
-        {auth && showVideoForm && <FormVideo />}
+        {auth && showVideoForm && (
+          <FormVideo showVideoFormHandler={showVideoFormHandler} />
+        )}
         <StyledVideos>
           {videos.map((video, index) => (
             <Video key={index + video.name} auth={auth} video={video} />

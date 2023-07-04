@@ -17,7 +17,11 @@ import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
 import { AxiosProgressEvent } from 'axios';
 import BarProgress from '../../Elements/BarProgress/BarProgress';
 
-const FormVideo: FC<TFormVideoProps> = ({ video }) => {
+const FormVideo: FC<TFormVideoProps> = ({
+  video,
+  showVideoFormHandler,
+  updateVideoFormHandler,
+}) => {
   const [dropVideos, setDropVideos] = useState<any>([]);
   const [err, setErr] = useState('');
   const [progress, setProgress] = useState(0);
@@ -155,7 +159,12 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
           {progress > 0 && <BarProgress percent={progress} />}
           <Button type="submit" text={video ? 'Изменить' : 'Добавить'} inline />
           <Button type="reset" text="Отмена" inline />
-          {/* <Button type="button" text="Скрыть" clickHandler={} inline /> */}
+          <Button
+            type="button"
+            text="Скрыть"
+            clickHandler={video ? updateVideoFormHandler : showVideoFormHandler}
+            inline
+          />
           <StyledErrorMessage>{err}</StyledErrorMessage>
         </Form>
       )}

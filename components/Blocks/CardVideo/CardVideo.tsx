@@ -15,16 +15,16 @@ import { StyledFullText } from '../../../commonStyles/StyledFullText';
 
 const ReactPlayer = dynamic(() => import('react-player/lazy'), { ssr: false });
 
-const VideoCard: FC<TCardVideoProps> = ({
+const CardVideo: FC<TCardVideoProps> = ({
   auth,
   video,
-  showVideoFormHandler,
+  updateVideoFormHandler,
 }) => {
   const router = useRouter();
   const [showText, setShowText] = useState(false);
 
   const updateVideoHandler = () => {
-    showVideoFormHandler();
+    updateVideoFormHandler();
   };
   const deleteVideoHandler = async () => {
     await deleteVideo(video.id as number);
@@ -85,4 +85,4 @@ const VideoCard: FC<TCardVideoProps> = ({
   );
 };
 
-export default VideoCard;
+export default CardVideo;

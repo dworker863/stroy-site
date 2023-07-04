@@ -1,23 +1,28 @@
 import { FC, useState } from 'react';
 import { TVideoProps } from './TVideo';
-import VideoCard from '../CardVideo/CardVideo';
+import CardVideo from '../CardVideo/CardVideo';
 import FormVideo from '../FormVideo/FormVideo';
 
 const Video: FC<TVideoProps> = ({ video, auth }) => {
   const [showVideoForm, setShowVideoForm] = useState(false);
 
-  const showVideoFormHandler = () => {
+  const updateVideoFormHandler = () => {
     setShowVideoForm(!showVideoForm);
   };
 
   return (
     <>
-      <VideoCard
+      <CardVideo
         auth={auth}
         video={video}
-        showVideoFormHandler={showVideoFormHandler}
+        updateVideoFormHandler={updateVideoFormHandler}
       />
-      {showVideoForm && <FormVideo video={video} />}
+      {showVideoForm && (
+        <FormVideo
+          video={video}
+          updateVideoFormHandler={updateVideoFormHandler}
+        />
+      )}
     </>
   );
 };
