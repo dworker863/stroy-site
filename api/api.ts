@@ -1,4 +1,5 @@
-import axios from 'axios';
+import axios, { AxiosProgressEvent } from 'axios';
+import { Dispatch, SetStateAction } from 'react';
 import { IProject } from '../commonTypesInterfaces/IProject';
 import { IService } from '../commonTypesInterfaces/IService';
 import { IUser } from '../commonTypesInterfaces/IUser';
@@ -179,7 +180,14 @@ export const deleteProject = (id?: number): Promise<number> => {
     });
 };
 
-export const postVideo = (video: IVideo): Promise<IVideo> => {
+export const postVideo = (
+  video: IVideo,
+  handleUploadProgress: (
+    progressEvent: AxiosProgressEvent,
+    setProgress: Dispatch<SetStateAction<number>>,
+  ) => void,
+  setProgress: Dispatch<SetStateAction<number>>,
+): Promise<IVideo> => {
   const formData = new FormData();
 
   formData.append('name', video.name);
@@ -197,6 +205,8 @@ export const postVideo = (video: IVideo): Promise<IVideo> => {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
+      onUploadProgress: (progressEvent: AxiosProgressEvent) =>
+        handleUploadProgress(progressEvent, setProgress),
     })
     .then((res) => {
       return res.data;

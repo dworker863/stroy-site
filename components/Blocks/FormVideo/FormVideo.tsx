@@ -1,5 +1,5 @@
 import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
-import { FC, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import * as Yup from 'yup';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
@@ -14,10 +14,12 @@ import { IVideo } from '../../../commonTypesInterfaces/IVideo';
 import { TFormVideoProps } from './TFormVideo';
 import { useRouter } from 'next/router';
 import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
+import { AxiosProgressEvent } from 'axios';
 
 const FormVideo: FC<TFormVideoProps> = ({ video }) => {
   const [dropVideos, setDropVideos] = useState<any>([]);
   const [err, setErr] = useState('');
+  const [progress, setProgress] = useState(0);
 
   const router = useRouter();
 
@@ -28,6 +30,16 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
     'video/mov',
     'video/webm',
   ];
+
+  const handleUploadProgress = (
+    progressEvent: AxiosProgressEvent,
+    setProgress: Dispatch<SetStateAction<number>>,
+  ) => {
+    const progressPercentage =
+      progressEvent?.total &&
+      Math.round((progressEvent.loaded / progressEvent?.total) * 100);
+    setProgress(progressPercentage as number);
+  };
 
   return (
     <Formik
@@ -50,8 +62,6 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
           })
           .nullable(),
         link: Yup.string().when('video', (video) => {
-          console.log(video);
-
           return video[0]
             ? Yup.string()
             : Yup.string().required(
@@ -70,7 +80,11 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
             setErr(res);
           }
         } else {
-          const res = await postVideo(values);
+          const res = await postVideo(
+            values,
+            handleUploadProgress,
+            setProgress,
+          );
 
           if (typeof res === 'string') {
             setErr(res);
@@ -129,6 +143,7 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
             thumbnails={dropVideos}
             changeFilesHandler={setFieldValue}
           />
+          <div>{progress}</div>
           <Button type="submit" text={video ? 'Изменить' : 'Добавить'} inline />
           <Button type="reset" text="Отмена" inline />
           <StyledErrorMessage>{err}</StyledErrorMessage>
