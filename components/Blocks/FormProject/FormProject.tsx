@@ -81,7 +81,7 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
                 date: project?.projectReview?.date || now,
               }
             : null,
-          images: project?.images || dropImages,
+          images: dropImages,
           price: project?.price || 0,
         }}
         validateOnBlur={false}
