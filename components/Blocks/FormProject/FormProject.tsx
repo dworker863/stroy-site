@@ -53,7 +53,7 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
     'image/gif',
     'image/bmp',
     'image/tiff',
-    '(image/webp',
+    'image/webp',
     'image/svg+xml',
     'image/heif',
   ];
@@ -110,8 +110,6 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
             'fileType',
             'Недопустимый формат изображения',
             (images) => {
-              console.log(images);
-
               if (images && images?.length > 0) {
                 return images?.every((image) =>
                   imageFormats.includes((image as File).type),

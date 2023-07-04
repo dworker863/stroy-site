@@ -21,8 +21,6 @@ const CardReview: FC<TCardReviewProps> = ({ review }) => {
     setShowText(!showText);
   };
 
-  console.log(review?.text.length);
-
   return (
     <StyledCardReview>
       <StyledCardAuthorWrapper>

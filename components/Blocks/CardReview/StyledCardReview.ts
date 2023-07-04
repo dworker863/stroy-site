@@ -11,6 +11,10 @@ export const StyledCardReview = styled.div`
   box-shadow: 1px 1px 5px ${({ theme }) => theme.colors.grey};
   box-shadow: 1px 1px 5px #292828;
   color: ${({ theme }) => theme.colors.fontColor};
+
+  @media (max-width: 576px) {
+    width: calc(100% - 10px);
+  }
 `;
 
 export const StyledCardAuthorWrapper = styled.div`
