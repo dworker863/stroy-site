@@ -1,5 +1,5 @@
 import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
-import { FC, useContext, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useContext, useState } from 'react';
 import { TFormProjectProps } from './TFromProject';
 import * as Yup from 'yup';
 import Button from '../../Elements/Button/Button';
@@ -18,6 +18,7 @@ import { ProjectsContext } from '../../../pages/projects';
 import { StyledDropZone } from '../../../commonStyles/StyledDropzone';
 import { StyledPlus } from '../../../commonStyles/StyledPlus';
 import { StyledRedSpan } from '../../../commonStyles/StyledRedSpan';
+import { AxiosProgressEvent } from 'axios';
 
 const FormProject: FC<TFormProjectProps> = ({ project }) => {
   const { showFormHandler } = useContext(ProjectsContext);
@@ -27,6 +28,7 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
   const [rating, setRating] = useState(5);
   const [showReview, setShowReview] = useState(false);
   const [dropImages, setDropImages] = useState<any>([]);
+  const [progress, setProgress] = useState(0);
 
   const now = new Date().toLocaleString('kz-KZ', {
     day: 'numeric',
@@ -64,6 +66,16 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
 
   const toggleReviewHandler = () => {
     setShowReview(!showReview);
+  };
+
+  const handleUploadProgress = (
+    progressEvent: AxiosProgressEvent,
+    setProgress: Dispatch<SetStateAction<number>>,
+  ) => {
+    const progressPercentage =
+      progressEvent?.total &&
+      Math.round((progressEvent.loaded / progressEvent?.total) * 100);
+    setProgress(progressPercentage as number);
   };
 
   return (
@@ -130,10 +142,14 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
           const { toggleReview, ...projectToPost } = values;
 
           if (project) {
-            const res = await updateProject({
-              id: project.id,
-              ...projectToPost,
-            });
+            const res = await updateProject(
+              {
+                id: project.id,
+                ...projectToPost,
+              },
+              handleUploadProgress,
+              setProgress,
+            );
 
             if (typeof res === 'string') {
               setErr(res);
@@ -141,7 +157,11 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
               showFormHandler();
             }
           } else {
-            const res = await postProject(projectToPost);
+            const res = await postProject(
+              projectToPost,
+              handleUploadProgress,
+              setProgress,
+            );
 
             if (typeof res === 'string') {
               setErr(res);
@@ -272,6 +292,7 @@ const FormProject: FC<TFormProjectProps> = ({ project }) => {
             <ErrorMessage name="price">
               {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
             </ErrorMessage>
+            <div>{progress}</div>
             <Button
               type="submit"
               text={project ? 'Изменить' : 'Добавить'}

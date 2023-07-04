@@ -105,7 +105,14 @@ export const deleteService = (id?: number) => {
     });
 };
 
-export const postProject = (project: IProject): Promise<IProject> => {
+export const postProject = (
+  project: IProject,
+  handleUploadProgress: (
+    progressEvent: AxiosProgressEvent,
+    setProgress: Dispatch<SetStateAction<number>>,
+  ) => void,
+  setProgress: Dispatch<SetStateAction<number>>,
+): Promise<IProject> => {
   const formData = new FormData();
 
   formData.append('name', project.name);
@@ -126,6 +133,8 @@ export const postProject = (project: IProject): Promise<IProject> => {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
+      onUploadProgress: (progressEvent: AxiosProgressEvent) =>
+        handleUploadProgress(progressEvent, setProgress),
     })
     .then((res) => {
       return res.data;
@@ -135,7 +144,14 @@ export const postProject = (project: IProject): Promise<IProject> => {
     });
 };
 
-export const updateProject = (project: IProject): Promise<any> => {
+export const updateProject = (
+  project: IProject,
+  handleUploadProgress: (
+    progressEvent: AxiosProgressEvent,
+    setProgress: Dispatch<SetStateAction<number>>,
+  ) => void,
+  setProgress: Dispatch<SetStateAction<number>>,
+): Promise<any> => {
   const formData = new FormData();
 
   formData.append('name', project.name);
@@ -156,6 +172,8 @@ export const updateProject = (project: IProject): Promise<any> => {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
+      onUploadProgress: (progressEvent: AxiosProgressEvent) =>
+        handleUploadProgress(progressEvent, setProgress),
     })
     .then((res) => {
       return res.data;
@@ -216,7 +234,14 @@ export const postVideo = (
     });
 };
 
-export const updateVideo = (video: IVideo): Promise<any> => {
+export const updateVideo = (
+  video: IVideo,
+  handleUploadProgress: (
+    progressEvent: AxiosProgressEvent,
+    setProgress: Dispatch<SetStateAction<number>>,
+  ) => void,
+  setProgress: Dispatch<SetStateAction<number>>,
+): Promise<any> => {
   const formData = new FormData();
 
   formData.append('name', video.name);
@@ -234,6 +259,8 @@ export const updateVideo = (video: IVideo): Promise<any> => {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
+      onUploadProgress: (progressEvent: AxiosProgressEvent) =>
+        handleUploadProgress(progressEvent, setProgress),
     })
     .then((res) => {
       return res.data;

@@ -74,7 +74,11 @@ const FormVideo: FC<TFormVideoProps> = ({ video }) => {
         { setSubmitting }: FormikHelpers<IVideo>,
       ) => {
         if (video) {
-          const res = await updateVideo({ id: video.id, ...values });
+          const res = await updateVideo(
+            { id: video.id, ...values },
+            handleUploadProgress,
+            setProgress,
+          );
 
           if (typeof res === 'string') {
             setErr(res);

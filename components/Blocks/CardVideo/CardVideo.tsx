@@ -26,8 +26,8 @@ const VideoCard: FC<TCardVideoProps> = ({
   const updateVideoHandler = () => {
     showVideoFormHandler();
   };
-  const deleteVideoHandler = () => {
-    deleteVideo(video.id as number);
+  const deleteVideoHandler = async () => {
+    await deleteVideo(video.id as number);
     router.push(router.pathname, undefined, { scroll: false });
   };
 
