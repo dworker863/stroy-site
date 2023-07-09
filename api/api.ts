@@ -11,11 +11,11 @@ export const instance = axios.create({
 });
 
 export const registration = ({
-  username,
+  email,
   password,
 }: IUser): Promise<IUser & { access_token: string }> => {
   return instance
-    .post('auth/registration', { username, password })
+    .post('auth/registration', { email, password })
     .then((res) => {
       localStorage.setItem('token', res.data.access_token);
       return res.data;
@@ -26,14 +26,14 @@ export const registration = ({
 };
 
 export const login = ({
-  username,
+  email,
   password,
   remember,
 }: IUser & { remember: boolean }): Promise<
   IUser & { access_token: string }
 > => {
   return instance
-    .post('auth/login', { username, password })
+    .post('auth/login', { email, password })
     .then((res) => {
       if (remember) {
         localStorage.setItem('token', res.data.access_token);

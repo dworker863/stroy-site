@@ -5,7 +5,6 @@ import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from '../commonStyles/theme';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import { useRouter } from 'next/router';
 
 config.autoAddCss = false;
 

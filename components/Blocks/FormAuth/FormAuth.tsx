@@ -30,13 +30,13 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
   return (
     <Formik
       initialValues={{
-        username: '',
+        email: '',
         password: '',
         remember: false,
       }}
       validateOnChange={false}
       validationSchema={Yup.object({
-        username: Yup.string().required('Введите имя пользователя'),
+        email: Yup.string().required('Введите имя пользователя'),
         password: Yup.string().required('Введите номер пароль'),
         remember: Yup.boolean(),
       })}
@@ -57,9 +57,9 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
     >
       <StyledModalForm>
         <div>
-          <StyledLabel htmlFor="username">Имя пользователя</StyledLabel>
-          <StyledField id="username" type="text" name="username" />
-          <ErrorMessage name="username">
+          <StyledLabel htmlFor="email">Имя пользователя</StyledLabel>
+          <StyledField id="email" type="text" name="email" />
+          <ErrorMessage name="email">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
         </div>

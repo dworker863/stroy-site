@@ -47,12 +47,14 @@ const FormRegistration: FC<TFormRegistrationProps> = ({
   return (
     <Formik
       initialValues={{
-        username: '',
+        email: '',
         password: '',
         passwordConfirm: '',
       }}
       validationSchema={Yup.object({
-        username: Yup.string().required('Введите имя пользователя'),
+        email: Yup.string()
+          .email('Укажите корректный email')
+          .required('Введите имя пользователя'),
         password: Yup.string().required('Введите пароль'),
         passwordConfirm: Yup.string()
           .oneOf([Yup.ref('password')], 'Пароли не совпадают')
@@ -62,8 +64,8 @@ const FormRegistration: FC<TFormRegistrationProps> = ({
         values: TFormRegistrationValues,
         { setSubmitting }: FormikHelpers<any>,
       ) => {
-        const { username, password } = values;
-        const user = await registration({ username, password });
+        const { email, password } = values;
+        const user = await registration({ email, password });
 
         if (typeof user !== 'string') {
           submitHandler();
@@ -76,11 +78,11 @@ const FormRegistration: FC<TFormRegistrationProps> = ({
     >
       <StyledModalForm>
         <div>
-          <StyledLabel htmlFor="username">
+          <StyledLabel htmlFor="email">
             Имя пользователя <StyledRedSpan>*</StyledRedSpan>
           </StyledLabel>
-          <StyledField id="username" type="text" name="username" />
-          <ErrorMessage name="username">
+          <StyledField id="email" type="text" name="email" />
+          <ErrorMessage name="email">
             {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
           </ErrorMessage>
         </div>
