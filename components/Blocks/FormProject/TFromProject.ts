@@ -3,7 +3,7 @@ import { IProject } from '../../../commonTypesInterfaces/IProject';
 
 export type TFormProjectProps = {
   project?: IProject;
-  updateProjectFormHandler: () => void;
+  updateProjectFormHandler?: () => void;
 };
 
 export type TStyledFormReview = {
