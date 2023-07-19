@@ -53,8 +53,8 @@ const FormRegistration: FC<TFormRegistrationProps> = ({
       }}
       validationSchema={Yup.object({
         email: Yup.string()
-          .email('Укажите корректный email')
-          .required('Введите имя пользователя'),
+          .email('Некорректный email')
+          .required('Укажите адрес электронной почты'),
         password: Yup.string().required('Введите пароль'),
         passwordConfirm: Yup.string()
           .oneOf([Yup.ref('password')], 'Пароли не совпадают')

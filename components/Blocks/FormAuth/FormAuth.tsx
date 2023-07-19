@@ -36,7 +36,9 @@ const FormAuth: FC<TFormAuthProps> = ({ submitHandler, registrBtnHandler }) => {
       }}
       validateOnChange={false}
       validationSchema={Yup.object({
-        email: Yup.string().required('Введите имя пользователя'),
+        email: Yup.string()
+          .email('Некорректный email')
+          .required('Укажите адрес электронной почты'),
         password: Yup.string().required('Введите номер пароль'),
         remember: Yup.boolean(),
       })}

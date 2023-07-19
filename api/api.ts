@@ -4,6 +4,7 @@ import { IProject } from '../commonTypesInterfaces/IProject';
 import { IService } from '../commonTypesInterfaces/IService';
 import { IUser } from '../commonTypesInterfaces/IUser';
 import { IVideo } from '../commonTypesInterfaces/IVideo';
+import { TOrder } from '../commonTypesInterfaces/TOrder';
 
 export const instance = axios.create({
   baseURL: 'http://192.168.1.4:8000/',
@@ -277,6 +278,17 @@ export const deleteVideo = (id: number) => {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     })
+    .then((res) => {
+      return res.data;
+    })
+    .catch((e) => {
+      return e.response.data.message;
+    });
+};
+
+export const postOrder = (order: TOrder) => {
+  return instance
+    .post(`mail`, order)
     .then((res) => {
       return res.data;
     })
