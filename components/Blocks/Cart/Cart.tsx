@@ -54,6 +54,12 @@ const Cart: FC<TCartProps> = ({ cartServices, clearCartHandler }) => {
         clickHandler={sumButtonHandler}
         inline
       />
+      <Button
+        type="button"
+        text="Отправить Заявку"
+        clickHandler={sumButtonHandler}
+        inline
+      />
       {cartServices.length > 0 && (
         <Button
           type="button"

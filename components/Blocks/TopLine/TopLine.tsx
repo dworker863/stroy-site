@@ -8,6 +8,7 @@ import Container from '../Container/Container';
 import Nav from '../Nav/Nav';
 import { TTopLineProps } from './TTopLine';
 import { StyledTopLine } from './StyledTopLine';
+import { StyledFlexWrapper } from '../../../commonStyles/StyledFlexWrapper';
 
 const TopLine: FC<TTopLineProps> = ({ hamburgerActive, hamburgerHandler }) => {
   const { auth, setModalActive, logoutHandler } = useContext(AppContext);
@@ -16,15 +17,19 @@ const TopLine: FC<TTopLineProps> = ({ hamburgerActive, hamburgerHandler }) => {
     <StyledTopLine>
       <Hamburger isActive={hamburgerActive} clickHandler={hamburgerHandler} />
       <Container>
-        <Link href="/">
-          <Logo />
-        </Link>
-        <Button
-          type="button"
-          text={!auth ? '' : 'Выйти'}
-          auth={auth}
-          clickHandler={auth ? logoutHandler : setModalActive.bind(null, true)}
-        />
+        <StyledFlexWrapper>
+          <Link href="/">
+            <Logo />
+          </Link>
+          <Button
+            type="button"
+            text={!auth ? '' : 'Выйти'}
+            auth={auth}
+            clickHandler={
+              auth ? logoutHandler : setModalActive.bind(null, true)
+            }
+          />
+        </StyledFlexWrapper>
         <Nav />
       </Container>
     </StyledTopLine>

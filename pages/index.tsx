@@ -67,7 +67,7 @@ const Home: NextPage<THome> = ({ projects }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const res = await fetch('http://192.168.1.3:8000/projects');
+  const res = await fetch('http://192.168.1.4:8000/projects');
   const projects = await res.json();
 
   return {

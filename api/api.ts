@@ -6,7 +6,7 @@ import { IUser } from '../commonTypesInterfaces/IUser';
 import { IVideo } from '../commonTypesInterfaces/IVideo';
 
 export const instance = axios.create({
-  baseURL: 'http://192.168.1.3:8000/',
+  baseURL: 'http://192.168.1.4:8000/',
   withCredentials: true,
 });
 

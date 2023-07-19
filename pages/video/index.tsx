@@ -62,7 +62,7 @@ const VideoPage: NextPage<TVideoPageProps> = ({ videos }) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const res = await fetch('http://192.168.1.3:8000/videos');
+  const res = await fetch('http://192.168.1.4:8000/videos');
   const videos = await res.json();
 
   return {

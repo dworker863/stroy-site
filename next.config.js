@@ -5,7 +5,7 @@ const nextConfig = {
     styledComponents: true,
   },
   images: {
-    domains: ['192.168.1.3'],
+    domains: ['192.168.1.4'],
   },
 };
 
