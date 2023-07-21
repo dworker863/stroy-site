@@ -144,7 +144,6 @@ const FormProject: FC<TFormProjectProps> = ({
           }: FormikHelpers<{ toggleReview: boolean } & IProject>,
         ) => {
           const { toggleReview, ...projectToPost } = values;
-
           if (project) {
             const res = await updateProject(
               {
@@ -154,13 +153,11 @@ const FormProject: FC<TFormProjectProps> = ({
               handleUploadProgress,
               setProgress,
             );
-
             if (typeof res === 'string') {
               setErr(res);
             } else {
               showFormHandler();
             }
-
             setProgress(0);
           } else {
             const res = await postProject(
@@ -168,14 +165,11 @@ const FormProject: FC<TFormProjectProps> = ({
               handleUploadProgress,
               setProgress,
             );
-
             if (typeof res === 'string') {
               setErr(res);
             }
-
             setProgress(0);
           }
-
           router.push(router.pathname, undefined, { scroll: false });
           setSubmitting(false);
         }}
@@ -267,6 +261,7 @@ const FormProject: FC<TFormProjectProps> = ({
                   guide={true}
                   placeholder={now}
                   placeholderChar={'\u2000'}
+                  onChange={handleChange}
                 />
                 <ErrorMessage name="review.date">
                   {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}

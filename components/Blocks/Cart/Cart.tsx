@@ -14,7 +14,7 @@ import { ErrorMessage, Form, Formik, FormikHelpers } from 'formik';
 import { StyledLabel } from '../../../commonStyles/StyledLabel';
 import { StyledField } from '../../../commonStyles/StyledField';
 import { StyledErrorMessage } from '../../../commonStyles/StyledErrorMessage';
-import { TOrder } from '../../../commonTypesInterfaces/TOrder';
+import MaskedInput from 'react-text-mask';
 
 const Cart: FC<TCartProps> = ({ cartServices, clearCartHandler }) => {
   const cartServicesWithSum = cartServices.map((cartService) => ({
@@ -45,6 +45,27 @@ const Cart: FC<TCartProps> = ({ cartServices, clearCartHandler }) => {
     setShowForm(!showForm);
   };
 
+  const mask = [
+    '+',
+    '7',
+    ' ',
+    '(',
+    /\d/,
+    /\d/,
+    /\d/,
+    ')',
+    ' ',
+    /\d/,
+    /\d/,
+    /\d/,
+    ' ',
+    /\d/,
+    /\d/,
+    ' ',
+    /\d/,
+    /\d/,
+  ];
+
   return (
     <StyledCart>
       <StyledCartTitle>Корзина</StyledCartTitle>
@@ -61,31 +82,39 @@ const Cart: FC<TCartProps> = ({ cartServices, clearCartHandler }) => {
       <StyledCartPrice>Общая стоимость: {cartSum}</StyledCartPrice>
       <Formik
         initialValues={{
-          email: '',
+          phoneNumber: '',
         }}
         validationSchema={Yup.object({
-          email: Yup.string()
-            .email('Некорректный email')
-            .required('Укажите адрес электронной почты'),
+          phoneNumber: Yup.string().required('Укажите номер телефона'),
         })}
         onSubmit={async (
-          values: { email: string },
-          { setSubmitting }: FormikHelpers<{ email: string }>,
+          values: { phoneNumber: string },
+          { setSubmitting }: FormikHelpers<{ phoneNumber: string }>,
         ) => {
           sumButtonHandler();
-          postOrder({ cart, cartSum, email: values.email });
-          console.log({ cart, cartSum, email: values.email });
+          postOrder({ cart, cartSum, phoneNumber: values.phoneNumber });
+          console.log({ cart, cartSum, phoneNumber: values.phoneNumber });
 
           setSubmitting(false);
         }}
       >
-        {({ handleSubmit }) => (
+        {({ handleSubmit, handleChange }) => (
           <>
             {showForm && (
               <Form>
-                <StyledLabel htmlFor="email">Email</StyledLabel>
-                <StyledField id="email" type="text" name="email" />
-                <ErrorMessage name="email">
+                <StyledLabel htmlFor="phoneNumber">Номер телефона</StyledLabel>
+                <StyledField
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  type="text"
+                  as={MaskedInput}
+                  mask={mask}
+                  guide={true}
+                  placeholder="+7 (777) 777 77 77"
+                  placeholderChar={'\u2000'}
+                  onChange={handleChange}
+                />
+                <ErrorMessage name="phoneNumber">
                   {(msg) => <StyledErrorMessage>{msg}</StyledErrorMessage>}
                 </ErrorMessage>
               </Form>
