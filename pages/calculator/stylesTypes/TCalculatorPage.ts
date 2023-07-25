@@ -1,4 +1,4 @@
-import { IService } from '../../commonTypesInterfaces/IService';
+import { IService } from '../../../commonTypesInterfaces/IService';
 
 export type TCalculatorPageProps = {
   auth: boolean;

@@ -1,4 +1,4 @@
-import { IProject } from '../../commonTypesInterfaces/IProject';
+import { IProject } from '../../../commonTypesInterfaces/IProject';
 
 export type TProjectsPageProps = {
   auth: boolean;
