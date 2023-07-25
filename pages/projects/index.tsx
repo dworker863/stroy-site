@@ -1,7 +1,10 @@
 import React, { createContext, useContext, useState } from 'react';
 import { GetServerSideProps, NextPage } from 'next';
 import { StyledProjectsDesc } from './stylesTypes/StyledProjectsPage';
-import { TProjectsContext, TProjectsPageProps } from './TProjectsPage';
+import {
+  TProjectsContext,
+  TProjectsPageProps,
+} from './stylesTypes/TProjectsPage';
 import { StyledPage } from '../../commonStyles/StyledPage';
 import Container from '../../components/Blocks/Container/Container';
 import { StyledTitle } from '../../commonStyles/StyledTitle';
