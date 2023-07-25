@@ -5,6 +5,7 @@ import {
   TCalculatorContext,
   TCalculatorPageProps,
 } from '../../pagesStylesAndTypes/calculator/TCalculatorPage';
+
 import Services from '../../components/Sections/Services/Services';
 import Cart from '../../components/Blocks/Cart/Cart';
 import Container from '../../components/Blocks/Container/Container';
@@ -12,6 +13,7 @@ import { IService } from '../../commonTypesInterfaces/IService';
 import { StyledTitle } from '../../commonStyles/StyledTitle';
 import { StyledPage } from '../../commonStyles/StyledPage';
 import { StyledCalculatorDesc } from '../../pagesStylesAndTypes/calculator/StyledCalculatorPage';
+
 import { AppContext } from '../../components/Sections/Layout/Layout';
 import { StyledErrorMessage } from '../../commonStyles/StyledErrorMessage';
 

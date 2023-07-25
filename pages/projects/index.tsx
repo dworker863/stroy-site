@@ -5,6 +5,7 @@ import {
   TProjectsContext,
   TProjectsPageProps,
 } from '../../pagesStylesAndTypes/projects/TProjectsPage';
+
 import { StyledPage } from '../../commonStyles/StyledPage';
 import Container from '../../components/Blocks/Container/Container';
 import { StyledTitle } from '../../commonStyles/StyledTitle';

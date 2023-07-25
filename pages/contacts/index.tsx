@@ -4,6 +4,7 @@ import ContactsBlock from '../../components/Blocks/ContactsBlock/ContactsBlock';
 import Container from '../../components/Blocks/Container/Container';
 import { StyledTitle } from '../../commonStyles/StyledTitle';
 import { StyledContacts } from '../../pagesStylesAndTypes/contacts/StyledContacts';
+
 import { NextPage } from 'next';
 
 const ContactsPage: NextPage = () => {
