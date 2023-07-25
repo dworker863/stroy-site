@@ -27,6 +27,8 @@ const Cart: FC<TCartProps> = ({ cartServices, clearCartHandler }) => {
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
+    console.log(window);
+
     const newCartService = cartServices.filter((cartService) => {
       return !cart.some(({ service }) => service === cartService.name);
     });

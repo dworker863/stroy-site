@@ -3,7 +3,7 @@ import React from 'react';
 import ContactsBlock from '../../components/Blocks/ContactsBlock/ContactsBlock';
 import Container from '../../components/Blocks/Container/Container';
 import { StyledTitle } from '../../commonStyles/StyledTitle';
-import { StyledContacts } from './StyledContacts';
+import { StyledContacts } from './stylesTypes/StyledContacts';
 import { NextPage } from 'next';
 
 const ContactsPage: NextPage = () => {

@@ -7,10 +7,10 @@ import FormVideo from '../../components/Blocks/FormVideo/FormVideo';
 import Button from '../../components/Elements/Button/Button';
 import { AppContext } from '../../components/Sections/Layout/Layout';
 import { GetServerSideProps } from 'next';
-import { TVideoPageProps } from './TVideoPage';
+import { TVideoPageProps } from './stylesTypes/TVideoPage';
 import Video from '../../components/Blocks/Video/Video';
-import { StyledCalculatorDesc } from '../calculator/StyledCalculatorPage';
-import { StyledVideos } from './StyledVideoPage';
+import { StyledCalculatorDesc } from '../calculator/stylesTypes/StyledCalculatorPage';
+import { StyledVideos } from './stylesTypes/StyledVideoPage';
 
 const VideoPage: NextPage<TVideoPageProps> = ({ videos }) => {
   const { auth } = useContext(AppContext);

@@ -10,7 +10,7 @@ import {
   StyledNotFoundPage,
   StyledNotFoundSeparator,
   StyledNotFoundTitle,
-} from './StyledNotFoundPage';
+} from './stylesTypes/StyledNotFoundPage';
 
 const NotFoundPage: NextPage = () => {
   const ratio = 323 / 430;
